@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Subscriptions -->
+    <record id="view_webhook_subscription_list" model="ir.ui.view">
+        <field name="name">gental.mcp.webhook.subscription.list</field>
+        <field name="model">gental.mcp.webhook.subscription</field>
+        <field name="arch" type="xml">
+            <list string="Webhooks" decoration-muted="not active">
+                <field name="name"/>
+                <field name="url_host"/>
+                <field name="event_ids" widget="many2many_tags"/>
+                <field name="run_as_user_id"/>
+                <field name="active" widget="boolean"/>
+                <field name="failing_count" widget="badge" decoration-danger="failing_count &gt; 0"
+                       invisible="not failing_count"/>
+                <field name="warning" string="Warning"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_webhook_subscription_form" model="ir.ui.view">
+        <field name="name">gental.mcp.webhook.subscription.form</field>
+        <field name="model">gental.mcp.webhook.subscription</field>
+        <field name="arch" type="xml">
+            <form string="Webhook">
+                <header>
+                    <button name="action_send_test" type="object" string="Send test" class="btn-primary"
+                            invisible="not id or not active"
+                            title="Sends a test event to the URL now, so you can check the receiver."/>
+                    <button name="action_rotate_secret" type="object" string="Rotate secret"
+                            invisible="not id"
+                            confirm="The old secret stops working at once. Update the receiving system with the new one."
+                            title="Creates a new signing secret."/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="action_open_deliveries" type="object" class="oe_stat_button"
+                                icon="fa-paper-plane" invisible="not id">
+                            <div class="o_stat_info">
+                                <span class="o_stat_text">Recent deliveries</span>
+                            </div>
+                        </button>
+                    </div>
+                    <div class="alert alert-warning" role="alert" name="warning_banner" invisible="not warning">
+                        <field name="warning" class="oe_inline"/>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="url" placeholder="https://example.com/hooks/odoo"/>
+                            <field name="run_as_user_id"/>
+                            <field name="active" widget="boolean_toggle"/>
+                        </group>
+                        <group>
+                            <field name="event_ids" widget="many2many_tags"/>
+                            <field name="show_models" invisible="1"/>
+                            <field name="filter_model" invisible="1"/>
+                            <field name="exposed_model_ids" widget="many2many_tags"
+                                   invisible="not show_models" required="show_models"/>
+                            <field name="exposed_ir_model_ids" invisible="1"/>
+                            <field name="payload_field_ids" widget="many2many_tags" invisible="not show_models"
+                                   options="{'no_create': True}"/>
+                            <field name="secret" widget="CopyClipboardChar" password="True" readonly="1"
+                                   invisible="not id"/>
+                        </group>
+                    </group>
+                    <group invisible="not filter_model">
+                        <field name="filter_domain" widget="domain" options="{'model': 'filter_model'}"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_webhook_subscription_search" model="ir.ui.view">
+        <field name="name">gental.mcp.webhook.subscription.search</field>
+        <field name="model">gental.mcp.webhook.subscription</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="url"/>
+                <filter name="archived" string="Archived" domain="[('active', '=', False)]"/>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_webhook_subscriptions" model="ir.actions.act_window">
+        <field name="name">Webhooks</field>
+        <field name="res_model">gental.mcp.webhook.subscription</field>
+        <field name="view_mode">list,form</field>
+    </record>
+
+    <!-- Configuration > Webhooks page -->
+    <record id="view_config_form_webhooks" model="ir.ui.view">
+        <field name="name">gental.mcp.config.form.webhooks</field>
+        <field name="model">gental.mcp.config</field>
+        <field name="inherit_id" ref="view_config_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook[@name='mcp_tabs']//page[@name='access']" position="after">
+                <page name="webhooks" string="Webhooks">
+                    <div class="mb-3">
+                        <button name="action_new_webhook" type="object" string="New webhook" class="btn-primary"/>
+                    </div>
+                    <field name="webhook_subscription_ids" readonly="1" nolabel="1">
+                        <list decoration-muted="not active" create="0" delete="0">
+                            <field name="name"/>
+                            <field name="url_host"/>
+                            <field name="event_ids" widget="many2many_tags"/>
+                            <field name="run_as_user_id"/>
+                            <field name="active" widget="boolean"/>
+                            <field name="failing_count" widget="badge" decoration-danger="failing_count &gt; 0"
+                                   invisible="not failing_count"/>
+                            <field name="warning" string="Warning"/>
+                        </list>
+                    </field>
+                </page>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Configuration > Retention page -->
+    <record id="view_config_form_webhook_retention" model="ir.ui.view">
+        <field name="name">gental.mcp.config.form.webhook.retention</field>
+        <field name="model">gental.mcp.config</field>
+        <field name="inherit_id" ref="view_config_form"/>
+        <field name="arch" type="xml">
+            <field name="log_retention_days" position="after">
+                <field name="webhook_log_retention_days"/>
+            </field>
+        </field>
+    </record>
+
+    <!-- Logs > Outbox > Webhooks -->
+    <record id="view_webhook_delivery_list" model="ir.ui.view">
+        <field name="name">gental.mcp.webhook.delivery.list</field>
+        <field name="model">gental.mcp.webhook.delivery</field>
+        <field name="arch" type="xml">
+            <list string="Webhook deliveries" create="0" delete="0" edit="0" default_order="id desc">
+                <header>
+                    <button name="action_retry_now" type="object" string="Retry now"
+                            title="Sends a few deliveries now and queues the rest; a failed delivery gets one more try."/>
+                </header>
+                <field name="create_date" string="When"/>
+                <field name="event_code"/>
+                <field name="record_label"/>
+                <field name="subscription_id" optional="hide"/>
+                <field name="url_host"/>
+                <field name="attempts"/>
+                <field name="last_status_code"/>
+                <field name="state" widget="badge" decoration-success="state == 'delivered'"
+                       decoration-muted="state in ('queued', 'sending', 'expired')" decoration-danger="state == 'failed'"/>
+                <field name="next_attempt_at" invisible="state in ('delivered', 'failed', 'expired')"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_webhook_delivery_form" model="ir.ui.view">
+        <field name="name">gental.mcp.webhook.delivery.form</field>
+        <field name="model">gental.mcp.webhook.delivery</field>
+        <field name="arch" type="xml">
+            <form string="Webhook delivery" create="0" edit="0" delete="0">
+                <header>
+                    <button name="action_retry_now" type="object" string="Retry now" class="btn-primary"
+                            invisible="state not in ('queued', 'failed')"
+                            title="Sends a few deliveries now and queues the rest; a failed delivery gets one more try."/>
+                    <field name="state" widget="statusbar" statusbar_visible="queued,delivered,failed"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="event_code"/>
+                            <field name="subscription_id"/>
+                            <field name="url_host"/>
+                            <field name="record_label"/>
+                            <field name="delivery_uuid"/>
+                        </group>
+                        <group>
+                            <field name="create_date" string="Queued"/>
+                            <field name="attempts"/>
+                            <field name="last_status_code"/>
+                            <field name="next_attempt_at" invisible="state in ('delivered', 'failed', 'expired')"/>
+                            <field name="delivered_at" invisible="not delivered_at"/>
+                        </group>
+                    </group>
+                    <group string="Last error" invisible="not last_error">
+                        <!-- Untrusted text from the receiver: shown as plain text only. -->
+                        <field name="last_error" widget="text" nolabel="1" readonly="1"/>
+                    </group>
+                    <group string="Headers (without the signature)">
+                        <field name="headers_text" nolabel="1" widget="text"/>
+                    </group>
+                    <group string="Body">
+                        <field name="body_pretty" nolabel="1" widget="text"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_webhook_delivery_search" model="ir.ui.view">
+        <field name="name">gental.mcp.webhook.delivery.search</field>
+        <field name="model">gental.mcp.webhook.delivery</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="event_code"/>
+                <field name="subscription_id"/>
+                <field name="model"/>
+                <filter name="failed" string="Failed" domain="[('state', '=', 'failed')]"/>
+                <filter name="queued" string="Queued" domain="[('state', '=', 'queued')]"/>
+                <filter name="today" string="Today"
+                        domain="[('create_date', '&gt;=', datetime.datetime.combine(context_today(), datetime.time.min))]"/>
+                <group>
+                    <filter name="group_event" string="Event" context="{'group_by': 'event_code'}"/>
+                    <filter name="group_subscription" string="Subscription" context="{'group_by': 'subscription_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_webhook_deliveries" model="ir.actions.act_window">
+        <field name="name">Webhooks</field>
+        <field name="res_model">gental.mcp.webhook.delivery</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">No webhook deliveries yet</p>
+            <p>Events sent to your webhooks will be listed here, with how each delivery went.</p>
+        </field>
+    </record>
+</odoo>

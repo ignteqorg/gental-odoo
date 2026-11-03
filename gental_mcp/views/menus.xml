@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id="menu_root"
+              name="Gental MCP"
+              web_icon="gental_mcp,static/description/icon.png"
+              groups="gental_mcp.group_mcp_manager"
+              sequence="90"/>
+
+    <menuitem id="menu_dashboard" name="Dashboard" parent="menu_root"
+              action="action_dashboard" sequence="1"/>
+    <menuitem id="menu_clients" name="Clients" parent="menu_root"
+              action="action_clients" sequence="10"/>
+    <menuitem id="menu_logs" name="Logs" parent="menu_root" sequence="20"/>
+    <menuitem id="menu_logs_inbox" name="Inbox" parent="menu_logs"
+              action="action_logs_inbox" sequence="10"/>
+    <menuitem id="menu_logs_outbox" name="Outbox" parent="menu_logs" sequence="20"/>
+    <menuitem id="menu_logs_outbox_documents" name="Documents" parent="menu_logs_outbox"
+              action="action_documents" sequence="20"/>
+    <menuitem id="menu_logs_outbox_webhooks" name="Webhooks" parent="menu_logs_outbox"
+              action="action_webhook_deliveries" sequence="10"/>
+    <menuitem id="menu_config" name="Configuration" parent="menu_root"
+              action="server_action_config" sequence="90"
+              groups="gental_mcp.group_mcp_manager"/>
+</odoo>
