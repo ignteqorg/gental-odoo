@@ -1,0 +1,3430 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* gental_mcp
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0-20261015\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-11-02 21:23+0000\n"
+"PO-Revision-Date: 2026-11-02 21:23+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/invoicing.py:0
+msgid "%(count)s invoices found."
+msgstr ""
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/invoicing.py:0
+msgid "%(name)s was already emailed for this request."
+msgstr ""
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/invoicing.py:0
+msgid "%(name)s was emailed to %(email)s."
+msgstr ""
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/inventory.py:0
+msgid "%(name)s: %(state)s, scheduled %(scheduled)s"
+msgstr ""
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/inventory.py:0
+msgid "%(name)s: %(state)s, scheduled %(scheduled)s, delivered %(done)s"
+msgstr ""
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/invoicing.py:0
+msgid "%(name)s: total %(total)s, still due %(due)s, due date %(date)s."
+msgstr ""
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/inventory.py:0
+msgid ""
+"%(product)s at %(warehouse)s: on hand %(on_hand)s, forecast %(forecast)s, "
+"free %(free)s"
+msgstr ""
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/pos.py:0
+msgid "%(ref)s: %(state)s, total %(total)s %(currency)s"
+msgstr ""
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/pos.py:0
+msgid "%(shop)s: %(count)s orders, total %(total)s %(currency)s"
+msgstr ""
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/models/mcp_config.py:0
+msgid ""
+"%(url)s did not answer correctly (%(detail)s). Check the public URL and your"
+" proxy."
+msgstr ""
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/models/mcp_config.py:0
+msgid "%s answered. Assistants can reach this Odoo."
+msgstr ""
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/inventory.py:0
+msgid ", order %(order)s"
+msgstr ""
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/inventory.py:0
+msgid ", tracking %(tracking)s"
+msgstr ""
+
+#. module: gental_mcp
+#: model_terms:ir.ui.view,arch_db:gental_mcp.view_webhook_subscription_form
+msgid "<span class=\"o_stat_text\">Recent deliveries</span>"
+msgstr ""
+
+#. module: gental_mcp
+#: model_terms:ir.ui.view,arch_db:gental_mcp.view_config_form
+msgid ""
+"<span>No Public URL is set and web.base.url isn't frozen: if an "
+"administrator signs in from another address, the MCP URL changes and every "
+"assistant has to connect again. Set the Public URL, or run the reachability "
+"check to save the current address.</span>"
+msgstr ""
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/contacts.py:0
+msgid ""
+"A contact matched by phone or email, but the name differs: “%(sent)s” vs "
+"“%(saved)s”."
+msgstr ""
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/services/domain_guard.py:0
+msgid "A domain field must be a field name: %s"
+msgstr ""
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/services/domain_guard.py:0
+msgid "A domain value must be a scalar or a list of scalars (field %s)."
+msgstr ""
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/models/webhook_subscription.py:0
+msgid "A filter works only when every chosen event is on the same model."
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_api_key_wizard__key
+#: model:ir.model.fields.selection,name:gental_mcp.selection__gental_mcp_client__kind__api_key
+msgid "API Key"
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_config__api_keys_enabled
+msgid "API Keys Enabled"
+msgstr ""
+
+#. module: gental_mcp
+#. odoo-javascript
+#: code:addons/gental_mcp/static/src/dashboard/dashboard.xml:0
+msgid "API key"
+msgstr ""
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/wizards/api_key_wizard.py:0
+msgid "API key created"
+msgstr ""
+
+#. module: gental_mcp
+#: model_terms:ir.ui.view,arch_db:gental_mcp.view_client_search
+msgid "API keys"
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields.selection,name:gental_mcp.selection__gental_mcp_token__kind__access
+#: model_terms:ir.ui.view,arch_db:gental_mcp.view_config_form
+msgid "Access"
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model,name:gental_mcp.model_res_groups
+msgid "Access Groups"
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_log__action_key
+msgid "Action Key"
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_config__message_needaction
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_webhook_subscription__message_needaction
+msgid "Action Needed"
+msgstr ""
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/models/dashboard.py:0
+msgid "Actions whose outcome is unknown (check them in Odoo)"
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_exposed_model__active
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_webhook_subscription__active
+#: model:ir.model.fields.selection,name:gental_mcp.selection__gental_mcp_client__state__active
+#: model:ir.model.fields.selection,name:gental_mcp.selection__gental_mcp_document__state__active
+#: model_terms:ir.ui.view,arch_db:gental_mcp.view_client_search
+#: model_terms:ir.ui.view,arch_db:gental_mcp.view_document_search
+msgid "Active"
+msgstr ""
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/crm.py:0
+msgid "Activity “%(summary)s” scheduled for %(date)s."
+msgstr ""
+
+#. module: gental_mcp
+#: model_terms:ir.ui.view,arch_db:gental_mcp.oauth_consent
+msgid "Acts as"
+msgstr ""
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/sales.py:0
+msgid "Add at least one product line."
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_config__url_unpinned
+msgid "Address May Change"
+msgstr ""
+
+#. module: gental_mcp
+#. odoo-javascript
+#: code:addons/gental_mcp/static/src/dashboard/dashboard.xml:0
+msgid "All good."
+msgstr ""
+
+#. module: gental_mcp
+#: model_terms:ir.ui.view,arch_db:gental_mcp.oauth_consent
+msgid "Allow"
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_config__allowed_origin_ids
+msgid "Allowed Browser Origins"
+msgstr ""
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/models/mcp_client.py:0
+msgid "An API key must belong to a user."
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields,help:gental_mcp.field_gental_mcp_webhook_subscription__url
+msgid "An https address on the public internet."
+msgstr ""
+
+#. module: gental_mcp
+#: model_terms:ir.ui.view,arch_db:gental_mcp.oauth_consent
+msgid "App"
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_tool_setting__area_installed
+msgid "App Installed"
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields.selection,name:gental_mcp.selection__gental_mcp_config__default_lang__ar
+msgid "Arabic"
+msgstr ""
+
+#. module: gental_mcp
+#: model_terms:ir.ui.view,arch_db:gental_mcp.view_webhook_subscription_search
+msgid "Archived"
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_tool_setting__area
+msgid "Area"
+msgstr ""
+
+#. module: gental_mcp
+#: model_terms:ir.ui.view,arch_db:gental_mcp.view_config_form_curated
+msgid "Areas"
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_log__args_json
+msgid "Arguments"
+msgstr ""
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/services/generic_tools.py:0
+msgid "Assistants may not do this on %s."
+msgstr ""
+
+#. module: gental_mcp
+#: model_terms:ir.actions.act_window,help:gental_mcp.action_clients
+msgid ""
+"Assistants that sign in with OAuth show up here. You can also create an API "
+"key for a user."
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_config__message_attachment_count
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_webhook_subscription__message_attachment_count
+msgid "Attachment Count"
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_webhook_delivery__attempts
+msgid "Attempts"
+msgstr ""
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/models/webhook_delivery.py:0
+msgid "Attempts so far: %s"
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_webhook_event__available
+msgid "Available"
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_webhook_watch__baseline_after_id
+msgid "Baseline After"
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_webhook_watch__baseline_done
+msgid "Baseline Done"
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_webhook_delivery__body
+#: model_terms:ir.ui.view,arch_db:gental_mcp.view_webhook_delivery_form
+msgid "Body"
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_config__area_crm_enabled
+#: model:ir.model.fields.selection,name:gental_mcp.selection__gental_mcp_tool_setting__area__crm
+msgid "CRM"
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_config__area_crm_installed
+msgid "CRM App Installed"
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields.selection,name:gental_mcp.selection__gental_mcp_log__kind__call
+msgid "Call"
+msgstr ""
+
+#. module: gental_mcp
+#. odoo-javascript
+#: code:addons/gental_mcp/static/src/dashboard/dashboard.xml:0
+msgid "Calls"
+msgstr ""
+
+#. module: gental_mcp
+#. odoo-javascript
+#: code:addons/gental_mcp/static/src/dashboard/dashboard.xml:0
+msgid "Calls per day"
+msgstr ""
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/models/dashboard.py:0
+msgid "Calls that were denied"
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_exposed_model__can_create
+msgid "Can Create"
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_exposed_model__can_unlink
+msgid "Can Delete"
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_api_key_wizard__can_pick_user
+msgid "Can Pick User"
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_exposed_model__can_read
+msgid "Can Read"
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_exposed_model__can_write
+msgid "Can Write"
+msgstr ""
+
+#. module: gental_mcp
+#: model:res.groups,comment:gental_mcp.group_mcp_connect
+msgid ""
+"Can connect AI assistants to Odoo and act through them with their own access"
+" rights."
+msgstr ""
+
+#. module: gental_mcp
+#: model_terms:ir.ui.view,arch_db:gental_mcp.oauth_consent
+msgid "Can make changes"
+msgstr ""
+
+#. module: gental_mcp
+#: model_terms:ir.ui.view,arch_db:gental_mcp.oauth_error
+msgid "Can't connect"
+msgstr ""
+
+#. module: gental_mcp
+#: model_terms:ir.ui.view,arch_db:gental_mcp.view_api_key_wizard_form
+#: model_terms:ir.ui.view,arch_db:gental_mcp.view_identity_secret_wizard_form
+msgid "Cancel"
+msgstr ""
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/invoicing.py:0
+msgid "Cancelled"
+msgstr ""
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/sales.py:0
+msgid "Cancelling this order needs a confirmation in Odoo."
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields.selection,name:gental_mcp.selection__gental_mcp_webhook_event__kind__transition
+msgid "Changed to a state"
+msgstr ""
+
+#. module: gental_mcp
+#: model_terms:ir.ui.view,arch_db:gental_mcp.view_config_form
+msgid "Check that assistants can reach this Odoo"
+msgstr ""
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/models/webhook_subscription.py:0
+msgid "Choose at least one event."
+msgstr ""
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/models/webhook_subscription.py:0
+msgid "Choose the models to watch for “Record created” or “Record updated”."
+msgstr ""
+
+#. module: gental_mcp
+#: model_terms:ir.ui.view,arch_db:gental_mcp.view_api_key_wizard_form
+msgid "Claude Desktop"
+msgstr ""
+
+#. module: gental_mcp
+#: model_terms:ir.ui.view,arch_db:gental_mcp.view_config_form
+msgid "Clear"
+msgstr ""
+
+#. module: gental_mcp
+#: model_terms:ir.ui.view,arch_db:gental_mcp.view_config_form
+msgid ""
+"Clear the identity secret? Tools for the chatting customer stop working "
+"until you set a new one."
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_action_key__client_id
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_auth_code__client_id
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_document__client_id
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_log__client_id
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_token__client_id
+#: model_terms:ir.ui.view,arch_db:gental_mcp.view_client_form
+#: model_terms:ir.ui.view,arch_db:gental_mcp.view_document_search
+#: model_terms:ir.ui.view,arch_db:gental_mcp.view_log_search
+msgid "Client"
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_client__client_id
+msgid "Client ID"
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.actions.act_window,name:gental_mcp.action_clients
+#: model:ir.ui.menu,name:gental_mcp.menu_clients
+#: model_terms:ir.ui.view,arch_db:gental_mcp.view_client_list
+msgid "Clients"
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_webhook_event__code
+msgid "Code"
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_auth_code__code_challenge
+msgid "Code Challenge"
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_auth_code__code_hash
+msgid "Code Hash"
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_exposed_model__config_id
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_origin__config_id
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_tool_setting__config_id
+msgid "Config"
+msgstr ""
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/models/mcp_config.py:0
+#: model:ir.actions.server,name:gental_mcp.server_action_config
+#: model:ir.ui.menu,name:gental_mcp.menu_config
+msgid "Configuration"
+msgstr ""
+
+#. module: gental_mcp
+#: model_terms:ir.ui.view,arch_db:gental_mcp.oauth_consent
+msgid "Connect an assistant to Odoo"
+msgstr ""
+
+#. module: gental_mcp
+#. odoo-javascript
+#: code:addons/gental_mcp/static/src/dashboard/dashboard.xml:0
+msgid "Connected clients"
+msgstr ""
+
+#. module: gental_mcp
+#: model_terms:ir.ui.view,arch_db:gental_mcp.oauth_error
+msgid "Connecting AI assistants is switched off on this Odoo."
+msgstr ""
+
+#. module: gental_mcp
+#: model_terms:ir.ui.view,arch_db:gental_mcp.view_config_form
+msgid "Connection"
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_webhook_subscription__consecutive_failures
+msgid "Consecutive Failures"
+msgstr ""
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/crm.py:0
+msgid "Contact"
+msgstr ""
+
+#. module: gental_mcp
+#: model:gental.mcp.webhook.event,name:gental_mcp.webhook_event_contact_created
+msgid "Contact created"
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_config__area_contacts_enabled
+#: model:ir.model.fields.selection,name:gental_mcp.selection__gental_mcp_tool_setting__area__contacts
+msgid "Contacts"
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_config__area_contacts_installed
+msgid "Contacts App Installed"
+msgstr ""
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/contacts.py:0
+msgid "Contacts found: %s"
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_rate__count
+msgid "Count"
+msgstr ""
+
+#. module: gental_mcp
+#: model_terms:ir.ui.view,arch_db:gental_mcp.view_api_key_wizard_form
+msgid "Create key"
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields.selection,name:gental_mcp.selection__gental_mcp_webhook_event__kind__created
+#: model_terms:ir.ui.view,arch_db:gental_mcp.view_document_form
+#: model_terms:ir.ui.view,arch_db:gental_mcp.view_document_list
+msgid "Created"
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_action_key__create_uid
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_api_key_wizard__create_uid
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_auth_code__create_uid
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_client__create_uid
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_config__create_uid
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_document__create_uid
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_exposed_method__create_uid
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_exposed_model__create_uid
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_identity_secret_wizard__create_uid
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_log__create_uid
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_origin__create_uid
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_rate__create_uid
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_token__create_uid
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_tool_setting__create_uid
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_webhook_delivery__create_uid
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_webhook_event__create_uid
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_webhook_subscription__create_uid
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_webhook_watch__create_uid
+msgid "Created by"
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_action_key__create_date
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_api_key_wizard__create_date
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_auth_code__create_date
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_client__create_date
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_config__create_date
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_document__create_date
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_exposed_method__create_date
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_exposed_model__create_date
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_identity_secret_wizard__create_date
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_log__create_date
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_origin__create_date
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_rate__create_date
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_token__create_date
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_tool_setting__create_date
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_webhook_delivery__create_date
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_webhook_event__create_date
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_webhook_subscription__create_date
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_webhook_watch__create_date
+msgid "Created on"
+msgstr ""
+
+#. module: gental_mcp
+#: model_terms:ir.ui.view,arch_db:gental_mcp.view_webhook_subscription_form
+msgid "Creates a new signing secret."
+msgstr ""
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/invoicing.py:0
+msgid "Credit note"
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_config__tool_setting_ids
+msgid "Curated Tools"
+msgstr ""
+
+#. module: gental_mcp
+#: model_terms:ir.ui.view,arch_db:gental_mcp.view_config_form_curated
+msgid "Curated tools"
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_webhook_watch__cursor
+msgid "Cursor"
+msgstr ""
+
+#. module: gental_mcp
+#: model_terms:ir.ui.view,arch_db:gental_mcp.view_config_form
+msgid "Customer identity"
+msgstr ""
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/models/mcp_config.py:0
+msgid "Customer identity secret cleared."
+msgstr ""
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/models/mcp_config.py:0
+msgid "Customer identity secret updated."
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.actions.client,name:gental_mcp.action_dashboard
+#: model:ir.ui.menu,name:gental_mcp.menu_dashboard
+msgid "Dashboard"
+msgstr ""
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/pos.py:0
+msgid "Dates must look like 2026-11-02."
+msgstr ""
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/invoicing.py:0
+msgid "Dates must look like 2026-11-30."
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_config__default_lang
+msgid "Default Language"
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields.selection,name:gental_mcp.selection__gental_mcp_webhook_delivery__state__delivered
+msgid "Delivered"
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_webhook_delivery__delivered_at
+msgid "Delivered At"
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields,help:gental_mcp.field_gental_mcp_config__webhook_log_retention_days
+msgid ""
+"Delivered and failed webhook deliveries older than this are deleted every "
+"day. Deliveries still waiting to be sent are kept. 0 keeps them for ever."
+msgstr ""
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/models/webhook_subscription.py:0
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_webhook_subscription__delivery_ids
+msgid "Deliveries"
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields,help:gental_mcp.field_gental_mcp_webhook_subscription__failing_count
+msgid "Deliveries that failed, or are still retrying after 3 attempts."
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_webhook_delivery__delivery_uuid
+msgid "Delivery ID"
+msgstr ""
+
+#. module: gental_mcp
+#: model:gental.mcp.webhook.event,name:gental_mcp.webhook_event_delivery_done
+msgid "Delivery done"
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields.selection,name:gental_mcp.selection__gental_mcp_log__kind__denied
+#: model:ir.model.fields.selection,name:gental_mcp.selection__gental_mcp_log__status__denied
+#: model_terms:ir.ui.view,arch_db:gental_mcp.view_log_search
+msgid "Denied"
+msgstr ""
+
+#. module: gental_mcp
+#: model_terms:ir.ui.view,arch_db:gental_mcp.oauth_consent
+msgid "Deny"
+msgstr ""
+
+#. module: gental_mcp
+#: model_terms:ir.ui.view,arch_db:gental_mcp.oauth_consent
+msgid "Described by"
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_exposed_method__description
+msgid "Description"
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields.selection,name:gental_mcp.selection__gental_mcp_exposed_method__kind__destructive
+#: model:ir.model.fields.selection,name:gental_mcp.selection__gental_mcp_log__tool_kind__destructive
+#: model:ir.model.fields.selection,name:gental_mcp.selection__gental_mcp_tool_setting__kind__destructive
+msgid "Destructive"
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_action_key__display_name
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_api_key_wizard__display_name
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_auth_code__display_name
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_client__display_name
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_config__display_name
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_dashboard__display_name
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_document__display_name
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_exposed_method__display_name
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_exposed_model__display_name
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_identity_secret_wizard__display_name
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_log__display_name
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_origin__display_name
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_rate__display_name
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_token__display_name
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_tool_setting__display_name
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_webhook_delivery__display_name
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_webhook_event__display_name
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_webhook_snapshot__display_name
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_webhook_subscription__display_name
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_webhook_watch__display_name
+#: model:ir.model.fields,field_description:gental_mcp.field_res_groups__display_name
+#: model:ir.model.fields,field_description:gental_mcp.field_res_users__display_name
+msgid "Display Name"
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_document__name
+#: model_terms:ir.ui.view,arch_db:gental_mcp.view_document_form
+msgid "Document"
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_config__document_link_hours
+msgid "Document Links Expire After (hours)"
+msgstr ""
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/models/mcp_config.py:0
+msgid "Document links must stay valid between 1 and 720 hours (30 days)."
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.actions.act_window,name:gental_mcp.action_documents
+#: model:ir.ui.menu,name:gental_mcp.menu_logs_outbox_documents
+#: model_terms:ir.ui.view,arch_db:gental_mcp.view_document_list
+msgid "Documents"
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields.selection,name:gental_mcp.selection__gental_mcp_api_key_wizard__state__done
+#: model_terms:ir.ui.view,arch_db:gental_mcp.view_api_key_wizard_form
+msgid "Done"
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_document__download_count
+msgid "Downloads"
+msgstr ""
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/invoicing.py:0
+msgid "Draft"
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_log__duration_ms
+msgid "Duration (ms)"
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_config__dcr_enabled
+msgid "Dynamic Client Registration"
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields.selection,name:gental_mcp.selection__gental_mcp_client__registration__dcr
+msgid "Dynamic Registration"
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields,help:gental_mcp.field_gental_mcp_config__rate_limit_per_min
+msgid ""
+"Each connected assistant (one Gental connection, one API key) may send this "
+"many requests a minute; more get «try again in a minute». Gental connects as"
+" one client for all its conversations, so keep this generous."
+msgstr ""
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/services/domain_guard.py:0
+msgid "Each domain condition must be [field, operator, value]: %s"
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields,help:gental_mcp.field_gental_mcp_webhook_event__model
+msgid "Empty for generic events, which apply to the exposed models chosen."
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_config__enabled
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_tool_setting__enabled
+msgid "Enabled"
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields.selection,name:gental_mcp.selection__gental_mcp_config__default_lang__en
+msgid "English"
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields,help:gental_mcp.field_gental_mcp_rate__window
+msgid "Epoch minute"
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields.selection,name:gental_mcp.selection__gental_mcp_log__status__error
+msgid "Error"
+msgstr ""
+
+#. module: gental_mcp
+#: model_terms:ir.ui.view,arch_db:gental_mcp.view_log_search
+msgid "Errors"
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_webhook_delivery__event_code
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_webhook_watch__event_id
+#: model_terms:ir.ui.view,arch_db:gental_mcp.view_webhook_delivery_search
+msgid "Event"
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_webhook_delivery__event_uuid
+msgid "Event ID"
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_webhook_subscription__event_ids
+msgid "Events"
+msgstr ""
+
+#. module: gental_mcp
+#: model_terms:ir.actions.act_window,help:gental_mcp.action_webhook_deliveries
+msgid ""
+"Events sent to your webhooks will be listed here, with how each delivery "
+"went."
+msgstr ""
+
+#. module: gental_mcp
+#: model_terms:ir.actions.act_window,help:gental_mcp.action_logs_inbox
+msgid "Every call an assistant makes to your Odoo will be listed here."
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields.selection,name:gental_mcp.selection__gental_mcp_document__state__expired
+#: model:ir.model.fields.selection,name:gental_mcp.selection__gental_mcp_webhook_delivery__state__expired
+#: model_terms:ir.ui.view,arch_db:gental_mcp.view_document_search
+msgid "Expired"
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields,help:gental_mcp.field_gental_mcp_webhook_delivery__state
+msgid ""
+"Expired: still queued when its archived webhook was restored more than a day"
+" later, so it was not sent."
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_api_key_wizard__expires_at
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_client__expires_at
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_document__expires_at
+msgid "Expires"
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_auth_code__expires_at
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_token__expires_at
+msgid "Expires At"
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_exposed_method__exposed_model_id
+msgid "Exposed Model"
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_config__exposed_model_ids
+msgid "Exposed Models"
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_exposed_model__extra_domain
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_webhook_event__extra_domain
+msgid "Extra Domain"
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields.selection,name:gental_mcp.selection__gental_mcp_webhook_delivery__state__failed
+#: model_terms:ir.ui.view,arch_db:gental_mcp.view_webhook_delivery_search
+msgid "Failed"
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_webhook_subscription__failing_count
+msgid "Failing Count"
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_token__family
+msgid "Family"
+msgstr ""
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/services/domain_guard.py:0
+msgid "Field paths are not allowed in domains: %s"
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_document__attachment_id
+msgid "File"
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_webhook_subscription__filter_domain
+msgid "Filter"
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_webhook_subscription__filter_model
+msgid "Filter Model"
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_config__message_follower_ids
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_webhook_subscription__message_follower_ids
+msgid "Followers"
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_config__message_partner_ids
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_webhook_subscription__message_partner_ids
+msgid "Followers (Partners)"
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields,help:gental_mcp.field_gental_mcp_webhook_subscription__exposed_model_ids
+msgid ""
+"For the “Record created” and “Record updated” events: the exposed models to "
+"watch."
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields,help:gental_mcp.field_gental_mcp_webhook_subscription__payload_field_ids
+msgid ""
+"For the “Record created” and “Record updated” events: the fields sent. Empty"
+" sends the record's name and a few key fields. Hidden fields and fields the "
+"run-as user can't read are never sent."
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields.selection,name:gental_mcp.selection__gental_mcp_api_key_wizard__state__form
+msgid "Form"
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_webhook_delivery__body_pretty
+msgid "Formatted Body"
+msgstr ""
+
+#. module: gental_mcp
+#: model_terms:ir.ui.view,arch_db:gental_mcp.view_config_form
+msgid "General"
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_webhook_event__generic
+msgid "Generic"
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.ui.menu,name:gental_mcp.menu_root
+msgid "Gental MCP"
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model,name:gental_mcp.model_gental_mcp_action_key
+msgid "Gental MCP Action Key"
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model,name:gental_mcp.model_gental_mcp_origin
+msgid "Gental MCP Allowed Origin"
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model,name:gental_mcp.model_gental_mcp_auth_code
+msgid "Gental MCP Authorization Code"
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model,name:gental_mcp.model_gental_mcp_client
+msgid "Gental MCP Client"
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model,name:gental_mcp.model_gental_mcp_tool_setting
+msgid "Gental MCP Curated Tool Setting"
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model,name:gental_mcp.model_gental_mcp_dashboard
+msgid "Gental MCP Dashboard"
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model,name:gental_mcp.model_gental_mcp_exposed_method
+msgid "Gental MCP Exposed Method"
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model,name:gental_mcp.model_gental_mcp_exposed_model
+msgid "Gental MCP Exposed Model"
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model,name:gental_mcp.model_gental_mcp_document
+msgid "Gental MCP Generated Document"
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model,name:gental_mcp.model_gental_mcp_log
+msgid "Gental MCP Inbox Entry"
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model,name:gental_mcp.model_gental_mcp_token
+msgid "Gental MCP OAuth Token"
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model,name:gental_mcp.model_gental_mcp_rate
+msgid "Gental MCP Rate Counter"
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model,name:gental_mcp.model_gental_mcp_config
+#: model_terms:ir.ui.view,arch_db:gental_mcp.view_config_form
+msgid "Gental MCP Settings"
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model,name:gental_mcp.model_gental_mcp_webhook_delivery
+msgid "Gental MCP Webhook Delivery"
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model,name:gental_mcp.model_gental_mcp_webhook_event
+msgid "Gental MCP Webhook Event"
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model,name:gental_mcp.model_gental_mcp_webhook_snapshot
+msgid "Gental MCP Webhook Snapshot"
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model,name:gental_mcp.model_gental_mcp_webhook_subscription
+msgid "Gental MCP Webhook Subscription"
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model,name:gental_mcp.model_gental_mcp_webhook_watch
+msgid "Gental MCP Webhook Watch"
+msgstr ""
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/models/mcp_config.py:0
+msgid "Gental MCP has a single settings record."
+msgstr ""
+
+#. module: gental_mcp
+#: model:res.groups,name:gental_mcp.group_mcp_connect
+msgid "Gental MCP: Connect"
+msgstr ""
+
+#. module: gental_mcp
+#: model:res.groups,name:gental_mcp.group_mcp_manager
+msgid "Gental MCP: Manager"
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.actions.server,name:gental_mcp.cron_purge_documents_ir_actions_server
+msgid "Gental MCP: delete expired document files"
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.actions.server,name:gental_mcp.cron_webhook_scan_ir_actions_server
+msgid "Gental MCP: detect webhook events"
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.actions.server,name:gental_mcp.cron_purge_logs_ir_actions_server
+msgid "Gental MCP: purge old logs and expired tokens"
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.actions.server,name:gental_mcp.cron_webhook_purge_ir_actions_server
+msgid "Gental MCP: purge old webhook deliveries and snapshots"
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.actions.server,name:gental_mcp.cron_webhook_dispatch_ir_actions_server
+msgid "Gental MCP: send webhooks"
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields,help:gental_mcp.field_gental_mcp_config__identity_secret_set
+msgid ""
+"Gental signs each customer's verified phone with this secret. Tools for the "
+"chatting customer (my orders, my invoices) only work while it is set. Paste "
+"the full secret from Gental's connect dialog (at least 32 characters)."
+msgstr ""
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/inventory.py:0
+msgid "Give a product_id or a query."
+msgstr ""
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/invoicing.py:0
+msgid "Give the invoice id or its number."
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_config__connect_group_ids
+msgid "Groups Allowed to Connect"
+msgstr ""
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/models/mcp_config.py:0
+msgid "HTTP %s"
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_config__has_message
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_webhook_subscription__has_message
+msgid "Has Message"
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_webhook_delivery__headers_text
+msgid "Headers"
+msgstr ""
+
+#. module: gental_mcp
+#: model_terms:ir.ui.view,arch_db:gental_mcp.view_webhook_delivery_form
+msgid "Headers (without the signature)"
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_exposed_model__hidden_field_ids
+msgid "Hidden Fields"
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields,help:gental_mcp.field_gental_mcp_config__document_link_hours
+msgid ""
+"How long a PDF link that an assistant shares keeps working. After that the "
+"file is deleted; the row stays in Outbox › Documents for as long as the "
+"Inbox logs."
+msgstr ""
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/invoicing.py:0
+msgid "I can't check the balance right now. The team can help you with it."
+msgstr ""
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/invoicing.py:0
+msgid ""
+"I couldn't match your account with a customer in Odoo, so I can't show "
+"anything."
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_action_key__id
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_api_key_wizard__id
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_auth_code__id
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_client__id
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_config__id
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_dashboard__id
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_document__id
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_exposed_method__id
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_exposed_model__id
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_identity_secret_wizard__id
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_log__id
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_origin__id
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_rate__id
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_token__id
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_tool_setting__id
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_webhook_delivery__id
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_webhook_event__id
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_webhook_snapshot__id
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_webhook_subscription__id
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_webhook_watch__id
+#: model:ir.model.fields,field_description:gental_mcp.field_res_groups__id
+#: model:ir.model.fields,field_description:gental_mcp.field_res_users__id
+msgid "ID"
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_log__ip
+msgid "IP Address"
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_config__identity_secret_hint
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_identity_secret_wizard__secret
+msgid "Identity Secret"
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_config__identity_secret_set
+msgid "Identity Secret Set"
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_config__identity_secret
+msgid "Identity Secret Value"
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields,help:gental_mcp.field_gental_mcp_config__message_needaction
+#: model:ir.model.fields,help:gental_mcp.field_gental_mcp_webhook_subscription__message_needaction
+msgid "If checked, new messages require your attention."
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields,help:gental_mcp.field_gental_mcp_config__message_has_error
+#: model:ir.model.fields,help:gental_mcp.field_gental_mcp_webhook_subscription__message_has_error
+msgid "If checked, some messages have a delivery error."
+msgstr ""
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/invoicing.py:0
+msgid "In payment"
+msgstr ""
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/models/dashboard.py:0
+#: model:ir.actions.act_window,name:gental_mcp.action_logs_inbox
+#: model:ir.ui.menu,name:gental_mcp.menu_logs_inbox
+#: model_terms:ir.ui.view,arch_db:gental_mcp.view_log_list
+msgid "Inbox"
+msgstr ""
+
+#. module: gental_mcp
+#: model_terms:ir.ui.view,arch_db:gental_mcp.view_log_form
+msgid "Inbox entry"
+msgstr ""
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/services/generic_tools.py:0
+msgid "Invalid arguments for %(method)s: %(error)s"
+msgstr ""
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/services/generic_tools.py:0
+msgid "Invalid arguments for %(method)s: unknown %(names)s"
+msgstr ""
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/services/generic_tools.py:0
+msgid "Invalid cursor: pass next_cursor from the previous result."
+msgstr ""
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/services/generic_tools.py:0
+msgid "Invalid order “%s”: use \"<field> asc|desc\" with the model's own fields."
+msgstr ""
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/services/generic_tools.py:0
+msgid "Invalid value: %s"
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_config__area_inventory_enabled
+#: model:ir.model.fields.selection,name:gental_mcp.selection__gental_mcp_tool_setting__area__inventory
+msgid "Inventory"
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_config__area_inventory_installed
+msgid "Inventory App Installed"
+msgstr ""
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/crm.py:0
+#: code:addons/gental_mcp/tools/invoicing.py:0
+msgid "Invoice"
+msgstr ""
+
+#. module: gental_mcp
+#: model:gental.mcp.webhook.event,name:gental_mcp.webhook_event_invoice_paid
+msgid "Invoice paid"
+msgstr ""
+
+#. module: gental_mcp
+#: model:gental.mcp.webhook.event,name:gental_mcp.webhook_event_invoice_posted
+msgid "Invoice posted"
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_config__area_invoicing_enabled
+#: model:ir.model.fields.selection,name:gental_mcp.selection__gental_mcp_tool_setting__area__invoicing
+msgid "Invoicing"
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_config__area_invoicing_installed
+msgid "Invoicing App Installed"
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_config__message_is_follower
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_webhook_subscription__message_is_follower
+msgid "Is Follower"
+msgstr ""
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/models/webhook_subscription.py:0
+msgid "It's queued and will be sent shortly."
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_config__log_retention_days
+msgid "Keep Inbox Logs (days)"
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_config__webhook_log_retention_days
+msgid "Keep Webhook Deliveries (days)"
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_action_key__key
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_rate__key
+msgid "Key"
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_client__key_hint
+msgid "Key Ends With"
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_client__key_hash
+msgid "Key Hash"
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_client__kind
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_exposed_method__kind
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_log__kind
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_token__kind
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_tool_setting__kind
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_webhook_event__kind
+msgid "Kind"
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_webhook_delivery__last_error
+msgid "Last Error"
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_config__reachability
+msgid "Last Reachability Check"
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_webhook_delivery__last_status_code
+msgid "Last Status"
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_action_key__write_uid
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_api_key_wizard__write_uid
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_auth_code__write_uid
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_client__write_uid
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_config__write_uid
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_document__write_uid
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_exposed_method__write_uid
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_exposed_model__write_uid
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_identity_secret_wizard__write_uid
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_log__write_uid
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_origin__write_uid
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_rate__write_uid
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_token__write_uid
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_tool_setting__write_uid
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_webhook_delivery__write_uid
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_webhook_event__write_uid
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_webhook_subscription__write_uid
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_webhook_watch__write_uid
+msgid "Last Updated by"
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_action_key__write_date
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_api_key_wizard__write_date
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_auth_code__write_date
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_client__write_date
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_config__write_date
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_document__write_date
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_exposed_method__write_date
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_exposed_model__write_date
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_identity_secret_wizard__write_date
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_log__write_date
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_origin__write_date
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_rate__write_date
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_token__write_date
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_tool_setting__write_date
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_webhook_delivery__write_date
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_webhook_event__write_date
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_webhook_subscription__write_date
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_webhook_watch__write_date
+msgid "Last Updated on"
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_client__last_used_at
+msgid "Last Used"
+msgstr ""
+
+#. module: gental_mcp
+#: model_terms:ir.ui.view,arch_db:gental_mcp.view_webhook_delivery_form
+msgid "Last error"
+msgstr ""
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/crm.py:0
+msgid "Lead"
+msgstr ""
+
+#. module: gental_mcp
+#: model:gental.mcp.webhook.event,name:gental_mcp.webhook_event_lead_created
+msgid "Lead created"
+msgstr ""
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/crm.py:0
+msgid "Lead or opportunity"
+msgstr ""
+
+#. module: gental_mcp
+#: model:gental.mcp.webhook.event,name:gental_mcp.webhook_event_lead_stage_changed
+msgid "Lead stage changed"
+msgstr ""
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/crm.py:0
+msgid "Lead “%(name)s” created."
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields,help:gental_mcp.field_gental_mcp_api_key_wizard__expires_at
+msgid "Leave empty for a key that does not expire."
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields,help:gental_mcp.field_gental_mcp_config__public_url
+msgid ""
+"Leave empty to use Odoo's own address (web.base.url). Set it only when "
+"assistants reach this Odoo at another address: https and the root address "
+"only, for example https://odoo.example.com."
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.ui.menu,name:gental_mcp.menu_logs
+msgid "Logs"
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_config__mcp_endpoint
+msgid "MCP URL"
+msgstr ""
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/controllers/oauth.py:0
+msgid "MCP client"
+msgstr ""
+
+#. module: gental_mcp
+#: model:res.groups,comment:gental_mcp.group_mcp_manager
+msgid "Manages clients, API keys, logs and settings of the MCP connection."
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields.selection,name:gental_mcp.selection__gental_mcp_client__registration__manual
+msgid "Manual"
+msgstr ""
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/crm.py:0
+msgid "Meeting"
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_config__message_has_error
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_webhook_subscription__message_has_error
+msgid "Message Delivery error"
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_config__message_ids
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_webhook_subscription__message_ids
+msgid "Messages"
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields.selection,name:gental_mcp.selection__gental_mcp_client__registration__cimd
+msgid "Metadata Document"
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_client__cimd
+msgid "Metadata Document Client"
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_client__cimd_fetched_at
+msgid "Metadata Fetched"
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_exposed_model__method_ids
+msgid "Methods"
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_action_key__model
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_exposed_model__model_id
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_webhook_delivery__model
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_webhook_event__model
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_webhook_watch__model
+msgid "Model"
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_exposed_model__model
+msgid "Model Name"
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_webhook_subscription__exposed_model_ids
+msgid "Models"
+msgstr ""
+
+#. module: gental_mcp
+#: model_terms:ir.ui.view,arch_db:gental_mcp.view_config_form
+msgid "Models and methods"
+msgstr ""
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/models/webhook_subscription.py:0
+msgid "Models are only used with “Record created” or “Record updated”."
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_api_key_wizard__name
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_client__name
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_exposed_method__name
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_webhook_event__name
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_webhook_subscription__name
+msgid "Name"
+msgstr ""
+
+#. module: gental_mcp
+#. odoo-javascript
+#: code:addons/gental_mcp/static/src/dashboard/dashboard.xml:0
+msgid "Needs attention"
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model,name:gental_mcp.model_gental_mcp_api_key_wizard
+msgid "New API Key"
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.actions.act_window,name:gental_mcp.action_api_key_wizard
+#: model_terms:ir.ui.view,arch_db:gental_mcp.view_api_key_wizard_form
+#: model_terms:ir.ui.view,arch_db:gental_mcp.view_client_list
+msgid "New API key"
+msgstr ""
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/contacts.py:0
+msgid "New contact created: %s"
+msgstr ""
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/models/mcp_config.py:0
+#: model_terms:ir.ui.view,arch_db:gental_mcp.view_config_form_webhooks
+msgid "New webhook"
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_webhook_delivery__next_attempt_at
+msgid "Next Attempt"
+msgstr ""
+
+#. module: gental_mcp
+#: model_terms:ir.ui.view,arch_db:gental_mcp.oauth_consent
+msgid ""
+"No Odoo data is shared with assistants yet. Your admin chooses what to share"
+" in the Gental MCP settings."
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields,help:gental_mcp.field_gental_mcp_config__url_unpinned
+msgid ""
+"No Public URL is set and web.base.url is not frozen, so an administrator "
+"signing in from another address changes the MCP URL and every connected "
+"assistant must sign in again."
+msgstr ""
+
+#. module: gental_mcp
+#: model_terms:ir.actions.act_window,help:gental_mcp.action_clients
+msgid "No assistants connected yet"
+msgstr ""
+
+#. module: gental_mcp
+#. odoo-javascript
+#: code:addons/gental_mcp/static/src/dashboard/dashboard.xml:0
+msgid "No calls in this period."
+msgstr ""
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/contacts.py:0
+msgid "No contact matches this search."
+msgstr ""
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/inventory.py:0
+msgid "No deliveries found."
+msgstr ""
+
+#. module: gental_mcp
+#: model_terms:ir.actions.act_window,help:gental_mcp.action_documents
+msgid "No documents yet"
+msgstr ""
+
+#. module: gental_mcp
+#. odoo-javascript
+#: code:addons/gental_mcp/static/src/dashboard/dashboard.xml:0
+msgid "No documents yet."
+msgstr ""
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/invoicing.py:0
+msgid "No invoices found."
+msgstr ""
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/inventory.py:0
+#: code:addons/gental_mcp/tools/sales.py:0
+msgid "No order with this reference."
+msgstr ""
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/pos.py:0
+msgid "No point of sale order has this receipt."
+msgstr ""
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/pos.py:0
+msgid "No point of sale orders in this range."
+msgstr ""
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/sales.py:0
+msgid "No product matches this search."
+msgstr ""
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/inventory.py:0
+msgid "No product matches."
+msgstr ""
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/crm.py:0
+msgid "No stage"
+msgstr ""
+
+#. module: gental_mcp
+#: model_terms:ir.actions.act_window,help:gental_mcp.action_webhook_deliveries
+msgid "No webhook deliveries yet"
+msgstr ""
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/invoicing.py:0
+msgid "Not paid"
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields.selection,name:gental_mcp.selection__gental_mcp_config__reachability__failed
+msgid "Not reachable"
+msgstr ""
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/crm.py:0
+msgid "Note added to the %(label)s."
+msgstr ""
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/crm.py:0
+msgid "Notes and activities aren't available on this kind of record here."
+msgstr ""
+
+#. module: gental_mcp
+#: model_terms:ir.actions.act_window,help:gental_mcp.action_logs_inbox
+msgid "Nothing in the Inbox yet"
+msgstr ""
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/crm.py:0
+msgid "Nothing to update: pass at least one field to change."
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_config__message_needaction_counter
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_webhook_subscription__message_needaction_counter
+msgid "Number of Actions"
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_config__message_has_error_counter
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_webhook_subscription__message_has_error_counter
+msgid "Number of errors"
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields,help:gental_mcp.field_gental_mcp_config__message_needaction_counter
+#: model:ir.model.fields,help:gental_mcp.field_gental_mcp_webhook_subscription__message_needaction_counter
+msgid "Number of messages requiring action"
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields,help:gental_mcp.field_gental_mcp_config__message_has_error_counter
+#: model:ir.model.fields,help:gental_mcp.field_gental_mcp_webhook_subscription__message_has_error_counter
+msgid "Number of messages with delivery error"
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields.selection,name:gental_mcp.selection__gental_mcp_client__kind__oauth
+#: model_terms:ir.ui.view,arch_db:gental_mcp.view_client_search
+msgid "OAuth"
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_config__oauth_enabled
+msgid "OAuth Enabled"
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields,help:gental_mcp.field_gental_mcp_client__client_id
+msgid "OAuth only; a URL for metadata-document clients."
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields.selection,name:gental_mcp.selection__gental_mcp_log__status__ok
+msgid "OK"
+msgstr ""
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/sales.py:0
+msgid ""
+"Odoo needs a person to confirm cancelling order %s, so nothing was changed. "
+"Staff should cancel it in Odoo."
+msgstr ""
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/models/mcp_config.py:0
+msgid ""
+"Odoo sees this request coming from %s, a private address, so it probably "
+"sits behind a proxy, but proxy mode is off. Start Odoo with proxy_mode = "
+"True and have the proxy pass the X-Forwarded-For, X-Forwarded-Host and "
+"X-Forwarded-Proto headers."
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields,help:gental_mcp.field_gental_mcp_client__redirect_uris
+msgid "One per line."
+msgstr ""
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/models/dashboard.py:0
+msgid "Only Gental MCP managers can see the Dashboard."
+msgstr ""
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/models/webhook_delivery.py:0
+msgid "Only Gental MCP managers can send or retry webhooks."
+msgstr ""
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/models/webhook_subscription.py:0
+msgid "Only administrators can change a webhook that runs as another user."
+msgstr ""
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/models/webhook_subscription.py:0
+msgid ""
+"Only administrators can set up a webhook that runs as another user. Run it "
+"as yourself."
+msgstr ""
+
+#. module: gental_mcp
+#: model_terms:ir.ui.view,arch_db:gental_mcp.oauth_consent
+msgid ""
+"Only allow this if you started the connection and you recognise the app and "
+"the address it sends you back to."
+msgstr ""
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/models/mcp_token.py:0
+msgid "Only an administrator can change who a token or code belongs to."
+msgstr ""
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/models/mcp_client.py:0
+msgid "Only an administrator can create an API key for another user."
+msgstr ""
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/invoicing.py:0
+msgid "Only posted invoices can be sent. Post it in Odoo first."
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields,help:gental_mcp.field_gental_mcp_webhook_subscription__filter_domain
+msgid ""
+"Only records matching this filter are sent. Every chosen event must be on "
+"the same model."
+msgstr ""
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/sales.py:0
+msgid ""
+"Only the customer's own price list can be used here. Leave the price list "
+"out, or ask a sales manager."
+msgstr ""
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/services/domain_guard.py:0
+msgid "Operator not allowed in domains: %s"
+msgstr ""
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/crm.py:0
+msgid "Opportunity"
+msgstr ""
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/crm.py:0
+msgid "Opportunity “%(name)s” created."
+msgstr ""
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/sales.py:0
+msgid "Order %(name)s: %(state)s"
+msgstr ""
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/sales.py:0
+msgid "Order %s is cancelled, so it can't be confirmed."
+msgstr ""
+
+#. module: gental_mcp
+#: model:gental.mcp.webhook.event,name:gental_mcp.webhook_event_order_cancelled
+msgid "Order cancelled"
+msgstr ""
+
+#. module: gental_mcp
+#: model:gental.mcp.webhook.event,name:gental_mcp.webhook_event_order_confirmed
+msgid "Order confirmed"
+msgstr ""
+
+#. module: gental_mcp
+#: model:gental.mcp.webhook.event,name:gental_mcp.webhook_event_order_created
+msgid "Order created"
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_origin__origin
+msgid "Origin"
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.ui.menu,name:gental_mcp.menu_logs_outbox
+msgid "Outbox"
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields.selection,name:gental_mcp.selection__gental_mcp_log__status__unknown
+msgid "Outcome Unknown"
+msgstr ""
+
+#. module: gental_mcp
+#: model_terms:ir.ui.view,arch_db:gental_mcp.view_log_search
+msgid "Outcome unknown"
+msgstr ""
+
+#. module: gental_mcp
+#: model_terms:ir.actions.act_window,help:gental_mcp.action_documents
+msgid ""
+"PDFs that assistants make for you (quotations, invoices, delivery slips) "
+"will be listed here with their download links' expiry."
+msgstr ""
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/invoicing.py:0
+msgid "Paid"
+msgstr ""
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/invoicing.py:0
+msgid "Partially paid"
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields,help:gental_mcp.field_gental_mcp_identity_secret_wizard__secret
+msgid ""
+"Paste the secret Gental showed when you connected Odoo (at least 32 "
+"characters). It won't be shown again here."
+msgstr ""
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/wizards/identity_secret_wizard.py:0
+msgid "Paste the secret from Gental's connect dialog."
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_webhook_subscription__paused_until
+msgid "Paused Until"
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_webhook_event__payload_fields
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_webhook_subscription__payload_field_ids
+msgid "Payload Fields"
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields,help:gental_mcp.field_gental_mcp_webhook_subscription__run_as_user_id
+msgid "Payloads only hold what this user can read."
+msgstr ""
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/crm.py:0
+msgid "Phone call"
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_config__identity_assume_company_country
+msgid "Phones saved without a country belong to the company's country"
+msgstr ""
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/crm.py:0
+msgid "Pipeline: %(count)s open opportunities, expected revenue %(revenue)s."
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_config__area_pos_enabled
+#: model:ir.model.fields.selection,name:gental_mcp.selection__gental_mcp_tool_setting__area__pos
+msgid "Point of Sale"
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_config__area_pos_installed
+msgid "Point of Sale App Installed"
+msgstr ""
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/invoicing.py:0
+msgid "Posted"
+msgstr ""
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/sales.py:0
+msgid ""
+"Prices are on the standard price list: a customer's own prices are shown "
+"only to that customer once verified, or to a sales manager."
+msgstr ""
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/sales.py:0
+msgid ""
+"Prices changed since the preview. Preview the quotation again and show the "
+"customer the new total."
+msgstr ""
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/sales.py:0
+msgid "Products found: %s"
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_config__public_url
+msgid "Public URL"
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields.selection,name:gental_mcp.selection__gental_mcp_webhook_delivery__state__queued
+#: model_terms:ir.ui.view,arch_db:gental_mcp.view_webhook_delivery_form
+#: model_terms:ir.ui.view,arch_db:gental_mcp.view_webhook_delivery_search
+msgid "Queued"
+msgstr ""
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/sales.py:0
+msgid "Quotation %(name)s created. Total: %(total)s"
+msgstr ""
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/crm.py:0
+msgid "Quotation or order"
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields.selection,name:gental_mcp.selection__gental_mcp_log__kind__rate_limited
+msgid "Rate Limited"
+msgstr ""
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/models/mcp_config.py:0
+msgid "Reachability check"
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields.selection,name:gental_mcp.selection__gental_mcp_config__reachability__ok
+msgid "Reachable"
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields.selection,name:gental_mcp.selection__gental_mcp_exposed_method__kind__read
+#: model:ir.model.fields.selection,name:gental_mcp.selection__gental_mcp_log__tool_kind__read
+#: model:ir.model.fields.selection,name:gental_mcp.selection__gental_mcp_tool_setting__kind__read
+msgid "Read"
+msgstr ""
+
+#. module: gental_mcp
+#: model_terms:ir.ui.view,arch_db:gental_mcp.oauth_consent
+msgid "Read only"
+msgstr ""
+
+#. module: gental_mcp
+#. odoo-javascript
+#: code:addons/gental_mcp/static/src/dashboard/dashboard.xml:0
+msgid "Recent documents"
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_webhook_delivery__record_label
+msgid "Record"
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_action_key__res_id
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_document__res_id
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_log__res_id
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_webhook_delivery__res_id
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_webhook_snapshot__res_id
+msgid "Record ID"
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_document__res_model
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_log__res_model
+msgid "Record Model"
+msgstr ""
+
+#. module: gental_mcp
+#: model:gental.mcp.webhook.event,name:gental_mcp.webhook_event_record_created
+msgid "Record created"
+msgstr ""
+
+#. module: gental_mcp
+#: model:gental.mcp.webhook.event,name:gental_mcp.webhook_event_record_updated
+msgid "Record updated"
+msgstr ""
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/services/generic_tools.py:0
+msgid "Records not found or not accessible: %s"
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields,help:gental_mcp.field_gental_mcp_exposed_model__extra_domain
+msgid "Records outside this domain stay invisible to assistants."
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_client__redirect_uris
+msgid "Redirect URIs"
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_auth_code__redirect_uri
+msgid "Redirect Uri"
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields.selection,name:gental_mcp.selection__gental_mcp_token__kind__refresh
+msgid "Refresh"
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_client__registration
+msgid "Registration"
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_document__report_xmlid
+msgid "Report"
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_log__request_id
+msgid "Request ID"
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_log__identity_phone
+msgid "Requester Phone"
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_config__rate_limit_per_min
+msgid "Requests per Minute per Client"
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_auth_code__resource
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_token__resource
+msgid "Resource"
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_log__result_text
+msgid "Result"
+msgstr ""
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/services/generic_tools.py:0
+msgid ""
+"Results were cut short to stay readable: ask for fewer fields or records."
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_webhook_watch__resume_id
+msgid "Resume"
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_webhook_watch__resume_write_date
+msgid "Resume Write Date"
+msgstr ""
+
+#. module: gental_mcp
+#: model_terms:ir.ui.view,arch_db:gental_mcp.view_config_form
+msgid "Retention"
+msgstr ""
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/models/webhook_delivery.py:0
+#: model_terms:ir.ui.view,arch_db:gental_mcp.view_webhook_delivery_form
+#: model_terms:ir.ui.view,arch_db:gental_mcp.view_webhook_delivery_list
+msgid "Retry now"
+msgstr ""
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/invoicing.py:0
+msgid "Reversed"
+msgstr ""
+
+#. module: gental_mcp
+#: model_terms:ir.ui.view,arch_db:gental_mcp.view_client_form
+#: model_terms:ir.ui.view,arch_db:gental_mcp.view_client_list
+msgid "Revoke"
+msgstr ""
+
+#. module: gental_mcp
+#: model_terms:ir.ui.view,arch_db:gental_mcp.view_client_form
+#: model_terms:ir.ui.view,arch_db:gental_mcp.view_client_list
+msgid ""
+"Revoke this client? Everything it signed in with stops working right away."
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_token__revoked
+#: model:ir.model.fields.selection,name:gental_mcp.selection__gental_mcp_client__state__revoked
+msgid "Revoked"
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_client__revoked_at
+msgid "Revoked At"
+msgstr ""
+
+#. module: gental_mcp
+#: model_terms:ir.ui.view,arch_db:gental_mcp.view_webhook_subscription_form
+msgid "Rotate secret"
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_token__rotated
+msgid "Rotated"
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_webhook_subscription__run_as_user_id
+msgid "Run As"
+msgstr ""
+
+#. module: gental_mcp
+#. odoo-javascript
+#: code:addons/gental_mcp/static/src/dashboard/dashboard.xml:0
+msgid "Running"
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_config__area_sales_enabled
+#: model:ir.model.fields.selection,name:gental_mcp.selection__gental_mcp_tool_setting__area__sales
+msgid "Sales"
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_config__area_sales_installed
+msgid "Sales App Installed"
+msgstr ""
+
+#. module: gental_mcp
+#: model_terms:ir.ui.view,arch_db:gental_mcp.view_identity_secret_wizard_form
+msgid "Save secret"
+msgstr ""
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/models/mcp_config.py:0
+msgid "Saved %s as the Public URL so it can't change by itself."
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_webhook_watch__scanned_at
+msgid "Scanned At"
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields,help:gental_mcp.field_gental_mcp_origin__origin
+msgid "Scheme and host, for example https://claude.ai"
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_token__scope
+msgid "Scope"
+msgstr ""
+
+#. module: gental_mcp
+#: model_terms:ir.ui.view,arch_db:gental_mcp.view_webhook_subscription_form
+msgid "Send test"
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields.selection,name:gental_mcp.selection__gental_mcp_webhook_delivery__state__sending
+msgid "Sending"
+msgstr ""
+
+#. module: gental_mcp
+#: model_terms:ir.ui.view,arch_db:gental_mcp.view_webhook_delivery_form
+#: model_terms:ir.ui.view,arch_db:gental_mcp.view_webhook_delivery_list
+msgid ""
+"Sends a few deliveries now and queues the rest; a failed delivery gets one "
+"more try."
+msgstr ""
+
+#. module: gental_mcp
+#: model_terms:ir.ui.view,arch_db:gental_mcp.view_webhook_subscription_form
+msgid "Sends a test event to the URL now, so you can check the receiver."
+msgstr ""
+
+#. module: gental_mcp
+#: model_terms:ir.ui.view,arch_db:gental_mcp.oauth_consent
+msgid "Sends you back to"
+msgstr ""
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/models/webhook_delivery.py:0
+msgid ""
+"Sent now: %(sent)s. Queued for the next run (within a minute): %(queued)s."
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_tool_setting__sequence
+msgid "Sequence"
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model,name:gental_mcp.model_gental_mcp_identity_secret_wizard
+msgid "Set Identity Secret"
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.actions.act_window,name:gental_mcp.action_identity_secret_wizard
+#: model_terms:ir.ui.view,arch_db:gental_mcp.view_identity_secret_wizard_form
+msgid "Set identity secret"
+msgstr ""
+
+#. module: gental_mcp
+#: model_terms:ir.ui.view,arch_db:gental_mcp.view_config_form
+msgid "Set secret"
+msgstr ""
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/contacts.py:0
+msgid "Several contacts share this phone or email: %s"
+msgstr ""
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/invoicing.py:0
+msgid "Several invoices have this number. Use the invoice id."
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_webhook_subscription__show_models
+msgid "Show Models"
+msgstr ""
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/sales.py:0
+msgid ""
+"Show the customer these lines and the total. When they agree, create the "
+"quotation with the same customer, lines and price list."
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields.selection,name:gental_mcp.selection__gental_mcp_log__kind__auth
+msgid "Sign-in"
+msgstr ""
+
+#. module: gental_mcp
+#: model_terms:ir.ui.view,arch_db:gental_mcp.view_config_form
+msgid "Sign-in methods"
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_webhook_subscription__secret
+msgid "Signing Secret"
+msgstr ""
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/models/webhook_subscription.py:0
+msgid "Signing secret rotated. Update it in the receiving system."
+msgstr ""
+
+#. module: gental_mcp
+#. odoo-javascript
+#: code:addons/gental_mcp/static/src/dashboard/dashboard.xml:0
+msgid "Slowest 5% of calls"
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields.selection,name:gental_mcp.selection__gental_mcp_webhook_subscription__warning_code__scan_failed
+msgid "Some changes couldn't be checked. The server log has the details."
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields.selection,name:gental_mcp.selection__gental_mcp_webhook_subscription__warning_code__payload_errors
+msgid ""
+"Some records couldn't be read for sending and were skipped. The server log "
+"has the details."
+msgstr ""
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/contacts.py:0
+msgid ""
+"Staff need to check this phone or email, so nothing was saved. Carry on with"
+" the customer; staff will follow up."
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_webhook_watch__started_at
+msgid "Started At"
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_api_key_wizard__state
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_client__state
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_document__state
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_webhook_delivery__state
+msgid "State"
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_webhook_event__state_field
+msgid "State Field"
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_log__status
+msgid "Status"
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_webhook_delivery__subscription_id
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_webhook_watch__subscription_id
+#: model_terms:ir.ui.view,arch_db:gental_mcp.view_webhook_delivery_search
+msgid "Subscription"
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_webhook_delivery__subscription_name
+msgid "Subscription Name"
+msgstr ""
+
+#. module: gental_mcp
+#. odoo-javascript
+#: code:addons/gental_mcp/static/src/dashboard/dashboard.xml:0
+msgid "Switched off"
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_webhook_event__target_values
+msgid "Target Values"
+msgstr ""
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/sales.py:0
+msgid "Taxes"
+msgstr ""
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/models/webhook_subscription.py:0
+msgid "Test delivered (HTTP %s)."
+msgstr ""
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/models/webhook_subscription.py:0
+msgid "Test not delivered: %s"
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields,help:gental_mcp.field_gental_mcp_webhook_delivery__body
+msgid "The JSON sent, exactly as signed."
+msgstr ""
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/services/action_keys.py:0
+msgid ""
+"The action key must be 1 to %s characters: letters, digits, “.”, “_”, “:” or"
+" “-”."
+msgstr ""
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/crm.py:0
+msgid "The activity needs a short summary (up to %s characters)."
+msgstr ""
+
+#. module: gental_mcp
+#: model_terms:ir.ui.view,arch_db:gental_mcp.oauth_error
+msgid ""
+"The address this app wants to send you back to doesn't match its "
+"registration, so we stopped here to keep your account safe."
+msgstr ""
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/models/webhook_subscription.py:0
+msgid "The app for this event is not installed."
+msgstr ""
+
+#. module: gental_mcp
+#: model_terms:ir.ui.view,arch_db:gental_mcp.view_config_form_curated
+msgid "The app isn't installed"
+msgstr ""
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/contacts.py:0
+msgid "The contact needs a name."
+msgstr ""
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/crm.py:0
+msgid "The deadline must be a date like 2026-11-30."
+msgstr ""
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/services/domain_guard.py:0
+msgid "The domain is malformed: “%s” is missing operands."
+msgstr ""
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/services/domain_guard.py:0
+msgid "The domain must be a list."
+msgstr ""
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/crm.py:0
+msgid "The expected revenue must be a number from 0 to 1,000,000,000,000."
+msgstr ""
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/models/exposed_model.py:0
+msgid "The extra domain is not a valid domain: %s"
+msgstr ""
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/services/generic_tools.py:0
+msgid "The field %(field)s needs a valid model in %(model_field)s."
+msgstr ""
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/services/domain_guard.py:0
+msgid "The field %(field)s only takes the operators %(ops)s."
+msgstr ""
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/services/generic_tools.py:0
+msgid ""
+"The field %(field)s refers to records that do not exist or you cannot see: "
+"%(ids)s"
+msgstr ""
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/services/generic_tools.py:0
+msgid "The field %s cannot be set."
+msgstr ""
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/services/generic_tools.py:0
+msgid "The field %s takes \"model,id\" or false."
+msgstr ""
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/services/generic_tools.py:0
+msgid "The field %s takes a list of record ids."
+msgstr ""
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/services/generic_tools.py:0
+msgid "The field %s takes a record id or false."
+msgstr ""
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/services/generic_tools.py:0
+msgid "The field %s takes a single value."
+msgstr ""
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/services/domain_guard.py:0
+msgid ""
+"The field %s takes record ids here (a number, a list of numbers or false)."
+msgstr ""
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/models/webhook_subscription.py:0
+msgid "The filter is not a valid domain."
+msgstr ""
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/models/webhook_subscription.py:0
+msgid "The filter is not allowed: %s"
+msgstr ""
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/invoicing.py:0
+msgid ""
+"The invoice may have been emailed already. Check its chatter in Odoo before "
+"sending again."
+msgstr ""
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/invoicing.py:0
+msgid "The invoice's customer has no email address in Odoo."
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields,help:gental_mcp.field_gental_mcp_api_key_wizard__user_id
+msgid ""
+"The key acts as this user and can only do what this user is allowed to do. "
+"Only an administrator can create a key for another user."
+msgstr ""
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/invoicing.py:0
+msgid "The limit must be from 1 to %s."
+msgstr ""
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/services/generic_tools.py:0
+msgid "The method %(method)s cannot be called on %(model)s."
+msgstr ""
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/services/generic_tools.py:0
+msgid "The method %(method)s is not allowed on %(model)s."
+msgstr ""
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/services/generic_tools.py:0
+msgid "The method %s works on records: pass their ids."
+msgstr ""
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/models/exposed_model.py:0
+msgid "The method “%s” cannot be exposed."
+msgstr ""
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/models/exposed_model.py:0
+msgid "The model %(model)s has no public method “%(name)s”."
+msgstr ""
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/services/generic_tools.py:0
+msgid "The model %s is not available to assistants."
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields,help:gental_mcp.field_gental_mcp_webhook_subscription__filter_model
+msgid "The model the filter applies to, when there is one."
+msgstr ""
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/crm.py:0
+msgid "The note is empty."
+msgstr ""
+
+#. module: gental_mcp
+#: model_terms:ir.ui.view,arch_db:gental_mcp.view_webhook_subscription_form
+msgid ""
+"The old secret stops working at once. Update the receiving system with the "
+"new one."
+msgstr ""
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/models/mcp_config.py:0
+msgid ""
+"The public URL must be https and the root address only, for example "
+"https://odoo.example.com (no path). Leave it empty to use Odoo's own "
+"address."
+msgstr ""
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/models/mcp_config.py:0
+msgid "The public URL must start with https:// so assistants can reach it."
+msgstr ""
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/models/dashboard.py:0
+msgid "The public URL was not reachable at the last check"
+msgstr ""
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/pos.py:0
+msgid "The range can be at most 92 days."
+msgstr ""
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/models/webhook_subscription.py:0
+msgid ""
+"The receiver keeps failing, so sending is paused for a while. It resumes on "
+"its own."
+msgstr ""
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/services/action_keys.py:0
+#: code:addons/gental_mcp/services/generic_tools.py:0
+msgid "The record this action created is no longer available."
+msgstr ""
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/services/generic_tools.py:0
+msgid "The result is larger than 1 MB: ask for fewer fields or records."
+msgstr ""
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/services/generic_tools.py:0
+msgid "The result would fall outside the records assistants may use on %s."
+msgstr ""
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/models/webhook_subscription.py:0
+msgid "The run-as user can't read these records."
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields.selection,name:gental_mcp.selection__gental_mcp_webhook_subscription__warning_code__not_connected
+msgid ""
+"The run-as user is archived or no longer allowed to connect, so nothing is "
+"being sent."
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields.selection,name:gental_mcp.selection__gental_mcp_webhook_subscription__warning_code__no_access
+msgid ""
+"The run-as user isn't allowed to read these records, so nothing is being "
+"sent."
+msgstr ""
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/models/webhook_subscription.py:0
+msgid ""
+"The run-as user must be active and in a group allowed to connect to Gental "
+"MCP."
+msgstr ""
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/crm.py:0
+msgid "The type must be lead or opportunity."
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields,help:gental_mcp.field_gental_mcp_client__user_id
+msgid ""
+"The user an API key acts as. OAuth clients act as the user who approved "
+"them."
+msgstr ""
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/invoicing.py:0
+msgid "The value of “%(name)s” isn't allowed."
+msgstr ""
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/models/webhook_subscription.py:0
+msgid ""
+"The webhook URL must start with https:// and point to an address on the "
+"public internet."
+msgstr ""
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/services/action_keys.py:0
+msgid "This action may already be done. Check before doing it again."
+msgstr ""
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/crm.py:0
+msgid "This activity type isn't available in this Odoo."
+msgstr ""
+
+#. module: gental_mcp
+#: model_terms:ir.ui.view,arch_db:gental_mcp.oauth_error
+msgid ""
+"This app isn't registered with this Odoo, or its registration was revoked."
+msgstr ""
+
+#. module: gental_mcp
+#: model_terms:ir.ui.view,arch_db:gental_mcp.oauth_consent
+msgid ""
+"This assistant wants to work in Odoo as you. It can only see and do what "
+"your Odoo user can, within what your admin allowed."
+msgstr ""
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/crm.py:0
+msgid "This can only be assigned to an active internal user."
+msgstr ""
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/contacts.py:0
+msgid ""
+"This customer is already saved, so no new contact was created and nothing "
+"was overwritten."
+msgstr ""
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/contacts.py:0
+msgid "This email address isn't valid."
+msgstr ""
+
+#. module: gental_mcp
+#: model_terms:ir.ui.view,arch_db:gental_mcp.view_api_key_wizard_form
+msgid "This key won't be shown again. Copy it now and keep it somewhere safe."
+msgstr ""
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/services/identity.py:0
+msgid "This needs a verified customer."
+msgstr ""
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/contacts.py:0
+msgid ""
+"This phone number isn't valid. Send it with the country code, for example "
+"+966 5X XXX XXXX."
+msgstr ""
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/sales.py:0
+msgid "This product can't be sold: %s"
+msgstr ""
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/services/quote.py:0
+msgid ""
+"This quote expired. Preview the quotation again and show the customer the "
+"new total."
+msgstr ""
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/services/quote.py:0
+msgid "This quote isn't valid. Preview the quotation again."
+msgstr ""
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/sales.py:0
+msgid ""
+"This quote was made for another customer, other lines or another price list."
+" Preview the quotation again."
+msgstr ""
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/models/mcp_config.py:0
+msgid ""
+"This secret is too short. Paste the full secret from Gental's connect "
+"dialog."
+msgstr ""
+
+#. module: gental_mcp
+#: model_terms:ir.ui.view,arch_db:gental_mcp.oauth_error
+msgid "This sign-in request isn't valid. Go back to the app and try again."
+msgstr ""
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/models/webhook_subscription.py:0
+msgid "This webhook is archived. Restore it before sending a test."
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_tool_setting__title
+msgid "Title"
+msgstr ""
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/crm.py:0
+msgid "To do"
+msgstr ""
+
+#. module: gental_mcp
+#: model_terms:ir.ui.view,arch_db:gental_mcp.view_log_search
+#: model_terms:ir.ui.view,arch_db:gental_mcp.view_webhook_delivery_search
+msgid "Today"
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_token__token_hash
+msgid "Token Hash"
+msgstr ""
+
+#. module: gental_mcp
+#: model_terms:ir.ui.view,arch_db:gental_mcp.oauth_error
+msgid "Too many attempts. Wait a minute and try again."
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_document__tool
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_log__tool
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_tool_setting__name
+#: model_terms:ir.ui.view,arch_db:gental_mcp.view_document_search
+#: model_terms:ir.ui.view,arch_db:gental_mcp.view_log_search
+msgid "Tool"
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_log__tool_kind
+msgid "Tool Kind"
+msgstr ""
+
+#. module: gental_mcp
+#: model_terms:ir.ui.view,arch_db:gental_mcp.view_config_form_curated
+msgid "Tools"
+msgstr ""
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/pos.py:0
+msgid "Top products: %(products)s"
+msgstr ""
+
+#. module: gental_mcp
+#. odoo-javascript
+#: code:addons/gental_mcp/static/src/dashboard/dashboard.xml:0
+msgid "Top tools"
+msgstr ""
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/sales.py:0
+msgid "Total"
+msgstr ""
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/invoicing.py:0
+msgid "Total receivable %(receivable)s, of which %(overdue)s is overdue."
+msgstr ""
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/contacts.py:0
+msgid "Type at least 2 characters to search."
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_webhook_subscription__url
+msgid "URL"
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_webhook_delivery__url_host
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_webhook_subscription__url_host
+msgid "URL Host"
+msgstr ""
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/services/domain_guard.py:0
+msgid "Unknown domain operator: %s"
+msgstr ""
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/services/domain_guard.py:0
+msgid "Unknown or hidden field in the domain: %s"
+msgstr ""
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/services/generic_tools.py:0
+msgid "Unknown or hidden field: %s"
+msgstr ""
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/services/generic_tools.py:0
+msgid "Unknown tool: %s"
+msgstr ""
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/sales.py:0
+msgid "Untaxed amount"
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields.selection,name:gental_mcp.selection__gental_mcp_webhook_event__kind__updated
+msgid "Updated"
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_auth_code__used
+msgid "Used"
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model,name:gental_mcp.model_res_users
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_api_key_wizard__user_id
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_auth_code__user_id
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_client__user_id
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_document__user_id
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_log__user_id
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_token__user_id
+msgid "User"
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_webhook_snapshot__value
+msgid "Value"
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_webhook_subscription__warning
+#: model_terms:ir.ui.view,arch_db:gental_mcp.view_config_form_webhooks
+#: model_terms:ir.ui.view,arch_db:gental_mcp.view_webhook_subscription_list
+msgid "Warning"
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_webhook_subscription__warning_code
+msgid "Warning Code"
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_webhook_snapshot__watch_id
+msgid "Watch"
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_webhook_subscription__exposed_ir_model_ids
+msgid "Watched Models"
+msgstr ""
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/sales.py:0
+msgid ""
+"We couldn't match this number to a customer account, so there are no orders "
+"to show."
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields,help:gental_mcp.field_gental_mcp_config__allowed_origin_ids
+msgid ""
+"Web pages allowed to call /mcp straight from a browser. This can only refuse"
+" browser callers: /mcp sends no CORS headers, so listing an origin does not "
+"open it to other sites. Servers like Gental send no Origin and are not "
+"affected."
+msgstr ""
+
+#. module: gental_mcp
+#: model_terms:ir.ui.view,arch_db:gental_mcp.view_webhook_subscription_form
+msgid "Webhook"
+msgstr ""
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/models/webhook_delivery.py:0
+#: model_terms:ir.ui.view,arch_db:gental_mcp.view_webhook_delivery_list
+msgid "Webhook deliveries"
+msgstr ""
+
+#. module: gental_mcp
+#: model_terms:ir.ui.view,arch_db:gental_mcp.view_webhook_delivery_form
+msgid "Webhook delivery"
+msgstr ""
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/models/webhook_subscription.py:0
+msgid "Webhook test"
+msgstr ""
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/models/webhook_delivery.py:0
+msgid "Webhook “%(name)s” → %(host)s"
+msgstr ""
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/models/webhook_delivery.py:0
+msgid "Webhook “%(name)s”: %(warning)s"
+msgstr ""
+
+#. module: gental_mcp
+#. odoo-javascript
+#. odoo-python
+#: code:addons/gental_mcp/models/webhook_delivery.py:0
+#: code:addons/gental_mcp/static/src/dashboard/dashboard.xml:0
+#: model:ir.actions.act_window,name:gental_mcp.action_webhook_deliveries
+#: model:ir.actions.act_window,name:gental_mcp.action_webhook_subscriptions
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_config__webhook_subscription_ids
+#: model:ir.ui.menu,name:gental_mcp.menu_logs_outbox_webhooks
+#: model_terms:ir.ui.view,arch_db:gental_mcp.view_config_form_webhooks
+#: model_terms:ir.ui.view,arch_db:gental_mcp.view_webhook_subscription_list
+msgid "Webhooks"
+msgstr ""
+
+#. module: gental_mcp
+#: model_terms:ir.ui.view,arch_db:gental_mcp.oauth_consent
+msgid "What it can reach"
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields,help:gental_mcp.field_gental_mcp_api_key_wizard__name
+msgid "What this key is for, for example the assistant or system using it."
+msgstr ""
+
+#. module: gental_mcp
+#: model_terms:ir.ui.view,arch_db:gental_mcp.view_log_form
+#: model_terms:ir.ui.view,arch_db:gental_mcp.view_log_list
+#: model_terms:ir.ui.view,arch_db:gental_mcp.view_webhook_delivery_list
+msgid "When"
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields,help:gental_mcp.field_gental_mcp_config__identity_assume_company_country
+msgid ""
+"When a contact has no country, a local number like 05… is read with your "
+"company's country code. Turn this off if you have customers abroad saved "
+"without a country: a number from another country could otherwise match the "
+"wrong customer. Contacts that have a country always use their own country."
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_rate__window
+msgid "Window"
+msgstr ""
+
+#. module: gental_mcp
+#: model:ir.model.fields.selection,name:gental_mcp.selection__gental_mcp_exposed_method__kind__write
+#: model:ir.model.fields.selection,name:gental_mcp.selection__gental_mcp_log__tool_kind__write
+#: model:ir.model.fields.selection,name:gental_mcp.selection__gental_mcp_tool_setting__kind__write
+msgid "Write"
+msgstr ""
+
+#. module: gental_mcp
+#: model_terms:ir.ui.view,arch_db:gental_mcp.view_log_search
+msgid "Writes"
+msgstr ""
+
+#. module: gental_mcp
+#: model_terms:ir.ui.view,arch_db:gental_mcp.oauth_error
+msgid "You can close this page and go back to the app."
+msgstr ""
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/models/webhook_subscription.py:0
+msgid "You can't read these records, so you can't filter them."
+msgstr ""
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/invoicing.py:0
+msgid "You have no invoices."
+msgstr ""
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/sales.py:0
+msgid "You have no orders yet."
+msgstr ""
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/invoicing.py:0
+msgid "You need Invoicing rights in Odoo to see customer balances."
+msgstr ""
+
+#. module: gental_mcp
+#: model_terms:ir.ui.view,arch_db:gental_mcp.oauth_error
+msgid ""
+"Your Odoo user isn't allowed to connect AI assistants. Ask your Odoo admin "
+"to add you to the “Gental MCP: Connect” group."
+msgstr ""
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/sales.py:0
+msgid "Your orders: %s"
+msgstr ""
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/pos.py:0
+msgid "date_from must not be after date_to."
+msgstr ""
+
+#. module: gental_mcp
+#. odoo-javascript
+#: code:addons/gental_mcp/static/src/dashboard/dashboard.xml:0
+msgid "days"
+msgstr ""
+
+#. module: gental_mcp
+#. odoo-javascript
+#: code:addons/gental_mcp/static/src/dashboard/dashboard.xml:0
+msgid "errors"
+msgstr ""
+
+#. module: gental_mcp
+#. odoo-javascript
+#: code:addons/gental_mcp/static/src/dashboard/dashboard.xml:0
+msgid "failing"
+msgstr ""
+
+#. module: gental_mcp
+#: model_terms:ir.ui.view,arch_db:gental_mcp.view_config_form
+msgid "https://claude.ai"
+msgstr ""
+
+#. module: gental_mcp
+#: model_terms:ir.ui.view,arch_db:gental_mcp.view_webhook_subscription_form
+msgid "https://example.com/hooks/odoo"
+msgstr ""
+
+#. module: gental_mcp
+#: model_terms:ir.ui.view,arch_db:gental_mcp.view_config_form
+msgid "https://odoo.example.com"
+msgstr ""
+
+#. module: gental_mcp
+#. odoo-javascript
+#: code:addons/gental_mcp/static/src/dashboard/dashboard.xml:0
+msgid "ms"
+msgstr ""
+
+#. module: gental_mcp
+#. odoo-javascript
+#: code:addons/gental_mcp/static/src/dashboard/dashboard.xml:0
+msgid "p95"
+msgstr ""
+
+#. module: gental_mcp
+#. odoo-javascript
+#: code:addons/gental_mcp/static/src/dashboard/dashboard.xml:0
+msgid "sign-in,"
+msgstr ""
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/crm.py:0
+msgid "“%(name)s” updated."
+msgstr ""

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_config_form_curated" model="ir.ui.view">
+        <field name="name">gental.mcp.config.form.curated</field>
+        <field name="model">gental.mcp.config</field>
+        <field name="inherit_id" ref="view_config_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//notebook[@name='mcp_tabs']/page[@name='general']" position="after">
+                <page name="curated" string="Curated tools">
+                    <group string="Areas">
+                        <group>
+                            <label for="area_contacts_enabled"/>
+                            <div class="o_row">
+                                <field name="area_contacts_installed" invisible="1"/>
+                                <field name="area_contacts_enabled" widget="boolean_toggle" readonly="not area_contacts_installed"/>
+                                <div class="text-muted" invisible="area_contacts_installed">The app isn't installed</div>
+                            </div>
+                            <label for="area_sales_enabled"/>
+                            <div class="o_row">
+                                <field name="area_sales_installed" invisible="1"/>
+                                <field name="area_sales_enabled" widget="boolean_toggle" readonly="not area_sales_installed"/>
+                                <div class="text-muted" invisible="area_sales_installed">The app isn't installed</div>
+                            </div>
+                            <label for="area_invoicing_enabled"/>
+                            <div class="o_row">
+                                <field name="area_invoicing_installed" invisible="1"/>
+                                <field name="area_invoicing_enabled" widget="boolean_toggle" readonly="not area_invoicing_installed"/>
+                                <div class="text-muted" invisible="area_invoicing_installed">The app isn't installed</div>
+                            </div>
+                        </group>
+                        <group>
+                            <label for="area_crm_enabled"/>
+                            <div class="o_row">
+                                <field name="area_crm_installed" invisible="1"/>
+                                <field name="area_crm_enabled" widget="boolean_toggle" readonly="not area_crm_installed"/>
+                                <div class="text-muted" invisible="area_crm_installed">The app isn't installed</div>
+                            </div>
+                            <label for="area_inventory_enabled"/>
+                            <div class="o_row">
+                                <field name="area_inventory_installed" invisible="1"/>
+                                <field name="area_inventory_enabled" widget="boolean_toggle" readonly="not area_inventory_installed"/>
+                                <div class="text-muted" invisible="area_inventory_installed">The app isn't installed</div>
+                            </div>
+                            <label for="area_pos_enabled"/>
+                            <div class="o_row">
+                                <field name="area_pos_installed" invisible="1"/>
+                                <field name="area_pos_enabled" widget="boolean_toggle" readonly="not area_pos_installed"/>
+                                <div class="text-muted" invisible="area_pos_installed">The app isn't installed</div>
+                            </div>
+                        </group>
+                    </group>
+                    <separator string="Tools"/>
+                    <field name="tool_setting_ids" nolabel="1">
+                        <list editable="bottom" create="0" delete="0" decoration-muted="not area_installed">
+                            <field name="sequence" column_invisible="1"/>
+                            <field name="area_installed" column_invisible="1"/>
+                            <field name="title"/>
+                            <field name="name" optional="show"/>
+                            <field name="area"/>
+                            <field name="kind"/>
+                            <field name="enabled" widget="boolean_toggle" readonly="not area_installed"/>
+                        </list>
+                    </field>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>

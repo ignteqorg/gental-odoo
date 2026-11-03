@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Webhook subscriptions run as a user and their deliveries hold what that user can read: a manager sees
+         only the subscriptions (URL, secret, payloads) that run as them; system administrators see all.
+         The system rules go with the base.group_system rows of ir.model.access.csv (Odoo 20.0 turns each
+         rule into the domain of the matching access row, scripts/build_tree.py). -->
+    <record id="rule_webhook_subscription_own" model="ir.rule">
+        <field name="name">Gental MCP webhooks: managers see the ones that run as them</field>
+        <field name="model_id" ref="model_gental_mcp_webhook_subscription"/>
+        <field name="groups" eval="[Command.link(ref('group_mcp_manager'))]"/>
+        <field name="domain_force">[('run_as_user_id', '=', user.id)]</field>
+    </record>
+    <record id="rule_webhook_subscription_system" model="ir.rule">
+        <field name="name">Gental MCP webhooks: administrators see all</field>
+        <field name="model_id" ref="model_gental_mcp_webhook_subscription"/>
+        <field name="groups" eval="[Command.link(ref('base.group_system'))]"/>
+        <field name="domain_force">[(1, '=', 1)]</field>
+    </record>
+    <record id="rule_webhook_delivery_own" model="ir.rule">
+        <field name="name">Gental MCP webhook deliveries: managers see those of webhooks that run as them</field>
+        <field name="model_id" ref="model_gental_mcp_webhook_delivery"/>
+        <field name="groups" eval="[Command.link(ref('group_mcp_manager'))]"/>
+        <field name="domain_force">[('subscription_id.run_as_user_id', '=', user.id)]</field>
+    </record>
+    <record id="rule_webhook_delivery_system" model="ir.rule">
+        <field name="name">Gental MCP webhook deliveries: administrators see all</field>
+        <field name="model_id" ref="model_gental_mcp_webhook_delivery"/>
+        <field name="groups" eval="[Command.link(ref('base.group_system'))]"/>
+        <field name="domain_force">[(1, '=', 1)]</field>
+    </record>
+</odoo>

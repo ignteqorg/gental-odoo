@@ -1,0 +1,43 @@
+.o_gmcp_dashboard {
+    .o_gmcp_kpis {
+        display: grid;
+        gap: map-get($spacers, 3);
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    }
+    .o_gmcp_kpi_value {
+        font-size: 2rem;
+        font-weight: 600;
+        line-height: 1.2;
+    }
+    .o_gmcp_grid {
+        display: grid;
+        gap: map-get($spacers, 3);
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    }
+    .o_gmcp_bars {
+        display: flex;
+        align-items: flex-end;
+        gap: 2px;
+        height: 140px;
+    }
+    .o_gmcp_bar {
+        flex: 1 1 0;
+        min-width: 2px;
+        background: $o-brand-primary;
+        border-start-start-radius: 2px;
+        border-start-end-radius: 2px;
+    }
+    .o_gmcp_meter {
+        height: 6px;
+        background: $gray-200;
+        border-radius: 3px;
+        > div {
+            height: 100%;
+            background: $o-brand-primary;
+            border-radius: 3px;
+        }
+    }
+    .o_gmcp_attention {
+        text-decoration: none;
+    }
+}
