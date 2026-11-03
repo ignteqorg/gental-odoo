@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Overlay of gental_mcp/data/webhook_cron.xml for Odoo 17.0: ir.cron.numbercall defaults to 1 there, so each
+     cron would run once and deactivate (port-notes S6). Same records plus numbercall=-1 and doall=False. -->
+<odoo noupdate="1">
+    <!-- Webhooks (plan 3): detection, sending and the daily purge. Priority 10 (the default is 5): other
+         due jobs go first, so webhook work never delays them. -->
+    <record id="cron_webhook_scan" model="ir.cron">
+        <field name="name">Gental MCP: detect webhook events</field>
+        <field name="model_id" ref="model_gental_mcp_webhook_watch"/>
+        <field name="state">code</field>
+        <field name="code">model._cron_scan()</field>
+        <field name="interval_number">1</field>
+        <field name="interval_type">minutes</field>
+        <field name="priority">10</field>
+        <field name="numbercall">-1</field>
+        <field name="doall" eval="False"/>
+        <field name="active" eval="True"/>
+    </record>
+    <record id="cron_webhook_dispatch" model="ir.cron">
+        <field name="name">Gental MCP: send webhooks</field>
+        <field name="model_id" ref="model_gental_mcp_webhook_delivery"/>
+        <field name="state">code</field>
+        <field name="code">model._cron_dispatch()</field>
+        <field name="interval_number">1</field>
+        <field name="interval_type">minutes</field>
+        <field name="priority">10</field>
+        <field name="numbercall">-1</field>
+        <field name="doall" eval="False"/>
+        <field name="active" eval="True"/>
+    </record>
+    <record id="cron_webhook_purge" model="ir.cron">
+        <field name="name">Gental MCP: purge old webhook deliveries and snapshots</field>
+        <field name="model_id" ref="model_gental_mcp_webhook_delivery"/>
+        <field name="state">code</field>
+        <field name="code">model._cron_purge()</field>
+        <field name="interval_number">1</field>
+        <field name="interval_type">days</field>
+        <field name="priority">10</field>
+        <field name="numbercall">-1</field>
+        <field name="doall" eval="False"/>
+        <field name="active" eval="True"/>
+    </record>
+</odoo>

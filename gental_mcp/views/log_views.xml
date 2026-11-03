@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_log_list" model="ir.ui.view">
+        <field name="name">gental.mcp.log.list</field>
+        <field name="model">gental.mcp.log</field>
+        <field name="arch" type="xml">
+            <tree string="Inbox" create="0" delete="0" edit="0" default_order="id desc">
+                <field name="create_date" string="When"/>
+                <field name="client_id"/>
+                <field name="user_id"/>
+                <field name="tool"/>
+                <field name="tool_kind" widget="badge" decoration-info="tool_kind == 'read'"
+                       decoration-warning="tool_kind == 'write'" decoration-danger="tool_kind == 'destructive'"/>
+                <field name="status" widget="badge" decoration-success="status == 'ok'"
+                       decoration-danger="status == 'error'" decoration-warning="status == 'denied'"
+                       decoration-info="status == 'unknown'"/>
+                <field name="duration_ms" optional="show"/>
+                <field name="kind" optional="hide"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_log_form" model="ir.ui.view">
+        <field name="name">gental.mcp.log.form</field>
+        <field name="model">gental.mcp.log</field>
+        <field name="arch" type="xml">
+            <form string="Inbox entry" create="0" edit="0" delete="0">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="create_date" string="When"/>
+                            <field name="kind"/>
+                            <field name="client_id"/>
+                            <field name="user_id"/>
+                            <field name="ip"/>
+                        </group>
+                        <group>
+                            <field name="tool"/>
+                            <field name="tool_kind"/>
+                            <field name="status"/>
+                            <field name="duration_ms"/>
+                            <field name="request_id"/>
+                        </group>
+                    </group>
+                    <group>
+                        <field name="args_json" widget="text"/>
+                        <field name="result_text" widget="text"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_log_search" model="ir.ui.view">
+        <field name="name">gental.mcp.log.search</field>
+        <field name="model">gental.mcp.log</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="tool"/>
+                <field name="client_id"/>
+                <field name="user_id"/>
+                <filter name="errors" string="Errors" domain="[('status', '=', 'error')]"/>
+                <filter name="unknown" string="Outcome unknown" domain="[('status', '=', 'unknown')]"/>
+                <filter name="denied" string="Denied"
+                        domain="['|', ('status', '=', 'denied'), ('kind', '=', 'denied')]"/>
+                <filter name="writes" string="Writes"
+                        domain="[('tool_kind', 'in', ['write', 'destructive'])]"/>
+                <filter name="today" string="Today"
+                        domain="[('create_date', '&gt;=', context_today().strftime('%Y-%m-%d'))]"/>
+                <group>
+                    <filter name="group_tool" string="Tool" context="{'group_by': 'tool'}"/>
+                    <filter name="group_client" string="Client" context="{'group_by': 'client_id'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_logs_inbox" model="ir.actions.act_window">
+        <field name="name">Inbox</field>
+        <field name="res_model">gental.mcp.log</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Nothing in the Inbox yet</p>
+            <p>Every call an assistant makes to your Odoo will be listed here.</p>
+        </field>
+    </record>
+</odoo>

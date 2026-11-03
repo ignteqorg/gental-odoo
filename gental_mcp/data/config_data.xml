@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <record id="config_main" model="gental.mcp.config">
+        <field name="connect_group_ids" eval="[Command.set([ref('gental_mcp.group_mcp_connect')])]"/>
+    </record>
+    <!-- Generate the per-database signing secret at install (document links, quotes). -->
+    <function model="gental.mcp.config" name="quote_secret"/>
+</odoo>

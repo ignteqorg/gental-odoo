@@ -1,0 +1,20 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_gental_mcp_config_manager,gental.mcp.config manager,model_gental_mcp_config,group_mcp_manager,1,1,0,0
+access_gental_mcp_origin_manager,gental.mcp.origin manager,model_gental_mcp_origin,group_mcp_manager,1,1,1,1
+access_gental_mcp_exposed_model_manager,gental.mcp.exposed.model manager,model_gental_mcp_exposed_model,group_mcp_manager,1,1,1,1
+access_gental_mcp_exposed_method_manager,gental.mcp.exposed.method manager,model_gental_mcp_exposed_method,group_mcp_manager,1,1,1,1
+access_gental_mcp_client_manager,gental.mcp.client manager,model_gental_mcp_client,group_mcp_manager,1,1,1,1
+access_gental_mcp_token_manager,gental.mcp.token manager,model_gental_mcp_token,group_mcp_manager,1,0,0,0
+access_gental_mcp_auth_code_manager,gental.mcp.auth.code manager,model_gental_mcp_auth_code,group_mcp_manager,1,0,0,0
+access_gental_mcp_log_manager,gental.mcp.log manager,model_gental_mcp_log,group_mcp_manager,1,0,0,0
+access_gental_mcp_rate_manager,gental.mcp.rate manager,model_gental_mcp_rate,group_mcp_manager,1,1,0,0
+access_gental_mcp_api_key_wizard_manager,gental.mcp.api.key.wizard manager,model_gental_mcp_api_key_wizard,group_mcp_manager,1,1,1,1
+access_gental_mcp_action_key_manager,gental.mcp.action.key manager,model_gental_mcp_action_key,group_mcp_manager,1,0,0,0
+access_gental_mcp_tool_setting_manager,gental.mcp.tool.setting manager,model_gental_mcp_tool_setting,group_mcp_manager,1,1,0,0
+access_gental_mcp_identity_secret_wizard_manager,gental.mcp.identity.secret.wizard manager,model_gental_mcp_identity_secret_wizard,group_mcp_manager,1,1,1,1
+access_gental_mcp_document_manager,gental.mcp.document manager,model_gental_mcp_document,group_mcp_manager,1,0,0,0
+access_gental_mcp_webhook_event_manager,gental.mcp.webhook.event manager,model_gental_mcp_webhook_event,group_mcp_manager,1,0,0,0
+access_gental_mcp_webhook_subscription_manager,gental.mcp.webhook.subscription manager,model_gental_mcp_webhook_subscription,group_mcp_manager,1,1,1,1
+access_gental_mcp_webhook_delivery_manager,gental.mcp.webhook.delivery manager,model_gental_mcp_webhook_delivery,group_mcp_manager,1,0,0,0
+access_gental_mcp_webhook_subscription_system,gental.mcp.webhook.subscription system,model_gental_mcp_webhook_subscription,base.group_system,1,1,1,1
+access_gental_mcp_webhook_delivery_system,gental.mcp.webhook.delivery system,model_gental_mcp_webhook_delivery,base.group_system,1,0,0,0

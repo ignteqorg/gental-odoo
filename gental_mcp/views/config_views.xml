@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_config_form" model="ir.ui.view">
+        <field name="name">gental.mcp.config.form</field>
+        <field name="model">gental.mcp.config</field>
+        <field name="arch" type="xml">
+            <form string="Gental MCP Settings" create="0" delete="0">
+                <sheet>
+                    <notebook name="mcp_tabs">
+                        <page name="general" string="General">
+                            <field name="url_unpinned" invisible="1"/>
+                            <div class="alert alert-warning" role="alert" name="url_unpinned_warning"
+                                 invisible="not url_unpinned">
+                                <span>No Public URL is set and web.base.url isn't frozen: if an administrator signs in from another address, the MCP URL changes and every assistant has to connect again. Set the Public URL, or run the reachability check to save the current address.</span>
+                            </div>
+                            <group>
+                                <group string="Connection">
+                                    <field name="enabled" widget="boolean_toggle"/>
+                                    <field name="public_url" placeholder="https://odoo.example.com"/>
+                                    <field name="mcp_endpoint" widget="CopyClipboardChar" readonly="1"/>
+                                    <button name="action_check_reachability" type="object"
+                                            string="Check that assistants can reach this Odoo"
+                                            class="btn-secondary"/>
+                                </group>
+                                <group string="Sign-in methods">
+                                    <field name="oauth_enabled" widget="boolean_toggle"/>
+                                    <field name="dcr_enabled" widget="boolean_toggle"
+                                           invisible="not oauth_enabled"/>
+                                    <field name="api_keys_enabled" widget="boolean_toggle"/>
+                                    <field name="default_lang"/>
+                                </group>
+                            </group>
+                            <group name="customer_identity">
+                                <group string="Customer identity">
+                                    <field name="identity_secret_set"/>
+                                    <field name="identity_secret_hint" invisible="not identity_secret_set"/>
+                                    <field name="identity_assume_company_country" widget="boolean_toggle"/>
+                                    <div colspan="2">
+                                        <button name="%(gental_mcp.action_identity_secret_wizard)d" type="action"
+                                                string="Set secret" class="btn-secondary"/>
+                                        <button name="action_clear_identity_secret" type="object"
+                                                string="Clear" class="btn-link"
+                                                invisible="not identity_secret_set"
+                                                confirm="Clear the identity secret? Tools for the chatting customer stop working until you set a new one."/>
+                                    </div>
+                                </group>
+                            </group>
+                        </page>
+                        <page name="models" string="Models and methods">
+                            <field name="exposed_model_ids">
+                                <tree editable="bottom" open_form_view="True">
+                                    <field name="model_id" options="{'no_create': True}"/>
+                                    <field name="can_read" widget="boolean_toggle"/>
+                                    <field name="can_create" widget="boolean_toggle"/>
+                                    <field name="can_write" widget="boolean_toggle"/>
+                                    <field name="can_unlink" widget="boolean_toggle"/>
+                                    <field name="hidden_field_ids" widget="many2many_tags" optional="show"/>
+                                    <field name="extra_domain" optional="hide"/>
+                                    <field name="active" column_invisible="1"/>
+                                </tree>
+                                <form>
+                                    <group>
+                                        <group>
+                                            <field name="model_id" options="{'no_create': True}"/>
+                                            <field name="active"/>
+                                        </group>
+                                        <group>
+                                            <field name="can_read"/>
+                                            <field name="can_create"/>
+                                            <field name="can_write"/>
+                                            <field name="can_unlink"/>
+                                        </group>
+                                    </group>
+                                    <group>
+                                        <field name="hidden_field_ids" widget="many2many_tags"/>
+                                        <field name="extra_domain"/>
+                                    </group>
+                                    <field name="method_ids">
+                                        <tree editable="bottom">
+                                            <field name="name"/>
+                                            <field name="kind"/>
+                                            <field name="description"/>
+                                        </tree>
+                                    </field>
+                                </form>
+                            </field>
+                        </page>
+                        <page name="access" string="Access">
+                            <group>
+                                <field name="connect_group_ids" widget="many2many_tags"/>
+                                <field name="rate_limit_per_min"/>
+                            </group>
+                            <field name="allowed_origin_ids">
+                                <tree editable="bottom">
+                                    <field name="origin" placeholder="https://claude.ai"/>
+                                </tree>
+                            </field>
+                        </page>
+                        <page name="retention" string="Retention">
+                            <group>
+                                <field name="log_retention_days"/>
+                                <field name="document_link_hours"/>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="server_action_config" model="ir.actions.server">
+        <field name="name">Configuration</field>
+        <field name="model_id" ref="model_gental_mcp_config"/>
+        <field name="state">code</field>
+        <field name="code">action = model.action_open_config()</field>
+    </record>
+</odoo>

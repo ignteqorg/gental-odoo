@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Overlay of gental_mcp/views/chatter_views.xml for Odoo 17.0: the <chatter/> shorthand is 18.0+ (port-notes S1);
+     17.0's form compiler only knows div.oe_chatter. Otherwise identical to the source. -->
+<odoo>
+    <!-- The chatters of the module's forms, kept apart so the 17.0 tree overlays only this file (17.0 has no
+         <chatter/> shorthand). -->
+    <record id="view_config_form_chatter" model="ir.ui.view">
+        <field name="name">gental.mcp.config.form.chatter</field>
+        <field name="model">gental.mcp.config</field>
+        <field name="inherit_id" ref="view_config_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//sheet" position="after">
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_webhook_subscription_form_chatter" model="ir.ui.view">
+        <field name="name">gental.mcp.webhook.subscription.form.chatter</field>
+        <field name="model">gental.mcp.webhook.subscription</field>
+        <field name="inherit_id" ref="view_webhook_subscription_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//sheet" position="after">
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </xpath>
+        </field>
+    </record>
+</odoo>

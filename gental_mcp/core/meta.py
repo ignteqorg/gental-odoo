@@ -1,0 +1,11 @@
+"""Gental `_meta` keys exchanged with the MCP client (reverse-DNS prefixed)."""
+
+ACTION_KEY = "ai.gental/action-key"
+LOCALE = "ai.gental/locale"
+PREVIEW_QUOTE = "ai.gental/preview-quote"
+IDENTITY = "ai.gental/identity"
+OUTCOME = "ai.gental/outcome"
+FLAG = "ai.gental/flag"
+FLAG_REASON = "ai.gental/flag-reason"
+AUTH = "ai.gental/auth"
+AUDIENCE = "ai.gental/audience"
