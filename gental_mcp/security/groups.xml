@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="group_mcp_connect" model="res.groups">
+        <field name="name">Gental MCP: Connect</field>
+        <field name="comment">Can connect AI assistants to Odoo and act through them with their own access rights.</field>
+    </record>
+
+    <record id="group_mcp_manager" model="res.groups">
+        <field name="name">Gental MCP: Manager</field>
+        <field name="comment">Manages clients, API keys, logs and settings of the MCP connection.</field>
+        <field name="implied_ids" eval="[Command.link(ref('group_mcp_connect'))]"/>
+        <field name="implied_by_ids" eval="[Command.link(ref('base.group_system'))]"/>
+    </record>
+</odoo>

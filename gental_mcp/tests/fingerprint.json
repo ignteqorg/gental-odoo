@@ -1,0 +1,924 @@
+{
+ "gental.mcp.action.key": {
+  "client_id": {
+   "relation": "gental.mcp.client",
+   "required": false,
+   "type": "many2one"
+  },
+  "key": {
+   "required": true,
+   "type": "char"
+  },
+  "model": {
+   "required": true,
+   "type": "char"
+  },
+  "res_id": {
+   "required": true,
+   "type": "integer"
+  }
+ },
+ "gental.mcp.api.key.wizard": {
+  "can_pick_user": {
+   "required": false,
+   "type": "boolean"
+  },
+  "expires_at": {
+   "required": false,
+   "type": "datetime"
+  },
+  "key": {
+   "required": false,
+   "type": "char"
+  },
+  "name": {
+   "required": true,
+   "type": "char"
+  },
+  "state": {
+   "required": false,
+   "selection": [
+    "done",
+    "form"
+   ],
+   "type": "selection"
+  },
+  "user_id": {
+   "relation": "res.users",
+   "required": true,
+   "type": "many2one"
+  }
+ },
+ "gental.mcp.auth.code": {
+  "client_id": {
+   "relation": "gental.mcp.client",
+   "required": true,
+   "type": "many2one"
+  },
+  "code_challenge": {
+   "required": true,
+   "type": "char"
+  },
+  "code_hash": {
+   "required": true,
+   "type": "char"
+  },
+  "expires_at": {
+   "required": true,
+   "type": "datetime"
+  },
+  "redirect_uri": {
+   "required": true,
+   "type": "char"
+  },
+  "resource": {
+   "required": false,
+   "type": "char"
+  },
+  "used": {
+   "required": false,
+   "type": "boolean"
+  },
+  "user_id": {
+   "relation": "res.users",
+   "required": true,
+   "type": "many2one"
+  }
+ },
+ "gental.mcp.client": {
+  "cimd": {
+   "required": false,
+   "type": "boolean"
+  },
+  "cimd_fetched_at": {
+   "required": false,
+   "type": "datetime"
+  },
+  "client_id": {
+   "required": false,
+   "type": "char"
+  },
+  "expires_at": {
+   "required": false,
+   "type": "datetime"
+  },
+  "key_hash": {
+   "required": false,
+   "type": "char"
+  },
+  "key_hint": {
+   "required": false,
+   "type": "char"
+  },
+  "kind": {
+   "required": true,
+   "selection": [
+    "api_key",
+    "oauth"
+   ],
+   "type": "selection"
+  },
+  "last_used_at": {
+   "required": false,
+   "type": "datetime"
+  },
+  "name": {
+   "required": true,
+   "type": "char"
+  },
+  "redirect_uris": {
+   "required": false,
+   "type": "text"
+  },
+  "registration": {
+   "required": false,
+   "selection": [
+    "cimd",
+    "dcr",
+    "manual"
+   ],
+   "type": "selection"
+  },
+  "revoked_at": {
+   "required": false,
+   "type": "datetime"
+  },
+  "state": {
+   "required": true,
+   "selection": [
+    "active",
+    "revoked"
+   ],
+   "type": "selection"
+  },
+  "user_id": {
+   "relation": "res.users",
+   "required": false,
+   "type": "many2one"
+  }
+ },
+ "gental.mcp.config": {
+  "allowed_origin_ids": {
+   "relation": "gental.mcp.origin",
+   "required": false,
+   "type": "one2many"
+  },
+  "api_keys_enabled": {
+   "required": false,
+   "type": "boolean"
+  },
+  "area_contacts_enabled": {
+   "required": false,
+   "type": "boolean"
+  },
+  "area_contacts_installed": {
+   "required": false,
+   "type": "boolean"
+  },
+  "area_crm_enabled": {
+   "required": false,
+   "type": "boolean"
+  },
+  "area_crm_installed": {
+   "required": false,
+   "type": "boolean"
+  },
+  "area_inventory_enabled": {
+   "required": false,
+   "type": "boolean"
+  },
+  "area_inventory_installed": {
+   "required": false,
+   "type": "boolean"
+  },
+  "area_invoicing_enabled": {
+   "required": false,
+   "type": "boolean"
+  },
+  "area_invoicing_installed": {
+   "required": false,
+   "type": "boolean"
+  },
+  "area_pos_enabled": {
+   "required": false,
+   "type": "boolean"
+  },
+  "area_pos_installed": {
+   "required": false,
+   "type": "boolean"
+  },
+  "area_sales_enabled": {
+   "required": false,
+   "type": "boolean"
+  },
+  "area_sales_installed": {
+   "required": false,
+   "type": "boolean"
+  },
+  "connect_group_ids": {
+   "relation": "res.groups",
+   "required": false,
+   "type": "many2many"
+  },
+  "dcr_enabled": {
+   "required": false,
+   "type": "boolean"
+  },
+  "default_lang": {
+   "required": true,
+   "selection": [
+    "ar",
+    "en"
+   ],
+   "type": "selection"
+  },
+  "document_link_hours": {
+   "required": false,
+   "type": "integer"
+  },
+  "enabled": {
+   "required": false,
+   "type": "boolean"
+  },
+  "exposed_model_ids": {
+   "relation": "gental.mcp.exposed.model",
+   "required": false,
+   "type": "one2many"
+  },
+  "identity_assume_company_country": {
+   "required": false,
+   "type": "boolean"
+  },
+  "identity_secret": {
+   "required": false,
+   "type": "char"
+  },
+  "identity_secret_hint": {
+   "required": false,
+   "type": "char"
+  },
+  "identity_secret_set": {
+   "required": false,
+   "type": "boolean"
+  },
+  "log_retention_days": {
+   "required": false,
+   "type": "integer"
+  },
+  "mcp_endpoint": {
+   "required": false,
+   "type": "char"
+  },
+  "oauth_enabled": {
+   "required": false,
+   "type": "boolean"
+  },
+  "public_url": {
+   "required": false,
+   "type": "char"
+  },
+  "rate_limit_per_min": {
+   "required": false,
+   "type": "integer"
+  },
+  "reachability": {
+   "required": false,
+   "selection": [
+    "failed",
+    "ok"
+   ],
+   "type": "selection"
+  },
+  "tool_setting_ids": {
+   "relation": "gental.mcp.tool.setting",
+   "required": false,
+   "type": "one2many"
+  },
+  "url_unpinned": {
+   "required": false,
+   "type": "boolean"
+  },
+  "webhook_log_retention_days": {
+   "required": false,
+   "type": "integer"
+  },
+  "webhook_subscription_ids": {
+   "relation": "gental.mcp.webhook.subscription",
+   "required": false,
+   "type": "many2many"
+  }
+ },
+ "gental.mcp.document": {
+  "attachment_id": {
+   "relation": "ir.attachment",
+   "required": false,
+   "type": "many2one"
+  },
+  "client_id": {
+   "relation": "gental.mcp.client",
+   "required": false,
+   "type": "many2one"
+  },
+  "download_count": {
+   "required": false,
+   "type": "integer"
+  },
+  "expires_at": {
+   "required": true,
+   "type": "datetime"
+  },
+  "name": {
+   "required": true,
+   "type": "char"
+  },
+  "report_xmlid": {
+   "required": false,
+   "type": "char"
+  },
+  "res_id": {
+   "required": false,
+   "type": "integer"
+  },
+  "res_model": {
+   "required": false,
+   "type": "char"
+  },
+  "state": {
+   "required": true,
+   "selection": [
+    "active",
+    "expired"
+   ],
+   "type": "selection"
+  },
+  "tool": {
+   "required": false,
+   "type": "char"
+  },
+  "user_id": {
+   "relation": "res.users",
+   "required": false,
+   "type": "many2one"
+  }
+ },
+ "gental.mcp.exposed.method": {
+  "description": {
+   "required": false,
+   "type": "char"
+  },
+  "exposed_model_id": {
+   "relation": "gental.mcp.exposed.model",
+   "required": true,
+   "type": "many2one"
+  },
+  "kind": {
+   "required": true,
+   "selection": [
+    "destructive",
+    "read",
+    "write"
+   ],
+   "type": "selection"
+  },
+  "name": {
+   "required": true,
+   "type": "char"
+  }
+ },
+ "gental.mcp.exposed.model": {
+  "active": {
+   "required": false,
+   "type": "boolean"
+  },
+  "can_create": {
+   "required": false,
+   "type": "boolean"
+  },
+  "can_read": {
+   "required": false,
+   "type": "boolean"
+  },
+  "can_unlink": {
+   "required": false,
+   "type": "boolean"
+  },
+  "can_write": {
+   "required": false,
+   "type": "boolean"
+  },
+  "config_id": {
+   "relation": "gental.mcp.config",
+   "required": false,
+   "type": "many2one"
+  },
+  "extra_domain": {
+   "required": false,
+   "type": "char"
+  },
+  "hidden_field_ids": {
+   "relation": "ir.model.fields",
+   "required": false,
+   "type": "many2many"
+  },
+  "method_ids": {
+   "relation": "gental.mcp.exposed.method",
+   "required": false,
+   "type": "one2many"
+  },
+  "model": {
+   "required": false,
+   "type": "char"
+  },
+  "model_id": {
+   "relation": "ir.model",
+   "required": true,
+   "type": "many2one"
+  }
+ },
+ "gental.mcp.identity.secret.wizard": {
+  "secret": {
+   "required": false,
+   "type": "char"
+  }
+ },
+ "gental.mcp.log": {
+  "action_key": {
+   "required": false,
+   "type": "char"
+  },
+  "args_json": {
+   "required": false,
+   "type": "text"
+  },
+  "client_id": {
+   "relation": "gental.mcp.client",
+   "required": false,
+   "type": "many2one"
+  },
+  "duration_ms": {
+   "required": false,
+   "type": "integer"
+  },
+  "identity_phone": {
+   "required": false,
+   "type": "char"
+  },
+  "ip": {
+   "required": false,
+   "type": "char"
+  },
+  "kind": {
+   "required": true,
+   "selection": [
+    "auth",
+    "call",
+    "denied",
+    "rate_limited"
+   ],
+   "type": "selection"
+  },
+  "request_id": {
+   "required": false,
+   "type": "char"
+  },
+  "res_id": {
+   "required": false,
+   "type": "integer"
+  },
+  "res_model": {
+   "required": false,
+   "type": "char"
+  },
+  "result_text": {
+   "required": false,
+   "type": "text"
+  },
+  "status": {
+   "required": false,
+   "selection": [
+    "denied",
+    "error",
+    "ok",
+    "unknown"
+   ],
+   "type": "selection"
+  },
+  "tool": {
+   "required": false,
+   "type": "char"
+  },
+  "tool_kind": {
+   "required": false,
+   "selection": [
+    "destructive",
+    "read",
+    "write"
+   ],
+   "type": "selection"
+  },
+  "user_id": {
+   "relation": "res.users",
+   "required": false,
+   "type": "many2one"
+  }
+ },
+ "gental.mcp.origin": {
+  "config_id": {
+   "relation": "gental.mcp.config",
+   "required": true,
+   "type": "many2one"
+  },
+  "origin": {
+   "required": true,
+   "type": "char"
+  }
+ },
+ "gental.mcp.rate": {
+  "count": {
+   "required": false,
+   "type": "integer"
+  },
+  "key": {
+   "required": true,
+   "type": "char"
+  },
+  "window": {
+   "required": true,
+   "type": "integer"
+  }
+ },
+ "gental.mcp.token": {
+  "client_id": {
+   "relation": "gental.mcp.client",
+   "required": true,
+   "type": "many2one"
+  },
+  "expires_at": {
+   "required": true,
+   "type": "datetime"
+  },
+  "family": {
+   "required": true,
+   "type": "char"
+  },
+  "kind": {
+   "required": true,
+   "selection": [
+    "access",
+    "refresh"
+   ],
+   "type": "selection"
+  },
+  "resource": {
+   "required": false,
+   "type": "char"
+  },
+  "revoked": {
+   "required": false,
+   "type": "boolean"
+  },
+  "rotated": {
+   "required": false,
+   "type": "boolean"
+  },
+  "scope": {
+   "required": false,
+   "type": "char"
+  },
+  "token_hash": {
+   "required": true,
+   "type": "char"
+  },
+  "user_id": {
+   "relation": "res.users",
+   "required": true,
+   "type": "many2one"
+  }
+ },
+ "gental.mcp.tool.setting": {
+  "area": {
+   "required": true,
+   "selection": [
+    "contacts",
+    "crm",
+    "inventory",
+    "invoicing",
+    "pos",
+    "sales"
+   ],
+   "type": "selection"
+  },
+  "area_installed": {
+   "required": false,
+   "type": "boolean"
+  },
+  "config_id": {
+   "relation": "gental.mcp.config",
+   "required": true,
+   "type": "many2one"
+  },
+  "enabled": {
+   "required": false,
+   "type": "boolean"
+  },
+  "kind": {
+   "required": false,
+   "selection": [
+    "destructive",
+    "read",
+    "write"
+   ],
+   "type": "selection"
+  },
+  "name": {
+   "required": true,
+   "type": "char"
+  },
+  "sequence": {
+   "required": false,
+   "type": "integer"
+  },
+  "title": {
+   "required": false,
+   "type": "char"
+  }
+ },
+ "gental.mcp.webhook.delivery": {
+  "attempts": {
+   "required": false,
+   "type": "integer"
+  },
+  "body": {
+   "required": false,
+   "type": "text"
+  },
+  "body_pretty": {
+   "required": false,
+   "type": "text"
+  },
+  "delivered_at": {
+   "required": false,
+   "type": "datetime"
+  },
+  "delivery_uuid": {
+   "required": true,
+   "type": "char"
+  },
+  "event_code": {
+   "required": true,
+   "type": "char"
+  },
+  "event_uuid": {
+   "required": true,
+   "type": "char"
+  },
+  "headers_text": {
+   "required": false,
+   "type": "text"
+  },
+  "last_error": {
+   "required": false,
+   "type": "char"
+  },
+  "last_status_code": {
+   "required": false,
+   "type": "integer"
+  },
+  "model": {
+   "required": true,
+   "type": "char"
+  },
+  "next_attempt_at": {
+   "required": false,
+   "type": "datetime"
+  },
+  "record_label": {
+   "required": false,
+   "type": "char"
+  },
+  "res_id": {
+   "required": false,
+   "type": "integer"
+  },
+  "state": {
+   "required": true,
+   "selection": [
+    "delivered",
+    "expired",
+    "failed",
+    "queued",
+    "sending"
+   ],
+   "type": "selection"
+  },
+  "subscription_id": {
+   "relation": "gental.mcp.webhook.subscription",
+   "required": true,
+   "type": "many2one"
+  },
+  "subscription_name": {
+   "required": false,
+   "type": "char"
+  },
+  "url_host": {
+   "required": false,
+   "type": "char"
+  }
+ },
+ "gental.mcp.webhook.event": {
+  "available": {
+   "required": false,
+   "type": "boolean"
+  },
+  "code": {
+   "required": true,
+   "type": "char"
+  },
+  "extra_domain": {
+   "required": false,
+   "type": "char"
+  },
+  "generic": {
+   "required": false,
+   "type": "boolean"
+  },
+  "kind": {
+   "required": true,
+   "selection": [
+    "created",
+    "transition",
+    "updated"
+   ],
+   "type": "selection"
+  },
+  "model": {
+   "required": false,
+   "type": "char"
+  },
+  "name": {
+   "required": true,
+   "type": "char"
+  },
+  "payload_fields": {
+   "required": false,
+   "type": "char"
+  },
+  "state_field": {
+   "required": false,
+   "type": "char"
+  },
+  "target_values": {
+   "required": false,
+   "type": "char"
+  }
+ },
+ "gental.mcp.webhook.snapshot": {
+  "res_id": {
+   "required": true,
+   "type": "integer"
+  },
+  "value": {
+   "required": false,
+   "type": "char"
+  },
+  "watch_id": {
+   "relation": "gental.mcp.webhook.watch",
+   "required": true,
+   "type": "many2one"
+  }
+ },
+ "gental.mcp.webhook.subscription": {
+  "active": {
+   "required": false,
+   "type": "boolean"
+  },
+  "consecutive_failures": {
+   "required": false,
+   "type": "integer"
+  },
+  "delivery_ids": {
+   "relation": "gental.mcp.webhook.delivery",
+   "required": false,
+   "type": "one2many"
+  },
+  "event_ids": {
+   "relation": "gental.mcp.webhook.event",
+   "required": true,
+   "type": "many2many"
+  },
+  "exposed_ir_model_ids": {
+   "relation": "ir.model",
+   "required": false,
+   "type": "many2many"
+  },
+  "exposed_model_ids": {
+   "relation": "gental.mcp.exposed.model",
+   "required": false,
+   "type": "many2many"
+  },
+  "failing_count": {
+   "required": false,
+   "type": "integer"
+  },
+  "filter_domain": {
+   "required": false,
+   "type": "char"
+  },
+  "filter_model": {
+   "required": false,
+   "type": "char"
+  },
+  "name": {
+   "required": true,
+   "type": "char"
+  },
+  "paused_until": {
+   "required": false,
+   "type": "datetime"
+  },
+  "payload_field_ids": {
+   "relation": "ir.model.fields",
+   "required": false,
+   "type": "many2many"
+  },
+  "run_as_user_id": {
+   "relation": "res.users",
+   "required": true,
+   "type": "many2one"
+  },
+  "secret": {
+   "required": false,
+   "type": "char"
+  },
+  "show_models": {
+   "required": false,
+   "type": "boolean"
+  },
+  "url": {
+   "required": true,
+   "type": "char"
+  },
+  "url_host": {
+   "required": false,
+   "type": "char"
+  },
+  "warning": {
+   "required": false,
+   "type": "char"
+  },
+  "warning_code": {
+   "required": false,
+   "selection": [
+    "no_access",
+    "not_connected",
+    "payload_errors",
+    "scan_failed"
+   ],
+   "type": "selection"
+  }
+ },
+ "gental.mcp.webhook.watch": {
+  "baseline_after_id": {
+   "required": false,
+   "type": "integer"
+  },
+  "baseline_done": {
+   "required": false,
+   "type": "boolean"
+  },
+  "cursor": {
+   "required": false,
+   "type": "datetime"
+  },
+  "event_id": {
+   "relation": "gental.mcp.webhook.event",
+   "required": true,
+   "type": "many2one"
+  },
+  "model": {
+   "required": true,
+   "type": "char"
+  },
+  "resume_id": {
+   "required": false,
+   "type": "integer"
+  },
+  "resume_write_date": {
+   "required": false,
+   "type": "datetime"
+  },
+  "scanned_at": {
+   "required": false,
+   "type": "datetime"
+  },
+  "started_at": {
+   "required": false,
+   "type": "datetime"
+  },
+  "subscription_id": {
+   "relation": "gental.mcp.webhook.subscription",
+   "required": true,
+   "type": "many2one"
+  }
+ }
+}

@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- The v1 webhook event catalog (plan 3, task 1). Kept in sync on every update (noupdate=0). -->
+    <data noupdate="0">
+        <record id="webhook_event_invoice_posted" model="gental.mcp.webhook.event">
+            <field name="code">invoice.posted</field>
+            <field name="name">Invoice posted</field>
+            <field name="model">account.move</field>
+            <field name="kind">transition</field>
+            <field name="state_field">state</field>
+            <field name="target_values">["posted"]</field>
+            <field name="extra_domain">[('move_type','in',['out_invoice','out_refund'])]</field>
+            <field name="payload_fields">["name", "partner_id", "invoice_date", "invoice_date_due", "amount_total", "amount_residual", "currency_id", "payment_state", "move_type"]</field>
+            <field name="generic" eval="False"/>
+        </record>
+        <record id="webhook_event_invoice_paid" model="gental.mcp.webhook.event">
+            <field name="code">invoice.paid</field>
+            <field name="name">Invoice paid</field>
+            <field name="model">account.move</field>
+            <field name="kind">transition</field>
+            <field name="state_field">payment_state</field>
+            <field name="target_values">["paid", "in_payment"]</field>
+            <field name="extra_domain">[('move_type','=','out_invoice')]</field>
+            <field name="payload_fields">["name", "partner_id", "invoice_date", "invoice_date_due", "amount_total", "amount_residual", "currency_id", "payment_state", "move_type"]</field>
+            <field name="generic" eval="False"/>
+        </record>
+        <record id="webhook_event_order_created" model="gental.mcp.webhook.event">
+            <field name="code">order.created</field>
+            <field name="name">Order created</field>
+            <field name="model">sale.order</field>
+            <field name="kind">created</field>
+            <field name="target_values">[]</field>
+            <field name="extra_domain">[]</field>
+            <field name="payload_fields">["name", "partner_id", "date_order", "amount_total", "currency_id", "state", "client_order_ref"]</field>
+            <field name="generic" eval="False"/>
+        </record>
+        <record id="webhook_event_order_confirmed" model="gental.mcp.webhook.event">
+            <field name="code">order.confirmed</field>
+            <field name="name">Order confirmed</field>
+            <field name="model">sale.order</field>
+            <field name="kind">transition</field>
+            <field name="state_field">state</field>
+            <field name="target_values">["sale"]</field>
+            <field name="extra_domain">[]</field>
+            <field name="payload_fields">["name", "partner_id", "date_order", "amount_total", "currency_id", "state", "client_order_ref"]</field>
+            <field name="generic" eval="False"/>
+        </record>
+        <record id="webhook_event_order_cancelled" model="gental.mcp.webhook.event">
+            <field name="code">order.cancelled</field>
+            <field name="name">Order cancelled</field>
+            <field name="model">sale.order</field>
+            <field name="kind">transition</field>
+            <field name="state_field">state</field>
+            <field name="target_values">["cancel"]</field>
+            <field name="extra_domain">[]</field>
+            <field name="payload_fields">["name", "partner_id", "date_order", "amount_total", "currency_id", "state", "client_order_ref"]</field>
+            <field name="generic" eval="False"/>
+        </record>
+        <record id="webhook_event_delivery_done" model="gental.mcp.webhook.event">
+            <field name="code">delivery.done</field>
+            <field name="name">Delivery done</field>
+            <field name="model">stock.picking</field>
+            <field name="kind">transition</field>
+            <field name="state_field">state</field>
+            <field name="target_values">["done"]</field>
+            <field name="extra_domain">[('picking_type_code','=','outgoing')]</field>
+            <field name="payload_fields">["name", "partner_id", "origin", "scheduled_date", "date_done", "carrier_tracking_ref", "state"]</field>
+            <field name="generic" eval="False"/>
+        </record>
+        <record id="webhook_event_lead_created" model="gental.mcp.webhook.event">
+            <field name="code">lead.created</field>
+            <field name="name">Lead created</field>
+            <field name="model">crm.lead</field>
+            <field name="kind">created</field>
+            <field name="target_values">[]</field>
+            <field name="extra_domain">[]</field>
+            <field name="payload_fields">["name", "partner_id", "contact_name", "phone", "email_from", "stage_id", "user_id", "expected_revenue", "type"]</field>
+            <field name="generic" eval="False"/>
+        </record>
+        <record id="webhook_event_lead_stage_changed" model="gental.mcp.webhook.event">
+            <field name="code">lead.stage_changed</field>
+            <field name="name">Lead stage changed</field>
+            <field name="model">crm.lead</field>
+            <field name="kind">transition</field>
+            <field name="state_field">stage_id</field>
+            <field name="target_values">[]</field>
+            <field name="extra_domain">[]</field>
+            <field name="payload_fields">["name", "partner_id", "contact_name", "phone", "email_from", "stage_id", "user_id", "expected_revenue", "type"]</field>
+            <field name="generic" eval="False"/>
+        </record>
+        <record id="webhook_event_contact_created" model="gental.mcp.webhook.event">
+            <field name="code">contact.created</field>
+            <field name="name">Contact created</field>
+            <field name="model">res.partner</field>
+            <field name="kind">created</field>
+            <field name="target_values">[]</field>
+            <field name="extra_domain">[]</field>
+            <field name="payload_fields">["name", "phone", "email", "is_company", "parent_id", "city", "country_id"]</field>
+            <field name="generic" eval="False"/>
+        </record>
+        <record id="webhook_event_record_created" model="gental.mcp.webhook.event">
+            <field name="code">record.created</field>
+            <field name="name">Record created</field>
+            <field name="kind">created</field>
+            <field name="target_values">[]</field>
+            <field name="payload_fields">[]</field>
+            <field name="generic" eval="True"/>
+        </record>
+        <record id="webhook_event_record_updated" model="gental.mcp.webhook.event">
+            <field name="code">record.updated</field>
+            <field name="name">Record updated</field>
+            <field name="kind">updated</field>
+            <field name="target_values">[]</field>
+            <field name="payload_fields">[]</field>
+            <field name="generic" eval="True"/>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates xml:space="preserve">
+    <t t-name="gental_mcp.Dashboard">
+        <div class="o_gmcp_dashboard o_action overflow-auto p-3" t-att-dir="dir">
+            <div class="d-flex flex-wrap align-items-center gap-3 mb-3">
+                <span class="badge" t-att-class="state.data.status.enabled ? 'text-bg-success' : 'text-bg-secondary'">
+                    <t t-if="state.data.status.enabled">Running</t>
+                    <t t-else="">Switched off</t>
+                </span>
+                <span class="fw-bold text-break" dir="ltr" t-esc="state.data.status.mcp_url"/>
+                <span class="text-muted" dir="ltr" t-esc="'v' + state.data.status.version"/>
+                <div class="btn-group ms-auto" role="group">
+                    <t t-foreach="periods" t-as="p" t-key="p">
+                        <button type="button" class="btn btn-secondary o_gmcp_period"
+                                t-att-class="{'active': state.period === p}" t-on-click="() => this.load(p)">
+                            <t t-esc="p"/> days
+                        </button>
+                    </t>
+                </div>
+            </div>
+
+            <div class="o_gmcp_kpis mb-3">
+                <div class="o_gmcp_kpi card p-3">
+                    <div class="text-muted">Connected clients</div>
+                    <div class="o_gmcp_kpi_value" t-esc="state.data.clients.total"/>
+                    <small class="text-muted">
+                        <t t-esc="state.data.clients.by_kind.oauth"/> sign-in, <t t-esc="state.data.clients.by_kind.api_key"/> API key
+                    </small>
+                </div>
+                <div class="o_gmcp_kpi card p-3">
+                    <div class="text-muted">Calls</div>
+                    <div class="o_gmcp_kpi_value" t-esc="state.data.calls.total"/>
+                    <small class="text-muted"><t t-esc="errorPercent()"/> errors</small>
+                </div>
+                <div class="o_gmcp_kpi card p-3">
+                    <div class="text-muted">Slowest 5% of calls</div>
+                    <div class="o_gmcp_kpi_value"><span t-esc="state.data.calls.p95_ms"/> ms</div>
+                    <small class="text-muted">p95</small>
+                </div>
+                <div class="o_gmcp_kpi card p-3">
+                    <div class="text-muted">Webhooks</div>
+                    <div class="o_gmcp_kpi_value" t-esc="state.data.webhooks.delivered"/>
+                    <small t-att-class="state.data.webhooks.failing ? 'text-danger' : 'text-muted'">
+                        <t t-esc="state.data.webhooks.failing"/> failing
+                    </small>
+                </div>
+            </div>
+
+            <div class="o_gmcp_grid">
+                <div class="card p-3">
+                    <h5>Calls per day</h5>
+                    <div class="o_gmcp_bars" dir="ltr">
+                        <t t-foreach="state.data.calls.per_day" t-as="d" t-key="d.date">
+                            <div class="o_gmcp_bar" t-att-title="d.date + ': ' + d.count"
+                                 t-attf-style="height: {{barHeight(d.count)}}%"/>
+                        </t>
+                    </div>
+                </div>
+                <div class="card p-3">
+                    <h5>Top tools</h5>
+                    <div t-if="!state.data.top_tools.length" class="text-muted">No calls in this period.</div>
+                    <div t-foreach="state.data.top_tools" t-as="tool" t-key="tool.tool" class="o_gmcp_tool mb-2">
+                        <div class="d-flex justify-content-between">
+                            <span dir="ltr" t-esc="tool.tool"/>
+                            <span class="text-muted" t-esc="tool.count"/>
+                        </div>
+                        <div class="o_gmcp_meter"><div t-attf-style="width: {{toolWidth(tool.count)}}%"/></div>
+                    </div>
+                </div>
+                <div class="card p-3">
+                    <h5>Needs attention</h5>
+                    <div t-if="!state.data.attention.length" class="text-muted">All good.</div>
+                    <a t-foreach="state.data.attention" t-as="row" t-key="row_index" href="#"
+                       class="o_gmcp_attention d-flex justify-content-between py-1"
+                       t-on-click.prevent="() => this.openAttention(row)">
+                        <span t-esc="row.label"/>
+                        <span class="badge text-bg-warning" t-esc="row.count"/>
+                    </a>
+                </div>
+                <div class="card p-3">
+                    <h5>Recent documents</h5>
+                    <div t-if="!state.data.documents.length" class="text-muted">No documents yet.</div>
+                    <div t-foreach="state.data.documents" t-as="doc" t-key="doc_index" class="py-1">
+                        <div t-esc="doc.name"/>
+                        <small class="text-muted"><t t-esc="doc.client"/> · <t t-esc="doc.created"/></small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </t>
+</templates>

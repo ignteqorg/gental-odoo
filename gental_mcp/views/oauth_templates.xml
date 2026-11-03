@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Shared page frame for the OAuth screens: lang + dir from the signed-in user's language. -->
+    <template id="oauth_page" name="Gental MCP: OAuth page">
+        <html t-att-lang="html_lang" t-att-dir="direction">
+            <head>
+                <meta charset="utf-8"/>
+                <meta name="viewport" content="width=device-width, initial-scale=1"/>
+                <meta name="robots" content="noindex"/>
+                <title t-out="page_title"/>
+                <style>
+                    :root { --ever: #174D42; --ink: #1d2523; --muted: #5d6965; --line: #dfe5e3; --bg: #f5f7f6; }
+                    * { box-sizing: border-box; }
+                    body { margin: 0; background: var(--bg); color: var(--ink);
+                           font: 15px/1.6 Manrope, "IBM Plex Sans Arabic", system-ui, -apple-system, "Segoe UI", sans-serif; }
+                    main { max-width: 460px; margin: 48px auto; padding: 0 16px; }
+                    .card { background: #fff; border: 1px solid var(--line); border-radius: 14px; padding: 28px; }
+                    h1 { font-size: 20px; line-height: 1.4; margin: 0 0 8px; color: var(--ever); }
+                    p { margin: 0 0 16px; }
+                    .muted { color: var(--muted); font-size: 14px; }
+                    dl { margin: 0 0 20px; display: grid; grid-template-columns: max-content 1fr; gap: 6px 16px; }
+                    dt { color: var(--muted); }
+                    dd { margin: 0; font-weight: 600; overflow-wrap: anywhere; }
+                    h2 { font-size: 15px; margin: 0 0 8px; }
+                    ul { margin: 0 0 20px; padding-inline-start: 20px; }
+                    .tag { color: var(--muted); font-weight: 400; font-size: 13px; }
+                    .actions { display: flex; gap: 12px; margin-top: 8px; }
+                    button { flex: 1; font: inherit; font-weight: 600; padding: 11px 16px; border-radius: 10px; cursor: pointer; }
+                    .approve { background: var(--ever); color: #fff; border: 1px solid var(--ever); }
+                    .deny { background: #fff; color: var(--ink); border: 1px solid var(--line); }
+                    button:focus-visible { outline: 3px solid #8fb8ad; outline-offset: 2px; }
+                </style>
+            </head>
+            <body>
+                <main><div class="card"><t t-out="0"/></div></main>
+            </body>
+        </html>
+    </template>
+
+    <template id="oauth_consent" name="Gental MCP: OAuth consent">
+        <t t-call="gental_mcp.oauth_page">
+            <t t-set="page_title">Connect an assistant to Odoo</t>
+            <h1>Connect an assistant to Odoo</h1>
+            <p class="muted">This assistant wants to work in Odoo as you. It can only see and do what your Odoo user can, within what your admin allowed.</p>
+            <dl>
+                <dt>App</dt>
+                <dd t-out="client_name"/>
+                <dt>Sends you back to</dt>
+                <dd t-out="redirect_host"/>
+                <t t-if="metadata_host">
+                    <dt>Described by</dt>
+                    <dd t-out="metadata_host"/>
+                </t>
+                <dt>Acts as</dt>
+                <dd t-out="user_name"/>
+            </dl>
+            <h2>What it can reach</h2>
+            <ul t-if="exposed">
+                <li t-foreach="exposed" t-as="row">
+                    <span t-out="row[0]"/>
+                    <span class="tag" t-if="row[1]">Can make changes</span>
+                    <span class="tag" t-else="">Read only</span>
+                </li>
+            </ul>
+            <p t-else="" class="muted">No Odoo data is shared with assistants yet. Your admin chooses what to share in the Gental MCP settings.</p>
+            <p class="muted">Only allow this if you started the connection and you recognise the app and the address it sends you back to.</p>
+            <form method="post" action="/mcp/oauth/authorize">
+                <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                <t t-foreach="params.items()" t-as="item">
+                    <input t-if="item[1]" type="hidden" t-att-name="item[0]" t-att-value="item[1]"/>
+                </t>
+                <div class="actions">
+                    <button type="submit" name="decision" value="approve" class="approve">Allow</button>
+                    <button type="submit" name="decision" value="deny" class="deny">Deny</button>
+                </div>
+            </form>
+        </t>
+    </template>
+
+    <template id="oauth_error" name="Gental MCP: OAuth error">
+        <t t-call="gental_mcp.oauth_page">
+            <t t-set="page_title">Can't connect</t>
+            <h1>Can't connect</h1>
+            <p t-if="reason == 'not_allowed'">Your Odoo user isn't allowed to connect AI assistants. Ask your Odoo admin to add you to the “Gental MCP: Connect” group.</p>
+            <p t-elif="reason == 'invalid_client'">This app isn't registered with this Odoo, or its registration was revoked.</p>
+            <p t-elif="reason == 'invalid_redirect'">The address this app wants to send you back to doesn't match its registration, so we stopped here to keep your account safe.</p>
+            <p t-elif="reason == 'disabled'">Connecting AI assistants is switched off on this Odoo.</p>
+            <p t-elif="reason == 'rate_limited'">Too many attempts. Wait a minute and try again.</p>
+            <p t-elif="reason == 'invalid_request'">This sign-in request isn't valid. Go back to the app and try again.</p>
+            <p class="muted">You can close this page and go back to the app.</p>
+        </t>
+    </template>
+</odoo>
