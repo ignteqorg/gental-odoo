@@ -1,231 +1,343 @@
 <!--
-  Odoo App Store page. Rules (connectors/odoo/docs/app-store-guidelines.md): English only, no JavaScript,
-  no external links except YouTube/Teams/mailto/skype, images only from static/description/,
-  Bootstrap 4 classes and inline CSS. Brand: evergreen #174D42; coral #E98B79 only as a small dot, never text.
-  Validate with: uv run --no-project --with pillow python scripts/check_listing.py gental_mcp 19.0
+  Odoo App Store page (connectors/odoo/docs/app-store-guidelines.md): English only, no JavaScript, no <style>,
+  <link>, <iframe> or <form>, inline style="" only, Bootstrap grid classes that exist in both Bootstrap 4 and 5,
+  no external links except YouTube/Teams/mailto/skype, images only from static/description/ (PNG/GIF/JPEG),
+  no Odoo version numbers (the same page ships in every version tree). Content stays within 1140px.
+  Brand: evergreen #174D42 is the anchor; mint #DAEEE5 and near-white #F7FAF8 are surfaces; coral #E98B79 never
+  appears as text. Every moving picture is a real recording of the module (scripts/listing_gifs.sh).
+  Validate: uv run --no-project --with pillow python scripts/check_listing.py gental_mcp <version>
 -->
+<div style="max-width:1140px;margin:0 auto;font-family:Manrope,system-ui,-apple-system,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;color:#1F2A27;font-size:17px;line-height:1.55;">
 
-<!-- 1. Hero -->
-<section class="container" style="max-width:1140px;padding:48px 16px 24px;font-family:Manrope,'Segoe UI',Helvetica,Arial,sans-serif;color:#1F2A27;">
-  <div class="row align-items-center">
-    <div class="col-lg-5 mb-4">
-      <span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#E98B79;margin-bottom:16px;"></span>
-      <h1 style="color:#174D42;font-weight:700;font-size:34px;line-height:1.2;margin:0 0 16px;">MCP Server for AI Agents</h1>
-      <p style="font-size:19px;line-height:1.55;margin:0 0 16px;">Turn your Odoo into a secure MCP server for AI agents.</p>
-      <p style="font-size:16px;line-height:1.6;color:#4A5753;margin:0;">Your agent finds contacts, prices quotations, checks stock, shares invoices and logs notes, as an Odoo user you choose and only within what you expose. Free and open source (LGPL-3), by ignteQ, the team behind Gental.</p>
-    </div>
+<!-- Hero: evergreen field, the Inbox as a real round of calls arrives, straddling the seam into the mint band -->
+<section>
+<div style="background:#174D42;color:#F7FAF8;padding:clamp(48px,7vw,88px) clamp(16px,4vw,48px) 0;">
+  <h1 style="font-weight:800;font-size:clamp(52px,9.4vw,112px);line-height:0.9;letter-spacing:-0.045em;color:#F7FAF8;margin:0 0 32px;">Odoo speaks<br>MCP.</h1>
+  <div class="row" style="align-items:flex-end;">
     <div class="col-lg-7">
-      <img src="cover.png" alt="Gental MCP Server for Odoo" class="img-fluid" style="width:100%;height:auto;border-radius:12px;">
+      <p style="font-size:18px;line-height:1.55;color:#F7FAF8;margin:0 0 24px;max-width:52ch;">A free module that turns your own Odoo into a secure MCP server. Claude, ChatGPT, Gental and any MCP client work in it as an Odoo user you choose, and every call lands in your Inbox.</p>
+    </div>
+    <div class="col-lg-5 text-lg-right text-lg-end">
+      <p style="margin:0 0 32px;"><a href="#setup" style="display:inline-block;background:#F7FAF8;color:#174D42;font-weight:700;font-size:17px;line-height:1;padding:16px 28px;text-decoration:none;">See the four setup steps</a></p>
     </div>
   </div>
-</section>
-
-<!-- 2. Works with -->
-<section style="background:#F7FAF8;padding:40px 0;">
-  <div class="container" style="max-width:1140px;padding:0 16px;font-family:Manrope,'Segoe UI',Helvetica,Arial,sans-serif;color:#1F2A27;">
-    <h2 style="color:#174D42;font-weight:700;font-size:26px;margin:0 0 8px;">Works with</h2>
-    <p style="font-size:16px;line-height:1.6;color:#4A5753;margin:0 0 24px;">Any client that speaks the Model Context Protocol over HTTP can connect to <code>https://your-odoo/mcp</code>.</p>
-    <div class="row">
-      <div class="col-md-6 mb-3">
-        <div style="background:#FFFFFF;border:1px solid #DAEEE5;border-radius:12px;padding:24px;height:100%;">
-          <h3 style="color:#174D42;font-weight:700;font-size:19px;margin:0 0 8px;">Gental</h3>
-          <p style="font-size:15px;line-height:1.6;margin:0 0 12px;">The fullest experience. With Gental, your agent can also:</p>
-          <ul style="font-size:15px;line-height:1.7;margin:0;padding-left:20px;">
-            <li>know which customer it is talking to, through a verified identity, and show them only their own orders, invoices and deliveries</li>
-            <li>show a priced preview and wait for a yes before it creates a quotation</li>
-            <li>avoid duplicates: a retried message never creates the same record twice</li>
-            <li>send quotation, invoice and delivery PDFs on WhatsApp as a link</li>
-          </ul>
-        </div>
-      </div>
-      <div class="col-md-6 mb-3">
-        <div style="background:#FFFFFF;border:1px solid #DAEEE5;border-radius:12px;padding:24px;height:100%;">
-          <h3 style="color:#174D42;font-weight:700;font-size:19px;margin:0 0 8px;">Claude, ChatGPT and any MCP client</h3>
-          <p style="font-size:15px;line-height:1.6;margin:0 0 12px;">Add the MCP URL as a custom connector and sign in with your Odoo login. Every curated and generic tool works the same way.</p>
-          <p style="font-size:15px;line-height:1.6;margin:0;">Scripts and tools without OAuth can use an API key instead.</p>
-        </div>
-      </div>
-    </div>
+  <div style="position:relative;z-index:1;width:94%;margin:24px 0 -136px auto;background:#F7FAF8;padding:8px;transform:rotate(-1.2deg);">
+    <img src="inbox.gif" width="1060" height="452" alt="The module's Inbox in a real Odoo: calls from a Gental chat arrive one by one (my_invoices, get_invoice_document, my_orders, preview_quotation, create_quotation, find_contact), then the preview_quotation entry opens with the arguments the assistant sent and the priced answer Odoo returned." style="display:block;width:100%;height:auto;">
   </div>
-</section>
-
-<!-- 3. Security -->
-<section class="container" style="max-width:1140px;padding:48px 16px 24px;font-family:Manrope,'Segoe UI',Helvetica,Arial,sans-serif;color:#1F2A27;">
-  <h2 style="color:#174D42;font-weight:700;font-size:26px;margin:0 0 8px;">Security in three walls</h2>
-  <p style="font-size:16px;line-height:1.6;color:#4A5753;margin:0 0 24px;">Every call must pass all three. A call stopped by any wall returns an error, not data, and is logged.</p>
+</div>
+<div style="background:#DAEEE5;color:#1F2A27;padding:176px clamp(16px,4vw,48px) 40px;">
   <div class="row">
-    <div class="col-md-4 mb-3">
-      <div style="border-top:3px solid #174D42;padding-top:16px;">
-        <p style="color:#174D42;font-weight:700;font-size:14px;margin:0 0 4px;">WALL 1</p>
-        <h3 style="font-weight:700;font-size:18px;margin:0 0 8px;">What you expose</h3>
-        <p style="font-size:15px;line-height:1.6;margin:0;">Nothing is reachable until you switch it on: curated tools per app, and for each model the operations, methods and hidden fields you choose.</p>
-      </div>
+    <div class="col-md-7">
+      <p style="font-size:17px;margin:0 0 12px;max-width:60ch;">Above: the Inbox while a chat on Gental makes real calls, then one entry opened. What the assistant sent, and what Odoo answered.</p>
     </div>
-    <div class="col-md-4 mb-3">
-      <div style="border-top:3px solid #174D42;padding-top:16px;">
-        <p style="color:#174D42;font-weight:700;font-size:14px;margin:0 0 4px;">WALL 2</p>
-        <h3 style="font-weight:700;font-size:18px;margin:0 0 8px;">Who may connect</h3>
-        <p style="font-size:15px;line-height:1.6;margin:0;">Only members of the "Gental MCP: Connect" group can sign in a client. Remove someone from the group and their tokens stop working at once.</p>
-      </div>
-    </div>
-    <div class="col-md-4 mb-3">
-      <div style="border-top:3px solid #174D42;padding-top:16px;">
-        <p style="color:#174D42;font-weight:700;font-size:14px;margin:0 0 4px;">WALL 3</p>
-        <h3 style="font-weight:700;font-size:18px;margin:0 0 8px;">Odoo's own rights</h3>
-        <p style="font-size:15px;line-height:1.6;margin:0;">Every call runs as the signed-in Odoo user, so their access rights and record rules apply. Business data is never read as the superuser.</p>
-      </div>
+    <div class="col-md-5">
+      <p style="font-size:17px;font-weight:700;color:#174D42;margin:0 0 12px;">Free, LGPL-3. Community and Enterprise, on your server or Odoo.sh. Not Odoo Online.</p>
     </div>
   </div>
-  <ul style="font-size:15px;line-height:1.8;margin:16px 0 0;padding-left:20px;">
-    <li><strong>OAuth 2.1 sign-in with your Odoo login</strong> (PKCE, Odoo's two-factor sign-in applies), with a consent page that shows the client, the user it acts as and what it can reach.</li>
-    <li><strong>Hashed secrets.</strong> Tokens and API keys are stored only as hashes. An API key is shown once.</li>
-    <li><strong>Short-lived tokens.</strong> Access tokens last one hour; refresh tokens rotate, and a reused one revokes the whole chain.</li>
-    <li><strong>Full audit log.</strong> Every call, denial, sign-in, consent and token change is in the Inbox; settings changes are in the settings chatter.</li>
-    <li><strong>Limits.</strong> Requests per minute per client, request and result size caps, and a time limit on every database query.</li>
+</div>
+</section>
+
+<!-- Video: the demo on YouTube (the store allows YouTube links, not embeds) -->
+<section>
+<div style="background:#174D42;color:#F7FAF8;padding:clamp(72px,10vw,128px) clamp(16px,4vw,48px);">
+  <div class="row" style="align-items:flex-end;margin-bottom:40px;">
+    <div class="col-md-6">
+      <h2 style="font-weight:800;font-size:clamp(32px,4.2vw,48px);line-height:1;letter-spacing:-0.03em;color:#F7FAF8;margin:0 0 24px;">Watch it run<br>in Odoo.</h2>
+    </div>
+    <div class="col-md-6">
+      <p style="font-size:17px;line-height:1.55;color:#F7FAF8;margin:0 0 24px;max-width:60ch;">Seventy seconds in a real Odoo: install, switch it on, choose what the assistant may touch, then watch the calls and the invoice PDFs arrive.</p>
+    </div>
+  </div>
+  <a href="https://www.youtube.com/watch?v=xsgoOvqMeTU" style="display:block;background:#F7FAF8;padding:8px;"><img src="video-thumb.png" width="1120" height="630" alt="Play the demo on YouTube: the module's Inbox as calls from an assistant arrive" style="display:block;width:100%;height:auto;"></a>
+  <p style="font-size:17px;margin:20px 0 0;"><a href="https://www.youtube.com/watch?v=xsgoOvqMeTU" style="color:#F7FAF8;font-weight:700;text-decoration:underline;">Play the demo on YouTube</a></p>
+</div>
+</section>
+
+<!-- Showcase: input half, output half -->
+<section>
+<div style="background:#FFFFFF;padding:clamp(72px,10vw,128px) clamp(16px,4vw,48px) 0;">
+  <div class="row" style="margin-bottom:48px;">
+    <div class="col-md-6">
+      <h2 style="font-weight:800;font-size:clamp(32px,4.2vw,48px);line-height:1;letter-spacing:-0.03em;color:#174D42;margin:0 0 24px;">A question in,<br>a PDF out.</h2>
+    </div>
+    <div class="col-md-6">
+      <p style="font-size:17px;margin:0;max-width:60ch;">When an assistant asks for an invoice, Odoo renders the PDF as the acting user, files it under Outbox &rsaquo; Documents and hands back a signed link that expires, after 24 hours by default.</p>
+    </div>
+  </div>
+</div>
+<div style="background:#FFFFFF;padding:0 clamp(16px,4vw,48px);">
+  <div class="row" style="margin-left:0;margin-right:0;">
+    <div class="col-md-5" style="background:#0E332B;color:#F7FAF8;padding:clamp(20px,4vw,48px);">
+      <p style="font-size:clamp(22px,2.6vw,30px);font-weight:700;line-height:1.2;letter-spacing:-0.01em;margin:0 0 28px;">&ldquo;Can you send me the invoice for Khalid?&rdquo;</p>
+      <pre style="background:#123F36;color:#DAEEE5;font-size:14px;line-height:1.6;padding:16px;margin:0 0 28px;white-space:pre-wrap;border:0;"><code style="color:#DAEEE5;background:transparent;font-size:14px;">tools/call
+{
+ "name": "get_invoice_document",
+ "arguments": {"invoice_id": 1}
+}</code></pre>
+      <p style="font-size:17px;margin:0;color:#F7FAF8;">The request the assistant sends: one tool and the invoice's id. Who may see that invoice is still Odoo's decision.</p>
+    </div>
+    <div class="col-md-7" style="background:#DAEEE5;padding:clamp(20px,3vw,40px);display:flex;flex-direction:column;justify-content:center;">
+      <div style="background:#F7FAF8;padding:8px;transform:rotate(1deg);">
+        <img src="outbox.gif" width="900" height="357" alt="Outbox, Documents, in a real Odoo: the invoice PDF that call produced arrives as a new row with its tool, client, expiry and download count, then the row opens." style="display:block;width:100%;height:auto;">
+      </div>
+      <p style="font-size:17px;margin:24px 0 0;">The Outbox as that call arrives: the file, the client that asked, when its link expires and how often it was opened.</p>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- Features: the asks, set as one large list, one of them opened -->
+<section style="background:#FFFFFF;padding:clamp(72px,10vw,128px) clamp(16px,4vw,48px);">
+  <h2 style="font-weight:800;font-size:clamp(32px,4.2vw,48px);line-height:1;letter-spacing:-0.03em;color:#174D42;margin:0 0 20px;">Ask in plain words.</h2>
+  <p style="font-size:17px;margin:0 0 40px;max-width:60ch;">The assistant turns a request into one of the module's tools, and Odoo does the work as the user it signed in as. Eight real asks, and the tool each one becomes:</p>
+  <ul style="list-style:none;padding:0;margin:0;">
+    <li style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:8px 24px;padding:14px 20px;background:#F2F6F4;">
+      <span style="font-size:clamp(22px,2.6vw,30px);font-weight:700;line-height:1.2;color:#174D42;">What does Khalid still owe us?</span><code style="background:#DAEEE5;color:#174D42;font-size:14px;padding:4px 10px;">customer_balance</code></li>
+    <li style="padding:18px 20px 22px;background:#174D42;color:#F7FAF8;">
+      <div style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:8px 24px;">
+        <span style="font-size:clamp(22px,2.6vw,30px);font-weight:700;line-height:1.2;color:#F7FAF8;">Quote Khalid four cardamom and a coffee pot</span><code style="background:#F7FAF8;color:#174D42;font-size:14px;padding:4px 10px;">preview_quotation</code></div>
+      <p style="font-size:17px;margin:12px 0 0;max-width:62ch;color:#F7FAF8;">Odoo prices each line with Khalid's price list and taxes (207.00 SAR in the Inbox above) and writes nothing yet. The quotation it creates next must match this preview, and no tool takes a price from the assistant.</p></li>
+    <li style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:8px 24px;padding:14px 20px;">
+      <span style="font-size:clamp(22px,2.6vw,30px);font-weight:700;line-height:1.2;color:#174D42;">Is there saffron in Jeddah?</span><code style="background:#DAEEE5;color:#174D42;font-size:14px;padding:4px 10px;">stock_availability</code></li>
+    <li style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:8px 24px;padding:14px 20px;background:#F2F6F4;">
+      <span style="font-size:clamp(22px,2.6vw,30px);font-weight:700;line-height:1.2;color:#174D42;">Has order S00004 shipped?</span><code style="background:#DAEEE5;color:#174D42;font-size:14px;padding:4px 10px;">delivery_status</code></li>
+    <li style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:8px 24px;padding:14px 20px;">
+      <span style="font-size:clamp(22px,2.6vw,30px);font-weight:700;line-height:1.2;color:#174D42;">Email Omar his invoice</span><code style="background:#DAEEE5;color:#174D42;font-size:14px;padding:4px 10px;">send_invoice</code></li>
+    <li style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:8px 24px;padding:14px 20px;background:#F2F6F4;">
+      <span style="font-size:clamp(22px,2.6vw,30px);font-weight:700;line-height:1.2;color:#174D42;">Move the catering deal to Won</span><code style="background:#DAEEE5;color:#174D42;font-size:14px;padding:4px 10px;">update_lead</code></li>
+    <li style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:8px 24px;padding:14px 20px;">
+      <span style="font-size:clamp(22px,2.6vw,30px);font-weight:700;line-height:1.2;color:#174D42;">Remind Sara to call back Sunday</span><code style="background:#DAEEE5;color:#174D42;font-size:14px;padding:4px 10px;">schedule_activity</code></li>
+    <li style="display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:8px 24px;padding:14px 20px;background:#F2F6F4;">
+      <span style="font-size:clamp(22px,2.6vw,30px);font-weight:700;line-height:1.2;color:#174D42;">How did the shop sell today?</span><code style="background:#DAEEE5;color:#174D42;font-size:14px;padding:4px 10px;">pos_sales_summary</code></li>
   </ul>
 </section>
 
-<!-- 4. Tools -->
-<section style="background:#F7FAF8;padding:40px 0;">
-  <div class="container" style="max-width:1140px;padding:0 16px;font-family:Manrope,'Segoe UI',Helvetica,Arial,sans-serif;color:#1F2A27;">
-    <h2 style="color:#174D42;font-weight:700;font-size:26px;margin:0 0 8px;">What the agent can do</h2>
-    <p style="font-size:16px;line-height:1.6;color:#4A5753;margin:0 0 24px;">Curated tools appear only when their Odoo app is installed and you turn that area on. Prices always come from Odoo: no tool accepts a price, discount or total from the agent. Tools marked "verified customer" act only for the customer proved by a signed identity, with Gental.</p>
-    <div class="table-responsive">
-      <table class="table table-sm" style="background:#FFFFFF;font-size:14px;margin:0;">
-        <thead>
-          <tr style="background:#174D42;color:#FFFFFF;">
-            <th style="padding:10px 12px;border:0;">App</th>
-            <th style="padding:10px 12px;border:0;">Tool</th>
-            <th style="padding:10px 12px;border:0;">What it does</th>
-            <th style="padding:10px 12px;border:0;">Kind</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr><td style="padding:8px 12px;font-weight:700;" rowspan="4">Contacts</td><td style="padding:8px 12px;"><code>find_contact</code></td><td style="padding:8px 12px;">Find a contact by name, phone, email or reference</td><td style="padding:8px 12px;">Read</td></tr>
-          <tr><td style="padding:8px 12px;"><code>upsert_contact</code></td><td style="padding:8px 12px;">Create or update a contact by phone or email, without duplicates</td><td style="padding:8px 12px;">Write</td></tr>
-          <tr><td style="padding:8px 12px;"><code>log_note</code></td><td style="padding:8px 12px;">Add a note to a contact, lead or order</td><td style="padding:8px 12px;">Write</td></tr>
-          <tr><td style="padding:8px 12px;"><code>schedule_activity</code></td><td style="padding:8px 12px;">Schedule a call or to-do for a colleague, with a deadline</td><td style="padding:8px 12px;">Write</td></tr>
-
-          <tr><td style="padding:8px 12px;font-weight:700;" rowspan="9">Sales</td><td style="padding:8px 12px;"><code>search_products</code></td><td style="padding:8px 12px;">Find products with their price, and stock when Inventory is installed</td><td style="padding:8px 12px;">Read</td></tr>
-          <tr><td style="padding:8px 12px;"><code>preview_quotation</code></td><td style="padding:8px 12px;">Price lines for a customer: taxes and total, before anything is written</td><td style="padding:8px 12px;">Read</td></tr>
-          <tr><td style="padding:8px 12px;"><code>create_quotation</code></td><td style="padding:8px 12px;">Create the quotation, re-priced by Odoo</td><td style="padding:8px 12px;">Write</td></tr>
-          <tr><td style="padding:8px 12px;"><code>confirm_order</code></td><td style="padding:8px 12px;">Confirm a draft quotation</td><td style="padding:8px 12px;">Write</td></tr>
-          <tr><td style="padding:8px 12px;"><code>cancel_order</code></td><td style="padding:8px 12px;">Cancel an order</td><td style="padding:8px 12px;">Destructive</td></tr>
-          <tr><td style="padding:8px 12px;"><code>order_status</code></td><td style="padding:8px 12px;">Status of an order by its reference</td><td style="padding:8px 12px;">Read</td></tr>
-          <tr><td style="padding:8px 12px;"><code>my_orders</code></td><td style="padding:8px 12px;">The customer's own orders (verified customer)</td><td style="padding:8px 12px;">Read</td></tr>
-          <tr><td style="padding:8px 12px;"><code>get_order_document</code></td><td style="padding:8px 12px;">Quotation or order PDF as a signed link</td><td style="padding:8px 12px;">Read</td></tr>
-          <tr><td style="padding:8px 12px;"><code>my_order_document</code></td><td style="padding:8px 12px;">The customer's own quotation or order PDF (verified customer)</td><td style="padding:8px 12px;">Read</td></tr>
-
-          <tr><td style="padding:8px 12px;font-weight:700;" rowspan="8">Invoicing</td><td style="padding:8px 12px;"><code>list_invoices</code></td><td style="padding:8px 12px;">List invoices by customer, state, dates or overdue</td><td style="padding:8px 12px;">Read</td></tr>
-          <tr><td style="padding:8px 12px;"><code>invoice_details</code></td><td style="padding:8px 12px;">Lines, amount paid and open, due date</td><td style="padding:8px 12px;">Read</td></tr>
-          <tr><td style="padding:8px 12px;"><code>customer_balance</code></td><td style="padding:8px 12px;">Receivable and overdue totals for a customer</td><td style="padding:8px 12px;">Read</td></tr>
-          <tr><td style="padding:8px 12px;"><code>my_invoices</code></td><td style="padding:8px 12px;">The customer's own invoices (verified customer)</td><td style="padding:8px 12px;">Read</td></tr>
-          <tr><td style="padding:8px 12px;"><code>my_balance</code></td><td style="padding:8px 12px;">The customer's own balance (verified customer)</td><td style="padding:8px 12px;">Read</td></tr>
-          <tr><td style="padding:8px 12px;"><code>get_invoice_document</code></td><td style="padding:8px 12px;">Invoice PDF as a signed link</td><td style="padding:8px 12px;">Read</td></tr>
-          <tr><td style="padding:8px 12px;"><code>my_invoice_document</code></td><td style="padding:8px 12px;">The customer's own invoice PDF (verified customer)</td><td style="padding:8px 12px;">Read</td></tr>
-          <tr><td style="padding:8px 12px;"><code>send_invoice</code></td><td style="padding:8px 12px;">Email the invoice to the customer through Odoo</td><td style="padding:8px 12px;">Write</td></tr>
-
-          <tr><td style="padding:8px 12px;font-weight:700;" rowspan="3">CRM</td><td style="padding:8px 12px;"><code>create_lead</code></td><td style="padding:8px 12px;">Create a lead</td><td style="padding:8px 12px;">Write</td></tr>
-          <tr><td style="padding:8px 12px;"><code>update_lead</code></td><td style="padding:8px 12px;">Change a lead's stage, owner, expected revenue or tags</td><td style="padding:8px 12px;">Write</td></tr>
-          <tr><td style="padding:8px 12px;"><code>pipeline_summary</code></td><td style="padding:8px 12px;">The pipeline per stage and per salesperson</td><td style="padding:8px 12px;">Read</td></tr>
-
-          <tr><td style="padding:8px 12px;font-weight:700;" rowspan="4">Inventory</td><td style="padding:8px 12px;"><code>stock_availability</code></td><td style="padding:8px 12px;">Stock per product and warehouse, with the forecast</td><td style="padding:8px 12px;">Read</td></tr>
-          <tr><td style="padding:8px 12px;"><code>delivery_status</code></td><td style="padding:8px 12px;">Deliveries of an order: state and tracking reference</td><td style="padding:8px 12px;">Read</td></tr>
-          <tr><td style="padding:8px 12px;"><code>my_deliveries</code></td><td style="padding:8px 12px;">The customer's own deliveries (verified customer)</td><td style="padding:8px 12px;">Read</td></tr>
-          <tr><td style="padding:8px 12px;"><code>get_delivery_document</code></td><td style="padding:8px 12px;">Delivery slip PDF as a signed link</td><td style="padding:8px 12px;">Read</td></tr>
-
-          <tr><td style="padding:8px 12px;font-weight:700;" rowspan="2">Point of Sale</td><td style="padding:8px 12px;"><code>pos_sales_summary</code></td><td style="padding:8px 12px;">Sales for today, a session or a date range, per shop</td><td style="padding:8px 12px;">Read</td></tr>
-          <tr><td style="padding:8px 12px;"><code>find_pos_order</code></td><td style="padding:8px 12px;">Find a sale by its receipt number</td><td style="padding:8px 12px;">Read</td></tr>
-        </tbody>
-      </table>
+<!-- Proof: every tool, as a table without lines, grouped by app -->
+<section style="background:#F7FAF8;padding:clamp(72px,10vw,128px) clamp(16px,4vw,48px);">
+  <div class="row" style="margin-bottom:48px;">
+    <div class="col-lg-5">
+      <h2 style="font-weight:800;font-size:clamp(32px,4.2vw,48px);line-height:1;letter-spacing:-0.03em;color:#174D42;margin:0 0 24px;">Every tool,<br>by app.</h2>
+      <p style="font-size:17px;margin:0 0 16px;">Curated tools appear only when their Odoo app is installed and you turn that area on. Prices always come from Odoo.</p>
+      <p style="font-size:17px;margin:0 0 32px;">Staff tools read or change any customer's data, so keep them on internal agents. Tools for a verified customer act only for the customer a signed identity proves, with Gental.</p>
     </div>
+    <div class="col-lg-7">
+      <div style="background:#FFFFFF;padding:8px;transform:rotate(-1deg);">
+        <img src="dashboard.gif" width="1000" height="390" alt="The module's Dashboard in a real Odoo while a round of calls arrives: connected clients, calls, the slowest 5% of calls, webhooks, calls per day and the tools agents use most." style="display:block;width:100%;height:auto;">
+      </div>
+      <p style="font-size:17px;margin:20px 0 0;">The Dashboard counting while calls arrive, with the tools agents really use.</p>
+    </div>
+  </div>
+  <div class="table-responsive">
+    <table style="width:100%;border-collapse:collapse;margin:0;font-size:16px;background:transparent;">
+      <thead>
+        <tr>
+          <th scope="col" style="background:#174D42;color:#F7FAF8;text-align:left;border:0;padding:14px 16px;width:36%;font-size:16px;">Tool</th>
+          <th scope="col" style="background:#174D42;color:#F7FAF8;text-align:left;border:0;padding:14px 16px;font-size:16px;">What it does</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><th colspan="2" scope="rowgroup" style="text-align:left;border:0;padding:28px 16px 10px;color:#174D42;font-size:18px;">Contacts</th></tr>
+        <tr><td style="background:#EAF1EE;border:0;padding:14px 16px;"><code style="color:#174D42;font-size:14px;">find_contact</code><br><span style="font-size:14px;">Read &middot; staff</span></td><td style="background:#EAF1EE;border:0;padding:14px 16px;">Find a contact by name, phone, email or reference</td></tr>
+        <tr><td style="border:0;padding:14px 16px;"><code style="color:#174D42;font-size:14px;">upsert_contact</code><br><span style="font-size:14px;">Write</span></td><td style="border:0;padding:14px 16px;">Create or update a contact by phone or email, without duplicates</td></tr>
+        <tr><td style="background:#EAF1EE;border:0;padding:14px 16px;"><code style="color:#174D42;font-size:14px;">log_note</code><br><span style="font-size:14px;">Write &middot; staff</span></td><td style="background:#EAF1EE;border:0;padding:14px 16px;">Add a note to a contact, lead or order</td></tr>
+        <tr><td style="border:0;padding:14px 16px;"><code style="color:#174D42;font-size:14px;">schedule_activity</code><br><span style="font-size:14px;">Write &middot; staff</span></td><td style="border:0;padding:14px 16px;">Schedule a call or to-do for a colleague, with a deadline</td></tr>
 
-    <h3 style="color:#174D42;font-weight:700;font-size:20px;margin:32px 0 8px;">Generic models and methods, custom apps included</h3>
-    <p style="font-size:15px;line-height:1.6;margin:0 0 12px;">For anything the curated tools don't cover, expose any model, including your own custom modules. For each model you choose read, create, update and delete separately, allow specific public methods (each marked read, write or destructive), hide fields, and add an extra filter on top of the record rules.</p>
-    <p style="font-size:15px;line-height:1.6;margin:0;">The agent gets seven tools: <code>odoo_search</code>, <code>odoo_read</code>, <code>odoo_describe_model</code>, <code>odoo_create</code>, <code>odoo_update</code>, <code>odoo_delete</code> and <code>odoo_call_method</code>. Passwords, tokens, secret-like fields and binary fields are never returned.</p>
+        <tr><th colspan="2" scope="rowgroup" style="text-align:left;border:0;padding:28px 16px 10px;color:#174D42;font-size:18px;">Sales</th></tr>
+        <tr><td style="background:#EAF1EE;border:0;padding:14px 16px;"><code style="color:#174D42;font-size:14px;">search_products</code><br><span style="font-size:14px;">Read</span></td><td style="background:#EAF1EE;border:0;padding:14px 16px;">Find products with their price, and stock when Inventory is installed</td></tr>
+        <tr><td style="border:0;padding:14px 16px;"><code style="color:#174D42;font-size:14px;">preview_quotation</code><br><span style="font-size:14px;">Read</span></td><td style="border:0;padding:14px 16px;">Price lines for a customer, with taxes and total, before anything is written</td></tr>
+        <tr><td style="background:#EAF1EE;border:0;padding:14px 16px;"><code style="color:#174D42;font-size:14px;">create_quotation</code><br><span style="font-size:14px;">Write</span></td><td style="background:#EAF1EE;border:0;padding:14px 16px;">Create the quotation, re-priced by Odoo and matched to its preview</td></tr>
+        <tr><td style="border:0;padding:14px 16px;"><code style="color:#174D42;font-size:14px;">confirm_order</code><br><span style="font-size:14px;">Write &middot; staff</span></td><td style="border:0;padding:14px 16px;">Confirm a draft quotation</td></tr>
+        <tr><td style="background:#EAF1EE;border:0;padding:14px 16px;"><code style="color:#174D42;font-size:14px;">cancel_order</code><br><span style="font-size:14px;">Destructive &middot; staff</span></td><td style="background:#EAF1EE;border:0;padding:14px 16px;">Cancel an order</td></tr>
+        <tr><td style="border:0;padding:14px 16px;"><code style="color:#174D42;font-size:14px;">order_status</code><br><span style="font-size:14px;">Read &middot; staff</span></td><td style="border:0;padding:14px 16px;">Status of an order by its reference</td></tr>
+        <tr><td style="background:#EAF1EE;border:0;padding:14px 16px;"><code style="color:#174D42;font-size:14px;">my_orders</code><br><span style="font-size:14px;">Read &middot; verified customer</span></td><td style="background:#EAF1EE;border:0;padding:14px 16px;">The customer's own orders</td></tr>
+        <tr><td style="border:0;padding:14px 16px;"><code style="color:#174D42;font-size:14px;">get_order_document</code><br><span style="font-size:14px;">Read &middot; staff</span></td><td style="border:0;padding:14px 16px;">Quotation or order PDF as a signed link</td></tr>
+        <tr><td style="background:#EAF1EE;border:0;padding:14px 16px;"><code style="color:#174D42;font-size:14px;">my_order_document</code><br><span style="font-size:14px;">Read &middot; verified customer</span></td><td style="background:#EAF1EE;border:0;padding:14px 16px;">The customer's own quotation or order PDF</td></tr>
+
+        <tr><th colspan="2" scope="rowgroup" style="text-align:left;border:0;padding:28px 16px 10px;color:#174D42;font-size:18px;">Invoicing</th></tr>
+        <tr><td style="background:#EAF1EE;border:0;padding:14px 16px;"><code style="color:#174D42;font-size:14px;">list_invoices</code><br><span style="font-size:14px;">Read &middot; staff</span></td><td style="background:#EAF1EE;border:0;padding:14px 16px;">List invoices by customer, state, dates or overdue</td></tr>
+        <tr><td style="border:0;padding:14px 16px;"><code style="color:#174D42;font-size:14px;">invoice_details</code><br><span style="font-size:14px;">Read &middot; staff</span></td><td style="border:0;padding:14px 16px;">Lines, amount paid and open, due date</td></tr>
+        <tr><td style="background:#EAF1EE;border:0;padding:14px 16px;"><code style="color:#174D42;font-size:14px;">customer_balance</code><br><span style="font-size:14px;">Read &middot; staff</span></td><td style="background:#EAF1EE;border:0;padding:14px 16px;">Receivable and overdue totals for a customer</td></tr>
+        <tr><td style="border:0;padding:14px 16px;"><code style="color:#174D42;font-size:14px;">my_invoices</code><br><span style="font-size:14px;">Read &middot; verified customer</span></td><td style="border:0;padding:14px 16px;">The customer's own invoices</td></tr>
+        <tr><td style="background:#EAF1EE;border:0;padding:14px 16px;"><code style="color:#174D42;font-size:14px;">my_balance</code><br><span style="font-size:14px;">Read &middot; verified customer</span></td><td style="background:#EAF1EE;border:0;padding:14px 16px;">The customer's own balance</td></tr>
+        <tr><td style="border:0;padding:14px 16px;"><code style="color:#174D42;font-size:14px;">get_invoice_document</code><br><span style="font-size:14px;">Read &middot; staff</span></td><td style="border:0;padding:14px 16px;">Invoice PDF as a signed link</td></tr>
+        <tr><td style="background:#EAF1EE;border:0;padding:14px 16px;"><code style="color:#174D42;font-size:14px;">my_invoice_document</code><br><span style="font-size:14px;">Read &middot; verified customer</span></td><td style="background:#EAF1EE;border:0;padding:14px 16px;">The customer's own invoice PDF</td></tr>
+        <tr><td style="border:0;padding:14px 16px;"><code style="color:#174D42;font-size:14px;">send_invoice</code><br><span style="font-size:14px;">Write &middot; staff</span></td><td style="border:0;padding:14px 16px;">Email the invoice to the customer through Odoo</td></tr>
+
+        <tr><th colspan="2" scope="rowgroup" style="text-align:left;border:0;padding:28px 16px 10px;color:#174D42;font-size:18px;">CRM</th></tr>
+        <tr><td style="background:#EAF1EE;border:0;padding:14px 16px;"><code style="color:#174D42;font-size:14px;">create_lead</code><br><span style="font-size:14px;">Write</span></td><td style="background:#EAF1EE;border:0;padding:14px 16px;">Create a lead</td></tr>
+        <tr><td style="border:0;padding:14px 16px;"><code style="color:#174D42;font-size:14px;">update_lead</code><br><span style="font-size:14px;">Write &middot; staff</span></td><td style="border:0;padding:14px 16px;">Change a lead's stage, owner, expected revenue or tags</td></tr>
+        <tr><td style="background:#EAF1EE;border:0;padding:14px 16px;"><code style="color:#174D42;font-size:14px;">pipeline_summary</code><br><span style="font-size:14px;">Read &middot; staff</span></td><td style="background:#EAF1EE;border:0;padding:14px 16px;">The pipeline per stage and per salesperson</td></tr>
+
+        <tr><th colspan="2" scope="rowgroup" style="text-align:left;border:0;padding:28px 16px 10px;color:#174D42;font-size:18px;">Inventory</th></tr>
+        <tr><td style="background:#EAF1EE;border:0;padding:14px 16px;"><code style="color:#174D42;font-size:14px;">stock_availability</code><br><span style="font-size:14px;">Read</span></td><td style="background:#EAF1EE;border:0;padding:14px 16px;">Stock per product and warehouse, with the forecast</td></tr>
+        <tr><td style="border:0;padding:14px 16px;"><code style="color:#174D42;font-size:14px;">delivery_status</code><br><span style="font-size:14px;">Read &middot; staff</span></td><td style="border:0;padding:14px 16px;">Deliveries of an order: state and tracking reference</td></tr>
+        <tr><td style="background:#EAF1EE;border:0;padding:14px 16px;"><code style="color:#174D42;font-size:14px;">my_deliveries</code><br><span style="font-size:14px;">Read &middot; verified customer</span></td><td style="background:#EAF1EE;border:0;padding:14px 16px;">The customer's own deliveries</td></tr>
+        <tr><td style="border:0;padding:14px 16px;"><code style="color:#174D42;font-size:14px;">get_delivery_document</code><br><span style="font-size:14px;">Read &middot; staff</span></td><td style="border:0;padding:14px 16px;">Delivery slip PDF as a signed link</td></tr>
+
+        <tr><th colspan="2" scope="rowgroup" style="text-align:left;border:0;padding:28px 16px 10px;color:#174D42;font-size:18px;">Point of Sale</th></tr>
+        <tr><td style="background:#EAF1EE;border:0;padding:14px 16px;"><code style="color:#174D42;font-size:14px;">pos_sales_summary</code><br><span style="font-size:14px;">Read &middot; staff</span></td><td style="background:#EAF1EE;border:0;padding:14px 16px;">Sales for today, a session or a date range, per shop</td></tr>
+        <tr><td style="border:0;padding:14px 16px;"><code style="color:#174D42;font-size:14px;">find_pos_order</code><br><span style="font-size:14px;">Read &middot; staff</span></td><td style="border:0;padding:14px 16px;">Find a sale by its receipt number</td></tr>
+
+        <tr><th colspan="2" scope="rowgroup" style="text-align:left;border:0;padding:28px 16px 10px;color:#174D42;font-size:18px;">Any model, your custom apps included</th></tr>
+        <tr><td style="background:#EAF1EE;border:0;padding:14px 16px;"><code style="color:#174D42;font-size:14px;">odoo_search</code> <code style="color:#174D42;font-size:14px;">odoo_read</code> <code style="color:#174D42;font-size:14px;">odoo_describe_model</code><br><span style="font-size:14px;">Read</span></td><td style="background:#EAF1EE;border:0;padding:14px 16px;">Search, read and describe the models you expose. Passwords, tokens, secret-like and binary fields are never returned.</td></tr>
+        <tr><td style="border:0;padding:14px 16px;"><code style="color:#174D42;font-size:14px;">odoo_create</code> <code style="color:#174D42;font-size:14px;">odoo_update</code> <code style="color:#174D42;font-size:14px;">odoo_delete</code><br><span style="font-size:14px;">Write &middot; destructive</span></td><td style="border:0;padding:14px 16px;">Each allowed separately per model, with hidden fields and an extra filter on top of the record rules</td></tr>
+        <tr><td style="background:#EAF1EE;border:0;padding:14px 16px;"><code style="color:#174D42;font-size:14px;">odoo_call_method</code><br><span style="font-size:14px;">As you mark it</span></td><td style="background:#EAF1EE;border:0;padding:14px 16px;">Run a public method you allowed, marked read, write or destructive</td></tr>
+      </tbody>
+    </table>
   </div>
 </section>
 
-<!-- 5. Documents and webhooks -->
-<section class="container" style="max-width:1140px;padding:48px 16px 24px;font-family:Manrope,'Segoe UI',Helvetica,Arial,sans-serif;color:#1F2A27;">
+<!-- List: the rules and limits, printed like a menu sheet on the evergreen field -->
+<section style="background:#174D42;color:#F7FAF8;padding:clamp(72px,10vw,128px) clamp(16px,4vw,48px);">
   <div class="row">
-    <div class="col-md-6 mb-4">
-      <h2 style="color:#174D42;font-weight:700;font-size:24px;margin:0 0 8px;">Documents</h2>
-      <p style="font-size:15px;line-height:1.6;margin:0;">Quotation, order, invoice and delivery slip PDFs are rendered by Odoo as the acting user, kept in Logs &rsaquo; Outbox &rsaquo; Documents, and shared as a signed link that expires (24 hours by default, adjustable). Expired files are cleaned up automatically.</p>
+    <div class="col-lg-7 order-lg-2">
+      <div style="background:#F7FAF8;color:#1F2A27;padding:clamp(28px,5vw,56px) clamp(20px,3vw,40px);text-align:center;">
+        <h2 style="font-weight:800;font-size:clamp(32px,4.2vw,48px);line-height:1;letter-spacing:-0.03em;color:#174D42;margin:0 0 16px;">What every call<br>must pass.</h2>
+        <p style="font-size:17px;margin:0 auto 48px;max-width:44ch;">Three walls and a set of limits. A call stopped anywhere gets an error, not data, and the Inbox keeps a line for it.</p>
+
+        <div class="row" style="text-align:left;">
+          <div class="col-md-6">
+        <h3 style="font-size:18px;font-weight:800;color:#174D42;margin:0 0 14px;">What you expose</h3>
+        <div style="margin:0 0 40px;">
+          <div style="display:flex;justify-content:space-between;gap:16px;margin-bottom:14px;"><span style="font-weight:700;">Tools</span><span style="text-align:right;">per app, per tool</span></div>
+          <div style="display:flex;justify-content:space-between;gap:16px;margin-bottom:14px;"><span style="font-weight:700;">Models</span><span style="text-align:right;">per operation</span></div>
+          <div style="display:flex;justify-content:space-between;gap:16px;margin-bottom:14px;"><span style="font-weight:700;">Methods</span><span style="text-align:right;">only allowed ones</span></div>
+          <div style="display:flex;justify-content:space-between;gap:16px;"><span style="font-weight:700;">Fields</span><span style="text-align:right;">hide any</span></div>
+          <p style="font-size:14px;margin:4px 0 0;">Read, create, update and delete are allowed separately. All of it is off until you switch it on.</p>
+        </div>
+
+        <h3 style="font-size:18px;font-weight:800;color:#174D42;margin:0 0 14px;">Odoo's own rights</h3>
+        <div style="margin:0 0 40px;">
+          <div style="display:flex;justify-content:space-between;gap:16px;"><span style="font-weight:700;">Runs as</span><span style="text-align:right;">the user</span></div>
+          <p style="font-size:14px;margin:2px 0 14px;">Every call runs as the signed-in user: their access rights and record rules apply.</p>
+          <div style="display:flex;justify-content:space-between;gap:16px;"><span style="font-weight:700;">Superuser</span><span style="text-align:right;">never</span></div>
+          <p style="font-size:14px;margin:2px 0 0;">Business data is never read as the superuser.</p>
+        </div>
+
+        </div>
+          <div class="col-md-6">
+        <h3 style="font-size:18px;font-weight:800;color:#174D42;margin:0 0 14px;">Who may connect</h3>
+        <div style="margin:0 0 40px;">
+          <div style="display:flex;justify-content:space-between;gap:16px;"><span style="font-weight:700;">Sign-in</span><span style="text-align:right;">Odoo login</span></div>
+          <p style="font-size:14px;margin:2px 0 14px;">OAuth with PKCE, Odoo's two-factor included, then a consent page.</p>
+          <div style="display:flex;justify-content:space-between;gap:16px;"><span style="font-weight:700;">Group</span><span style="text-align:right;">Connect</span></div>
+          <p style="font-size:14px;margin:2px 0 14px;">Only members of Gental MCP: Connect sign in. Remove a user and their tokens stop at once.</p>
+          <div style="display:flex;justify-content:space-between;gap:16px;"><span style="font-weight:700;">API keys</span><span style="text-align:right;">shown once</span></div>
+          <p style="font-size:14px;margin:2px 0 0;">Keys and tokens are stored only as hashes.</p>
+        </div>
+
+        <h3 style="font-size:18px;font-weight:800;color:#174D42;margin:0 0 14px;">Limits</h3>
+        <div style="margin:0 0 40px;font-variant-numeric:tabular-nums;">
+          <div style="display:flex;justify-content:space-between;gap:16px;margin-bottom:14px;"><span style="font-weight:700;">Access token</span><span style="text-align:right;">1 hour</span></div>
+          <div style="display:flex;justify-content:space-between;gap:16px;"><span style="font-weight:700;">Refresh token</span><span style="text-align:right;">30 days</span></div>
+          <p style="font-size:14px;margin:2px 0 14px;">Rotates on use; a reused one revokes the whole chain.</p>
+          <div style="display:flex;justify-content:space-between;gap:16px;"><span style="font-weight:700;">Requests</span><span style="text-align:right;">300 a minute</span></div>
+          <p style="font-size:14px;margin:2px 0 14px;">Per client by default; you can change it.</p>
+          <div style="display:flex;justify-content:space-between;gap:16px;margin-bottom:14px;"><span style="font-weight:700;">Request size</span><span style="text-align:right;">1 MB</span></div>
+          <div style="display:flex;justify-content:space-between;gap:16px;margin-bottom:14px;"><span style="font-weight:700;">Records</span><span style="text-align:right;">200 a result</span></div>
+          <div style="display:flex;justify-content:space-between;gap:16px;margin-bottom:14px;"><span style="font-weight:700;">Query time</span><span style="text-align:right;">20 seconds</span></div>
+          <div style="display:flex;justify-content:space-between;gap:16px;"><span style="font-weight:700;">Inbox</span><span style="text-align:right;">kept 90 days</span></div>
+        </div>
+
+        </div>
+        </div>
+
+        <p style="font-size:17px;font-weight:700;color:#174D42;margin:0;">Every call, denial, sign-in and token change is a line in the Inbox.</p>
+      </div>
     </div>
-    <div class="col-md-6 mb-4">
-      <h2 style="color:#174D42;font-weight:700;font-size:24px;margin:0 0 8px;">Outbound webhooks</h2>
-      <p style="font-size:15px;line-height:1.6;margin:0;">Send Odoo events to any https address: invoice posted or paid, order created, confirmed or cancelled, delivery done, lead created or moved, contact created, and record created or updated on any exposed model. Each delivery is signed with your secret and retried with backoff if the receiver is down.</p>
+    <div class="col-lg-5 order-lg-1" style="margin-top:48px;">
+      <div style="background:#F7FAF8;padding:8px;transform:rotate(-1.5deg);margin-bottom:20px;">
+        <img src="expose.gif" width="900" height="387" alt="Configuration, Models and methods, in a real Odoo: a custom model, Delivery Booking, is added to the exposed models, allowed to read and create, and saved." style="display:block;width:100%;height:auto;">
+      </div>
+      <p style="font-size:17px;margin:0 0 48px;color:#F7FAF8;">Exposing a custom model: choose it, choose what the assistant may do, save.</p>
+      <div style="background:#F7FAF8;padding:8px;transform:rotate(1.2deg);margin-bottom:20px;">
+        <img src="consent.png" width="1000" height="640" alt="The consent page after signing in with an Odoo login: which app is asking, where it sends you back, and the Odoo user it will act as." style="display:block;width:100%;height:auto;">
+      </div>
+      <p style="font-size:17px;margin:0;color:#F7FAF8;">The consent page a client's sign-in ends on: the app, where it sends you back, and who it acts as.</p>
     </div>
   </div>
 </section>
 
-<!-- 6. Screenshots -->
-<section style="background:#F7FAF8;padding:40px 0;">
-  <div class="container" style="max-width:1140px;padding:0 16px;font-family:Manrope,'Segoe UI',Helvetica,Arial,sans-serif;color:#1F2A27;">
-    <h2 style="color:#174D42;font-weight:700;font-size:26px;margin:0 0 24px;">Screenshots</h2>
-
-    <img src="screens/dashboard.png" alt="Dashboard" class="img-fluid" style="width:100%;height:auto;border:1px solid #DAEEE5;border-radius:8px;">
-    <p style="font-size:15px;line-height:1.5;color:#4A5753;margin:8px 0 32px;">The dashboard: connected clients, calls per day, slowest calls, top tools and what needs attention.</p>
-
-    <img src="screens/config-curated.png" alt="Curated tools settings" class="img-fluid" style="width:100%;height:auto;border:1px solid #DAEEE5;border-radius:8px;">
-    <p style="font-size:15px;line-height:1.5;color:#4A5753;margin:8px 0 32px;">Curated tools: turn each app area and each tool on or off.</p>
-
-    <img src="screens/config-models.png" alt="Models and methods settings" class="img-fluid" style="width:100%;height:auto;border:1px solid #DAEEE5;border-radius:8px;">
-    <p style="font-size:15px;line-height:1.5;color:#4A5753;margin:8px 0 32px;">Models and methods: choose which models the agent can read, create, write or delete, and hide fields.</p>
-
-    <img src="screens/clients.png" alt="Clients" class="img-fluid" style="width:100%;height:auto;border:1px solid #DAEEE5;border-radius:8px;">
-    <p style="font-size:15px;line-height:1.5;color:#4A5753;margin:8px 0 32px;">Clients: every connected app and API key, the user it acts as, and a one-click revoke.</p>
-
-    <img src="screens/consent.png" alt="Consent page" class="img-fluid" style="width:100%;height:auto;border:1px solid #DAEEE5;border-radius:8px;">
-    <p style="font-size:15px;line-height:1.5;color:#4A5753;margin:8px 0 32px;">The consent page after signing in with your Odoo login: which app, where it sends you back, and who it acts as.</p>
-
-    <img src="screens/inbox.png" alt="Inbox log" class="img-fluid" style="width:100%;height:auto;border:1px solid #DAEEE5;border-radius:8px;">
-    <p style="font-size:15px;line-height:1.5;color:#4A5753;margin:8px 0 32px;">The Inbox: every call with its client, user, tool, result and duration.</p>
-
-    <img src="screens/outbox-documents.png" alt="Outbox documents" class="img-fluid" style="width:100%;height:auto;border:1px solid #DAEEE5;border-radius:8px;">
-    <p style="font-size:15px;line-height:1.5;color:#4A5753;margin:8px 0 0;">Outbox &rsaquo; Documents: generated PDFs, who asked for them, when the link expires and how often it was opened.</p>
+<!-- How it works: four lines that step across -->
+<section id="setup" style="background:#FFFFFF;padding:clamp(72px,10vw,128px) clamp(16px,4vw,48px);">
+  <div style="margin:0 0 56px;">
+    <h2 style="font-weight:800;font-size:clamp(28px,4.2vw,48px);line-height:1.05;letter-spacing:-0.03em;color:#174D42;margin:0 0 12px;">First, install the module.</h2>
+    <p style="font-size:17px;margin:0;max-width:44ch;">A Gental MCP menu appears for administrators.</p>
+  </div>
+  <div style="margin:0 0 56px 14%;">
+    <h3 style="font-weight:800;font-size:clamp(28px,4.2vw,48px);line-height:1.05;letter-spacing:-0.03em;color:#174D42;margin:0 0 12px;">Then set the public address.</h3>
+    <p style="font-size:17px;margin:0;max-width:44ch;">An https address under Configuration &rsaquo; General, then the check that assistants can reach it. Behind a reverse proxy, turn on Odoo's proxy mode.</p>
+  </div>
+  <div style="margin:0 0 56px 28%;">
+    <h3 style="font-weight:800;font-size:clamp(28px,4.2vw,48px);line-height:1.05;letter-spacing:-0.03em;color:#174D42;margin:0 0 12px;">Choose what it may reach.</h3>
+    <p style="font-size:17px;margin:0;max-width:44ch;">Turn on tool areas and models, and create an agent user in the Connect group with only the rights it needs.</p>
+  </div>
+  <div style="margin:0 0 0 42%;">
+    <h3 style="font-weight:800;font-size:clamp(28px,4.2vw,48px);line-height:1.05;letter-spacing:-0.03em;color:#174D42;margin:0 0 12px;">Connect your assistant.</h3>
+    <p style="font-size:17px;margin:0;max-width:44ch;">Give it <code style="color:#174D42;font-size:14px;">https://your-odoo/mcp</code>, sign in as the agent user and approve. Scripts without OAuth use an API key.</p>
   </div>
 </section>
 
-<!-- 7. Setup -->
-<section class="container" style="max-width:1140px;padding:48px 16px 24px;font-family:Manrope,'Segoe UI',Helvetica,Arial,sans-serif;color:#1F2A27;">
-  <h2 style="color:#174D42;font-weight:700;font-size:26px;margin:0 0 24px;">Setup in 5 steps</h2>
-  <ol style="font-size:15px;line-height:1.7;margin:0;padding-left:20px;">
-    <li style="margin-bottom:12px;"><strong>Install</strong> the module. A "Gental MCP" menu appears for administrators.</li>
-    <li style="margin-bottom:12px;"><strong>Set the public https URL</strong> in Gental MCP &rsaquo; Configuration &rsaquo; General, and run "Check that assistants can reach this Odoo". Behind a reverse proxy, run Odoo with <code>proxy_mode</code> on.</li>
-    <li style="margin-bottom:12px;"><strong>Choose what to expose:</strong> curated tool areas, and any models and methods you want the agent to reach.</li>
-    <li style="margin-bottom:12px;"><strong>Create a "Gental Agent" user</strong> in the "Gental MCP: Connect" group, with only the app rights the agent should have.</li>
-    <li><strong>Connect from your MCP client</strong> with <code>https://your-odoo/mcp</code>, sign in as the Gental Agent user and approve.</li>
-  </ol>
+<!-- FAQ: a band per question -->
+<section style="background:#174D42;color:#F7FAF8;padding:clamp(56px,8vw,96px) clamp(16px,4vw,48px) 32px;">
+  <h2 style="font-weight:800;font-size:clamp(32px,4.2vw,48px);line-height:1;letter-spacing:-0.03em;color:#F7FAF8;margin:0;">Questions.</h2>
 </section>
-
-<!-- 8. FAQ -->
-<section style="background:#F7FAF8;padding:40px 0;">
-  <div class="container" style="max-width:1140px;padding:0 16px;font-family:Manrope,'Segoe UI',Helvetica,Arial,sans-serif;color:#1F2A27;">
-    <h2 style="color:#174D42;font-weight:700;font-size:26px;margin:0 0 24px;">Questions</h2>
-
-    <h3 style="font-weight:700;font-size:17px;margin:0 0 4px;">Does it work on Odoo Online?</h3>
-    <p style="font-size:15px;line-height:1.6;margin:0 0 20px;">No. Odoo Online doesn't allow custom modules. It works on Odoo Community or Enterprise on your own server, and on Odoo.sh.</p>
-
-    <h3 style="font-weight:700;font-size:17px;margin:0 0 4px;">My Odoo is on a private network. Can I still use it?</h3>
-    <p style="font-size:15px;line-height:1.6;margin:0 0 20px;">Clients need to reach Odoo over the internet, so you need a public https address, for example through a reverse proxy.</p>
-
-    <h3 style="font-weight:700;font-size:17px;margin:0 0 4px;">Where does my data go?</h3>
-    <p style="font-size:15px;line-height:1.6;margin:0 0 20px;">It stays in your Odoo. The module runs inside your database, and a client sees only what you expose, within the rights of the user it acts as.</p>
-
-    <h3 style="font-weight:700;font-size:17px;margin:0 0 4px;">What does it cost?</h3>
-    <p style="font-size:15px;line-height:1.6;margin:0 0 20px;">The module is free and open source under LGPL-3.</p>
-
-    <h3 style="font-weight:700;font-size:17px;margin:0 0 4px;">Is it available in Arabic?</h3>
-    <p style="font-size:15px;line-height:1.6;margin:0;">Yes. The module's screens and messages ship in Arabic and English, and the consent page follows the user's language.</p>
+<section style="background:#FFFFFF;padding:48px clamp(16px,4vw,48px);">
+  <div class="row">
+    <div class="col-md-5"><h3 style="font-size:clamp(22px,2.6vw,30px);font-weight:800;line-height:1.15;color:#174D42;margin:0 0 12px;">Does it work on Odoo Online?</h3></div>
+    <div class="col-md-7"><p style="font-size:17px;margin:0;">No. Odoo Online doesn't allow custom modules. It works on Odoo Community and Enterprise on your own server, and on Odoo.sh.</p></div>
+  </div>
+</section>
+<section style="background:#EEF7F3;padding:48px clamp(16px,4vw,48px);">
+  <div class="row">
+    <div class="col-md-5"><h3 style="font-size:clamp(22px,2.6vw,30px);font-weight:800;line-height:1.15;color:#174D42;margin:0 0 12px;">Which assistants can connect?</h3></div>
+    <div class="col-md-7"><p style="font-size:17px;margin:0 0 12px;">Claude, ChatGPT and any client that speaks MCP over HTTP: add the MCP address as a custom connector and sign in with an Odoo login. Scripts and tools without OAuth use an API key.</p>
+      <p style="font-size:17px;margin:0;">With Gental, an agent can also know which customer it is talking to through a verified identity and show them only their own orders, invoices and deliveries; show a priced preview and wait for a yes before it creates a quotation; never create the same record twice when a message is retried; and send quotation, invoice and delivery PDFs on WhatsApp as a link.</p></div>
+  </div>
+</section>
+<section style="background:#FFFFFF;padding:48px clamp(16px,4vw,48px);">
+  <div class="row">
+    <div class="col-md-5"><h3 style="font-size:clamp(22px,2.6vw,30px);font-weight:800;line-height:1.15;color:#174D42;margin:0 0 12px;">Odoo on a private network?</h3></div>
+    <div class="col-md-7"><p style="font-size:17px;margin:0;">Assistants reach Odoo over the internet, so it needs a public https address, for example through a reverse proxy. Odoo with several databases needs one database per host name.</p></div>
+  </div>
+</section>
+<section style="background:#EEF7F3;padding:48px clamp(16px,4vw,48px);">
+  <div class="row">
+    <div class="col-md-5"><h3 style="font-size:clamp(22px,2.6vw,30px);font-weight:800;line-height:1.15;color:#174D42;margin:0 0 12px;">Where does my data go?</h3></div>
+    <div class="col-md-7"><p style="font-size:17px;margin:0;">It stays in your Odoo. The module runs inside your database, and a client sees only what you expose, within the rights of the user it acts as.</p></div>
+  </div>
+</section>
+<section style="background:#FFFFFF;padding:48px clamp(16px,4vw,48px);">
+  <div class="row">
+    <div class="col-md-5"><h3 style="font-size:clamp(22px,2.6vw,30px);font-weight:800;line-height:1.15;color:#174D42;margin:0 0 12px;">Can it notify my systems?</h3></div>
+    <div class="col-md-7"><p style="font-size:17px;margin:0;">Yes, with outbound webhooks to any https address: invoice posted or paid, order created, confirmed or cancelled, delivery done, lead created or moved, contact created, and record created or updated on any exposed model. Each delivery is signed with your secret and retried with backoff, up to eight attempts.</p></div>
+  </div>
+</section>
+<section style="background:#EEF7F3;padding:48px clamp(16px,4vw,48px);">
+  <div class="row">
+    <div class="col-md-5"><h3 style="font-size:clamp(22px,2.6vw,30px);font-weight:800;line-height:1.15;color:#174D42;margin:0 0 12px;">What does it cost?</h3></div>
+    <div class="col-md-7"><p style="font-size:17px;margin:0;">Nothing. The module is free and open source under LGPL-3.</p></div>
+  </div>
+</section>
+<section style="background:#FFFFFF;padding:48px clamp(16px,4vw,48px);">
+  <div class="row">
+    <div class="col-md-5"><h3 style="font-size:clamp(22px,2.6vw,30px);font-weight:800;line-height:1.15;color:#174D42;margin:0 0 12px;">Is it available in Arabic?</h3></div>
+    <div class="col-md-7"><p style="font-size:17px;margin:0;">Yes. Its screens and messages ship in Arabic and English, and the consent page follows the user's language.</p></div>
   </div>
 </section>
 
-<!-- 9. Support -->
-<section class="container" style="max-width:1140px;padding:48px 16px 56px;font-family:Manrope,'Segoe UI',Helvetica,Arial,sans-serif;color:#1F2A27;">
-  <div style="background:#174D42;border-radius:12px;padding:32px;color:#F7FAF8;">
-    <h2 style="color:#F7FAF8;font-weight:700;font-size:24px;margin:0 0 8px;">Need a hand?</h2>
-    <p style="font-size:16px;line-height:1.6;margin:0;color:#DAEEE5;">Write to us at <a href="mailto:hello@gental.ai" style="color:#F7FAF8;font-weight:700;text-decoration:underline;">hello@gental.ai</a>. We read every message.</p>
+<!-- Footer: inverted, columns above, the wordmark below -->
+<section style="background:#174D42;color:#F7FAF8;padding:clamp(72px,10vw,112px) clamp(16px,4vw,48px) 32px;">
+  <h2 style="font-weight:800;font-size:clamp(32px,4.2vw,48px);line-height:1;letter-spacing:-0.03em;color:#F7FAF8;margin:0 0 16px;">Need a hand?</h2>
+  <p style="font-size:18px;margin:0 0 56px;color:#F7FAF8;">Write to <a href="mailto:hello@gental.ai" style="color:#F7FAF8;font-weight:700;text-decoration:underline;">hello@gental.ai</a>. We read every message.</p>
+  <div class="row" style="margin-bottom:72px;">
+    <div class="col-6 col-md-3" style="margin-bottom:24px;"><p style="font-size:17px;font-weight:700;margin:0 0 4px;color:#F7FAF8;">Runs on</p><p style="font-size:16px;margin:0;color:#DAEEE5;">Odoo Community and Enterprise, on your server or Odoo.sh. Not Odoo Online.</p></div>
+    <div class="col-6 col-md-3" style="margin-bottom:24px;"><p style="font-size:17px;font-weight:700;margin:0 0 4px;color:#F7FAF8;">Licence</p><p style="font-size:16px;margin:0;color:#DAEEE5;">Free and open source, LGPL-3.</p></div>
+    <div class="col-6 col-md-3" style="margin-bottom:24px;"><p style="font-size:17px;font-weight:700;margin:0 0 4px;color:#F7FAF8;">Languages</p><p style="font-size:16px;margin:0;color:#DAEEE5;">Screens and messages in English and Arabic.</p></div>
+    <div class="col-6 col-md-3" style="margin-bottom:24px;"><p style="font-size:17px;font-weight:700;margin:0 0 4px;color:#F7FAF8;">Made by</p><p style="font-size:16px;margin:0;color:#DAEEE5;">ignteQ, the team behind Gental.</p></div>
   </div>
+  <img src="gental-wordmark.png" width="2056" height="738" alt="Gental" style="display:block;width:100%;height:auto;margin:0 0 24px;">
+  <p style="font-size:14px;margin:0;color:#DAEEE5;">Gental MCP is made by ignteQ and is not made or endorsed by Odoo S.A.</p>
 </section>
+
+</div>
