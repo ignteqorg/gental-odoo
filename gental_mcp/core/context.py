@@ -9,9 +9,30 @@ LOCALES = ("ar", "en")
 ODOO_LANGS = {"ar": "ar_001", "en": "en_US"}
 
 
-def resolve_locale(meta: dict, default: str) -> str:
+def resolve_locale(meta: dict, default: str, accept_language: Optional[str] = None) -> str:
+    """The request's locale: ``_meta["ai.gental/locale"]`` when it is ``ar`` or ``en``, else the first
+    ``ar``/``en`` primary tag of the HTTP ``Accept-Language`` header (by preference), else ``default``."""
     value = (meta or {}).get(gmeta.LOCALE)
-    return value if value in LOCALES else default
+    if value in LOCALES:
+        return value
+    return _accept_language_locale(accept_language) or default
+
+
+def _accept_language_locale(header: Optional[str]) -> Optional[str]:
+    """``ar`` or ``en`` from an ``Accept-Language`` header (``ar-SA,en;q=0.8`` -> ``ar``), or None."""
+    ranges = []
+    for position, part in enumerate((header or "").split(",")[:20]):
+        tag, _, params = part.strip().partition(";")
+        weight = 1.0
+        if params.strip().startswith("q="):
+            try:
+                weight = float(params.strip()[2:])
+            except ValueError:
+                continue
+        primary = tag.strip().split("-")[0].lower()
+        if primary in LOCALES and weight > 0:
+            ranges.append((-weight, position, primary))
+    return min(ranges)[2] if ranges else None
 
 
 @dataclass
@@ -31,6 +52,7 @@ class CallContext:
     is_retryable: Optional[Callable[[BaseException], bool]] = None
 
     @classmethod
-    def build(cls, env, user_id, client_id, meta, request_id, default_locale):
+    def build(cls, env, user_id, client_id, meta, request_id, default_locale, accept_language=None):
         meta = dict(meta or {})
-        return cls(env, user_id, client_id, resolve_locale(meta, default_locale), meta, request_id)
+        locale = resolve_locale(meta, default_locale, accept_language)
+        return cls(env, user_id, client_id, locale, meta, request_id)

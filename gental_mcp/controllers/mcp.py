@@ -100,7 +100,8 @@ class McpController(http.Controller):
 
         # (7) Dispatch. Each tool call runs in a savepoint, so a failure leaves no partial writes.
         msg_id = msg.get("id")
-        ctx = CallContext.build(env, who.user_id, client.id, None, msg_id, config.default_lang)
+        ctx = CallContext.build(env, who.user_id, client.id, None, msg_id, config.default_lang,
+                                request.httprequest.headers.get("Accept-Language"))
         ctx.savepoint = env.cr.savepoint
         # Odoo serves every route through its ``retrying`` loop: a concurrency error that escapes
         # replays the whole request with a fresh snapshot. On the last attempt nothing escapes any more.

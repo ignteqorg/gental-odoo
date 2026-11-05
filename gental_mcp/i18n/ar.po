@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 19.0-20261015\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-11-02 19:33+0000\n"
+"POT-Creation-Date: 2026-11-05 05:00+0000\n"
 "PO-Revision-Date: 2026-11-02 10:38+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -15,6 +15,12 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 ? 4 : 5;\n"
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/services/generic_tools.py:0
+msgid "\"<field> asc|desc\", comma-separated for several."
+msgstr "\"<field> asc|desc\"، وافصل بينها بفاصلة إذا أكثر من واحد."
 
 #. module: gental_mcp
 #. odoo-python
@@ -89,6 +95,18 @@ msgstr ""
 #: code:addons/gental_mcp/models/mcp_config.py:0
 msgid "%s answered. Assistants can reach this Odoo."
 msgstr "%s ردّ تمام. المساعدين يقدرون يوصلون لأودو هذا."
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/services/generic_tools.py:0
+msgid "(empty)"
+msgstr "(فاضي)"
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/services/generic_tools.py:0
+msgid "+%s more"
+msgstr "+%s غيرها"
 
 #. module: gental_mcp
 #. odoo-python
@@ -215,6 +233,12 @@ msgstr "نشط"
 #. module: gental_mcp
 #. odoo-python
 #: code:addons/gental_mcp/tools/crm.py:0
+msgid "Activity type"
+msgstr "نوع النشاط"
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/crm.py:0
 msgid "Activity “%(summary)s” scheduled for %(date)s."
 msgstr "تمت جدولة النشاط «%(summary)s» بتاريخ %(date)s."
 
@@ -222,6 +246,14 @@ msgstr "تمت جدولة النشاط «%(summary)s» بتاريخ %(date)s."
 #: model_terms:ir.ui.view,arch_db:gental_mcp.oauth_consent
 msgid "Acts as"
 msgstr "يشتغل باسم"
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/crm.py:0
+msgid ""
+"Add an internal note to a lead, quotation or order, contact or invoice. "
+"Notes are internal: nothing is emailed to the customer or to followers."
+msgstr "يضيف ملاحظة داخلية على عميل محتمل أو عرض سعر أو طلب أو جهة اتصال أو فاتورة. الملاحظات داخلية: ما ينرسل شي بالإيميل للعميل ولا للمتابعين."
 
 #. module: gental_mcp
 #. odoo-python
@@ -298,6 +330,18 @@ msgstr "المعطيات"
 
 #. module: gental_mcp
 #. odoo-python
+#: code:addons/gental_mcp/tools/crm.py:0
+msgid "Assigned to"
+msgstr "مسندة لمين"
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/crm.py:0
+msgid "Assignee; default: you."
+msgstr "المسؤول عنه، والافتراضي: أنت."
+
+#. module: gental_mcp
+#. odoo-python
 #: code:addons/gental_mcp/services/generic_tools.py:0
 msgid "Assistants may not do this on %s."
 msgstr "المساعدين ما يقدرون يسوون هذا على %s."
@@ -364,6 +408,12 @@ msgstr "تطبيق إدارة العملاء مثبّت"
 #: model:ir.model.fields.selection,name:gental_mcp.selection__gental_mcp_log__kind__call
 msgid "Call"
 msgstr "استدعاء"
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/services/generic_tools.py:0
+msgid "Call an Odoo method"
+msgstr "تشغيل دالة في أودو"
 
 #. module: gental_mcp
 #. odoo-javascript
@@ -434,6 +484,12 @@ msgstr "إلغاء"
 
 #. module: gental_mcp
 #. odoo-python
+#: code:addons/gental_mcp/tools/sales.py:0
+msgid "Cancel an order"
+msgstr "إلغاء طلب"
+
+#. module: gental_mcp
+#. odoo-python
 #: code:addons/gental_mcp/tools/invoicing.py:0
 msgid "Cancelled"
 msgstr "ملغية"
@@ -443,6 +499,30 @@ msgstr "ملغية"
 #: code:addons/gental_mcp/tools/sales.py:0
 msgid "Cancelling this order needs a confirmation in Odoo."
 msgstr "إلغاء هذا الطلب يحتاج تأكيد من داخل أودو."
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/sales.py:0
+msgid ""
+"Cancels a quotation or sales order (and its draft invoices). An optional "
+"reason is logged on the order. When Odoo needs a person to confirm the "
+"cancellation, nothing changes and staff are flagged."
+msgstr "يلغي عرض سعر أو أمر بيع (وفواتيره المسودة). السبب اختياري وينسجل على الطلب. إذا أودو يحتاج أحد يأكّد الإلغاء، ما يتغيّر شي وينبَّه الموظفين."
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/services/generic_tools.py:0
+msgid "Change"
+msgstr "التغيير"
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/crm.py:0
+msgid ""
+"Change a lead or opportunity: move it to a stage, assign a salesperson, set "
+"the expected revenue or replace its tags. Use pipeline_summary to get the "
+"stage ids. Only the fields you pass change."
+msgstr "يعدّل عميل محتمل أو فرصة: ينقله لمرحلة، أو يسنده لمندوب، أو يحدد الإيراد المتوقع، أو يستبدل وسومه. خذ أرقام المراحل من pipeline_summary. يتغيّر بس اللي ترسله من حقول."
 
 #. module: gental_mcp
 #: model:ir.model.fields.selection,name:gental_mcp.selection__gental_mcp_webhook_event__kind__transition
@@ -465,6 +545,12 @@ msgstr "اختر حدث واحد على الأقل."
 #: code:addons/gental_mcp/models/webhook_subscription.py:0
 msgid "Choose the models to watch for “Record created” or “Record updated”."
 msgstr "اختر النماذج اللي تبي تراقبها لـ «انضاف سجل» أو «تعدّل سجل»."
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/contacts.py:0
+msgid "City"
+msgstr "المدينة"
 
 #. module: gental_mcp
 #: model_terms:ir.ui.view,arch_db:gental_mcp.view_api_key_wizard_form
@@ -524,6 +610,12 @@ msgid "Code Hash"
 msgstr "بصمة الرمز"
 
 #. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/contacts.py:0
+msgid "Company"
+msgstr "الشركة"
+
+#. module: gental_mcp
 #: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_exposed_model__config_id
 #: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_origin__config_id
 #: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_tool_setting__config_id
@@ -537,6 +629,21 @@ msgstr "الإعدادات"
 #: model:ir.ui.menu,name:gental_mcp.menu_config
 msgid "Configuration"
 msgstr "الإعدادات"
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/sales.py:0
+msgid "Confirm an order"
+msgstr "تأكيد طلب"
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/sales.py:0
+msgid ""
+"Confirms a draft or sent quotation, turning it into a sales order. "
+"Confirming an order that is already confirmed changes nothing and returns "
+"its state."
+msgstr "يأكّد عرض سعر مسودة أو مرسل ويحوّله لأمر بيع. تأكيد طلب مأكّد من قبل ما يغيّر شي ويرجّع حالته."
 
 #. module: gental_mcp
 #: model_terms:ir.ui.view,arch_db:gental_mcp.oauth_consent
@@ -576,6 +683,12 @@ msgid "Contact created"
 msgstr "انضافت جهة اتصال"
 
 #. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/crm.py:0
+msgid "Contact name"
+msgstr "اسم الشخص"
+
+#. module: gental_mcp
 #: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_config__area_contacts_enabled
 #: model:ir.model.fields.selection,name:gental_mcp.selection__gental_mcp_tool_setting__area__contacts
 msgid "Contacts"
@@ -598,9 +711,48 @@ msgid "Count"
 msgstr "العدد"
 
 #. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/crm.py:0
+msgid ""
+"Create a CRM lead or opportunity. Give the contact's details, or partner_id "
+"of an existing contact (find it with find_contact). Safe to retry: the same "
+"action key returns the lead already created."
+msgstr "ينشئ عميل محتمل أو فرصة في CRM. أعطه بيانات الشخص، أو partner_id لجهة اتصال موجودة (تلقاها بـ find_contact). تقدر تعيد المحاولة بأمان: نفس مفتاح الإجراء يرجّع العميل المحتمل اللي انسوّى من قبل."
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/crm.py:0
+msgid "Create a lead"
+msgstr "إنشاء عميل محتمل"
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/sales.py:0
+msgid "Create a quotation"
+msgstr "إنشاء عرض سعر"
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/services/generic_tools.py:0
+msgid "Create an Odoo record"
+msgstr "إنشاء سجل في أودو"
+
+#. module: gental_mcp
 #: model_terms:ir.ui.view,arch_db:gental_mcp.view_api_key_wizard_form
 msgid "Create key"
 msgstr "إنشاء المفتاح"
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/services/generic_tools.py:0
+msgid "Create one record of an exposed model. Returns {id, display_name}."
+msgstr "ينشئ سجل واحد في نموذج متاح. يرجّع {id, display_name}."
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/contacts.py:0
+msgid "Create or update a contact"
+msgstr "إضافة جهة اتصال أو تحديثها"
 
 #. module: gental_mcp
 #: model:ir.model.fields.selection,name:gental_mcp.selection__gental_mcp_webhook_event__kind__created
@@ -654,6 +806,17 @@ msgid "Created on"
 msgstr "تاريخ الإنشاء"
 
 #. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/sales.py:0
+msgid ""
+"Creates a draft quotation for the customer with these lines, priced by Odoo "
+"(prices are never taken from the request). Send the same customer, lines and"
+" price list as the preview_quotation the customer agreed to: when its signed"
+" quote is sent, the quotation is refused if anything or the total changed. "
+"Returns the quotation id, number and total."
+msgstr "ينشئ عرض سعر مسودة للعميل بهالبنود، وأودو هو اللي يسعّرها (الأسعار ما تنأخذ من الطلب أبد). أرسل نفس العميل والبنود وقائمة الأسعار اللي في preview_quotation اللي وافق عليها العميل: إذا انرسل العرض الموقّع حقها وتغيّر أي شي أو الإجمالي، ينرفض عرض السعر. يرجّع رقم عرض السعر ومرجعه والإجمالي."
+
+#. module: gental_mcp
 #: model_terms:ir.ui.view,arch_db:gental_mcp.view_webhook_subscription_form
 msgid "Creates a new signing secret."
 msgstr "يسوي سرّ توقيع جديد."
@@ -678,6 +841,38 @@ msgstr "الأدوات الجاهزة"
 #: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_webhook_watch__cursor
 msgid "Cursor"
 msgstr "آخر نقطة قراءة"
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/crm.py:0
+#: code:addons/gental_mcp/tools/invoicing.py:0
+#: code:addons/gental_mcp/tools/sales.py:0
+msgid "Customer"
+msgstr "العميل"
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/invoicing.py:0
+msgid "Customer balance"
+msgstr "رصيد العميل"
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/invoicing.py:0
+msgid "Customer id (find_contact)."
+msgstr "رقم العميل (find_contact)."
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/sales.py:0
+msgid "Customer id from find_contact."
+msgstr "رقم العميل من find_contact."
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/sales.py:0
+msgid "Customer id."
+msgstr "رقم العميل."
 
 #. module: gental_mcp
 #: model_terms:ir.ui.view,arch_db:gental_mcp.view_config_form
@@ -715,9 +910,46 @@ msgid "Dates must look like 2026-11-30."
 msgstr "التاريخ لازم يكون بهالشكل 2026-11-30."
 
 #. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/services/generic_tools.py:0
+msgid "Default 20, at most 200."
+msgstr "الافتراضي 20، وبالأكثر 200."
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/invoicing.py:0
+msgid "Default 20."
+msgstr "الافتراضي 20."
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/invoicing.py:0
+msgid "Default 5."
+msgstr "الافتراضي 5."
+
+#. module: gental_mcp
 #: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_config__default_lang
 msgid "Default Language"
 msgstr "اللغة الافتراضية"
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/crm.py:0
+msgid "Default: lead."
+msgstr "الافتراضي: lead."
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/services/generic_tools.py:0
+msgid "Delete Odoo records"
+msgstr "حذف سجلات أودو"
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/services/generic_tools.py:0
+msgid ""
+"Delete records of an exposed model (at most 50 ids). This cannot be undone."
+msgstr "يحذف سجلات من نموذج متاح (50 رقم بالأكثر). ما ينفع تتراجع عنه."
 
 #. module: gental_mcp
 #: model:ir.model.fields.selection,name:gental_mcp.selection__gental_mcp_webhook_delivery__state__delivered
@@ -751,6 +983,12 @@ msgid "Deliveries that failed, or are still retrying after 3 attempts."
 msgstr "إرسالات فشلت، أو للحين تعيد المحاولة بعد ٣ محاولات."
 
 #. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/inventory.py:0
+msgid "Delivery"
+msgstr "التوصيلة"
+
+#. module: gental_mcp
 #: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_webhook_delivery__delivery_uuid
 msgid "Delivery ID"
 msgstr "رقم الإرسال"
@@ -759,6 +997,18 @@ msgstr "رقم الإرسال"
 #: model:gental.mcp.webhook.event,name:gental_mcp.webhook_event_delivery_done
 msgid "Delivery done"
 msgstr "تم التوصيل"
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/inventory.py:0
+msgid "Delivery slip PDF"
+msgstr "ملف إشعار التسليم"
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/inventory.py:0
+msgid "Delivery status"
+msgstr "حالة التوصيل"
 
 #. module: gental_mcp
 #: model:ir.model.fields.selection,name:gental_mcp.selection__gental_mcp_log__kind__denied
@@ -771,6 +1021,12 @@ msgstr "مرفوض"
 #: model_terms:ir.ui.view,arch_db:gental_mcp.oauth_consent
 msgid "Deny"
 msgstr "ارفض"
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/services/generic_tools.py:0
+msgid "Describe an Odoo model"
+msgstr "وصف نموذج في أودو"
 
 #. module: gental_mcp
 #: model_terms:ir.ui.view,arch_db:gental_mcp.oauth_consent
@@ -793,6 +1049,12 @@ msgstr "وصف للمساعدين"
 #: model:ir.model.fields.selection,name:gental_mcp.selection__gental_mcp_tool_setting__kind__destructive
 msgid "Destructive"
 msgstr "حذف أو إتلاف"
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/crm.py:0
+msgid "Details"
+msgstr "التفاصيل"
 
 #. module: gental_mcp
 #: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_action_key__display_name
@@ -862,6 +1124,12 @@ msgid "Draft"
 msgstr "مسودة"
 
 #. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/crm.py:0
+msgid "Due date"
+msgstr "تاريخ الاستحقاق"
+
+#. module: gental_mcp
 #: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_log__duration_ms
 msgid "Duration (ms)"
 msgstr "المدة (ملّي ثانية)"
@@ -892,6 +1160,29 @@ msgstr ""
 #: code:addons/gental_mcp/services/domain_guard.py:0
 msgid "Each domain condition must be [field, operator, value]: %s"
 msgstr "كل شرط في البحث لازم يكون [حقل، معامل، قيمة]: %s"
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/contacts.py:0
+#: code:addons/gental_mcp/tools/crm.py:0
+msgid "Email"
+msgstr "الإيميل"
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/invoicing.py:0
+msgid ""
+"Email a posted customer invoice or credit note, with its PDF, through Odoo's"
+" own invoice sending. The email is addressed only to the invoice's customer;"
+" the invoice's followers get Odoo's usual notification. Safe to retry: the "
+"same action key never emails twice."
+msgstr "يرسل فاتورة عميل مرحّلة أو إشعار دائن بالإيميل مع ملف PDF، عن طريق إرسال الفواتير حق أودو نفسه. الإيميل يروح لعميل الفاتورة بس، ومتابعين الفاتورة يجيهم إشعار أودو المعتاد. تقدر تعيد المحاولة بأمان: نفس مفتاح الإجراء ما يرسل الإيميل مرتين أبد."
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/invoicing.py:0
+msgid "Email an invoice"
+msgstr "إرسال الفاتورة بالإيميل"
 
 #. module: gental_mcp
 #: model:ir.model.fields,help:gental_mcp.field_gental_mcp_webhook_event__model
@@ -955,6 +1246,18 @@ msgid "Every call an assistant makes to your Odoo will be listed here."
 msgstr "كل استدعاء يسويه مساعد على أودو حقك بيظهر هنا."
 
 #. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/crm.py:0
+msgid "Existing contact id."
+msgstr "رقم جهة اتصال موجودة."
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/crm.py:0
+msgid "Expected revenue"
+msgstr "الإيراد المتوقع"
+
+#. module: gental_mcp
 #: model:ir.model.fields.selection,name:gental_mcp.selection__gental_mcp_document__state__expired
 #: model:ir.model.fields.selection,name:gental_mcp.selection__gental_mcp_webhook_delivery__state__expired
 #: model_terms:ir.ui.view,arch_db:gental_mcp.view_document_search
@@ -1015,9 +1318,29 @@ msgstr "العائلة"
 
 #. module: gental_mcp
 #. odoo-python
+#: code:addons/gental_mcp/services/generic_tools.py:0
+msgid ""
+"Field names (see odoo_describe_model). Empty: display_name and a few key "
+"fields."
+msgstr "أسماء الحقول (شوف odoo_describe_model). إذا فاضية: display_name وكم حقل أساسي."
+
+#. module: gental_mcp
+#. odoo-python
 #: code:addons/gental_mcp/services/domain_guard.py:0
 msgid "Field paths are not allowed in domains: %s"
 msgstr "مسارات الحقول ممنوعة في شروط البحث: %s"
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/services/generic_tools.py:0
+msgid "Field values: scalars; many2many fields take a list of ids."
+msgstr "قيم الحقول: قيم مفردة، وحقول many2many تاخذ قائمة أرقام."
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/services/generic_tools.py:0
+msgid "Fields"
+msgstr "الحقول"
 
 #. module: gental_mcp
 #: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_document__attachment_id
@@ -1025,6 +1348,8 @@ msgid "File"
 msgstr "الملف"
 
 #. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/services/generic_tools.py:0
 #: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_webhook_subscription__filter_domain
 msgid "Filter"
 msgstr "الفلتر"
@@ -1033,6 +1358,49 @@ msgstr "الفلتر"
 #: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_webhook_subscription__filter_model
 msgid "Filter Model"
 msgstr "موديل الفلتر"
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/contacts.py:0
+msgid "Find a contact"
+msgstr "البحث عن جهة اتصال"
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/pos.py:0
+msgid "Find a point of sale order"
+msgstr "البحث عن طلب نقطة بيع"
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/pos.py:0
+msgid ""
+"Finds a point of sale order by its exact receipt reference (as printed on "
+"the receipt, or the order name) and returns its lines, total, payment "
+"methods and state. No wildcard search."
+msgstr "يلقى طلب نقطة البيع برقم الإيصال بالضبط (زي ما هو مطبوع على الإيصال، أو اسم الطلب) ويرجّع بنوده والإجمالي وطرق الدفع والحالة. ما فيه بحث تقريبي."
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/contacts.py:0
+msgid ""
+"Finds customers and other contacts in Odoo by name, phone number (any "
+"format), email or internal reference. Returns id, name, phone, email, "
+"reference and company."
+msgstr "يدوّر على العملاء وجهات الاتصال الثانية في أودو بالاسم أو رقم الجوال (بأي صيغة) أو الإيميل أو المرجع الداخلي. يرجّع الرقم والاسم والجوال والإيميل والمرجع والشركة."
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/sales.py:0
+msgid ""
+"Finds products that can be sold, by name or internal code. Returns id, name,"
+" code, price and, when Inventory is installed, the quantity on hand. With "
+"partner_id, the price is on that customer's own price list only for the "
+"verified customer (or a sales manager), else on the standard price list; "
+"without it, the sales price. price_list in the result says which (customer, "
+"standard or chosen). pricelist_id is accepted only as the verified "
+"customer's own price list, or from a sales manager."
+msgstr "يدوّر على المنتجات اللي تنباع بالاسم أو الكود الداخلي. يرجّع الرقم والاسم والكود والسعر، والكمية الموجودة إذا تطبيق المخزون منزّل. مع partner_id يكون السعر من قائمة أسعار العميل نفسه بس إذا هو العميل الموثّق (أو لمدير المبيعات)، وإلا من قائمة الأسعار العادية، وبدونه سعر البيع. price_list في النتيجة يوضح أيها (customer أو standard أو chosen). pricelist_id ينقبل بس إذا هو قائمة أسعار العميل الموثّق نفسه، أو من مدير مبيعات."
 
 #. module: gental_mcp
 #: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_config__message_follower_ids
@@ -1070,6 +1438,18 @@ msgstr "نموذج"
 #: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_webhook_delivery__body_pretty
 msgid "Formatted Body"
 msgstr "المحتوى مرتّب"
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/pos.py:0
+msgid "From (YYYY-MM-DD)"
+msgstr "من تاريخ (YYYY-MM-DD)"
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/invoicing.py:0
+msgid "From date"
+msgstr "من تاريخ"
 
 #. module: gental_mcp
 #: model_terms:ir.ui.view,arch_db:gental_mcp.view_config_form
@@ -1285,6 +1665,16 @@ msgstr ""
 
 #. module: gental_mcp
 #. odoo-python
+#: code:addons/gental_mcp/services/generic_tools.py:0
+#: code:addons/gental_mcp/tools/contacts.py:0
+#: code:addons/gental_mcp/tools/inventory.py:0
+#: code:addons/gental_mcp/tools/invoicing.py:0
+#: code:addons/gental_mcp/tools/sales.py:0
+msgid "How many"
+msgstr "كم واحد"
+
+#. module: gental_mcp
+#. odoo-python
 #: code:addons/gental_mcp/tools/invoicing.py:0
 msgid "I can't check the balance right now. The team can help you with it."
 msgstr "ما أقدر أشيّك على الرصيد الحين. الفريق يقدر يساعدك فيه."
@@ -1327,6 +1717,37 @@ msgstr "المعرّف"
 #: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_log__ip
 msgid "IP Address"
 msgstr "عنوان IP"
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/invoicing.py:0
+msgid ""
+"Id of one of the customer's own invoices or credit notes (from my_invoices)."
+msgstr "رقم وحدة من فواتير العميل نفسه أو إشعارات الدائن حقته (من my_invoices)."
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/sales.py:0
+msgid "Id of one of the customer's own quotations or orders (from my_orders)."
+msgstr "رقم واحد من عروض أسعار العميل نفسه أو طلباته (من my_orders)."
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/invoicing.py:0
+msgid "Id of the customer invoice or credit note."
+msgstr "رقم فاتورة العميل أو إشعار الدائن."
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/inventory.py:0
+msgid "Id of the delivery (transfer)."
+msgstr "رقم التوصيلة (التحويل)."
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/sales.py:0
+msgid "Id of the quotation or sales order."
+msgstr "رقم عرض السعر أو أمر البيع."
 
 #. module: gental_mcp
 #: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_config__identity_secret_hint
@@ -1425,6 +1846,42 @@ msgid "Invoice"
 msgstr "فاتورة"
 
 #. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/invoicing.py:0
+msgid "Invoice PDF"
+msgstr "ملف الفاتورة"
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/invoicing.py:0
+msgid "Invoice date from (inclusive)."
+msgstr "تاريخ الفاتورة من (يشمله)."
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/invoicing.py:0
+msgid "Invoice date to (inclusive)."
+msgstr "تاريخ الفاتورة إلى (يشمله)."
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/invoicing.py:0
+msgid "Invoice details"
+msgstr "تفاصيل الفاتورة"
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/invoicing.py:0
+msgid "Invoice number"
+msgstr "رقم الفاتورة"
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/invoicing.py:0
+msgid "Invoice number, e.g. INV/2026/00012."
+msgstr "رقم الفاتورة، مثل INV/2026/00012."
+
+#. module: gental_mcp
 #: model:gental.mcp.webhook.event,name:gental_mcp.webhook_event_invoice_paid
 msgid "Invoice paid"
 msgstr "تسدّدت فاتورة"
@@ -1482,6 +1939,12 @@ msgstr "ينتهي المفتاح بـ"
 #: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_client__key_hash
 msgid "Key Hash"
 msgstr "بصمة المفتاح"
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/services/generic_tools.py:0
+msgid "Keyword arguments of the method."
+msgstr "مدخلات الدالة بالأسماء."
 
 #. module: gental_mcp
 #: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_client__kind
@@ -1587,6 +2050,12 @@ msgstr "تغيّرت مرحلة عميل محتمل"
 #. module: gental_mcp
 #. odoo-python
 #: code:addons/gental_mcp/tools/crm.py:0
+msgid "Lead title."
+msgstr "عنوان العميل المحتمل."
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/crm.py:0
 msgid "Lead “%(name)s” created."
 msgstr "انسجل العميل المحتمل «%(name)s»."
 
@@ -1607,9 +2076,39 @@ msgstr ""
 "https://odoo.example.com."
 
 #. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/invoicing.py:0
+msgid ""
+"List customer invoices and credit notes, newest first. Filter by customer "
+"(partner_id, includes its contacts), state, payment state, overdue only, or "
+"invoice date range. Amounts are in each invoice's currency."
+msgstr "يعرض فواتير العملاء وإشعارات الدائن، الأحدث أول. تقدر تفلتر بالعميل (partner_id، ويشمل جهات الاتصال التابعة له) أو الحالة أو حالة الدفع أو المتأخرة بس أو فترة تاريخ الفاتورة. المبالغ بعملة كل فاتورة."
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/invoicing.py:0
+msgid "List invoices"
+msgstr "قائمة الفواتير"
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/crm.py:0
+msgid "Log a note"
+msgstr "تسجيل ملاحظة"
+
+#. module: gental_mcp
 #: model:ir.ui.menu,name:gental_mcp.menu_logs
 msgid "Logs"
 msgstr "السجلات"
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/sales.py:0
+msgid ""
+"Looks up a quotation or sales order by its number (e.g. S00042) or the "
+"customer's reference. Returns its state, dates, invoice status and, when "
+"Inventory is installed, delivery status."
+msgstr "يلقى عرض سعر أو أمر بيع برقمه (مثل S00042) أو مرجع العميل. يرجّع حالته وتواريخه وحالة الفوترة، وحالة التوصيل إذا تطبيق المخزون منزّل."
 
 #. module: gental_mcp
 #: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_config__mcp_endpoint
@@ -1621,6 +2120,50 @@ msgstr "رابط MCP"
 #: code:addons/gental_mcp/controllers/oauth.py:0
 msgid "MCP client"
 msgstr "عميل MCP"
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/invoicing.py:0
+msgid ""
+"Makes the PDF of a customer invoice or credit note and returns a download "
+"link that expires. Give the customer the link exactly as returned."
+msgstr "يسوي ملف PDF لفاتورة العميل أو إشعار الدائن ويرجّع رابط تحميل له مدة وينتهي. أعطِ العميل الرابط زي ما رجع بالضبط."
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/sales.py:0
+msgid ""
+"Makes the PDF of a quotation or sales order and returns a download link that"
+" expires. Give the customer the link exactly as returned."
+msgstr "يسوي ملف PDF لعرض السعر أو أمر البيع ويرجّع رابط تحميل له مدة وينتهي. أعطِ العميل الرابط زي ما رجع بالضبط."
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/invoicing.py:0
+msgid ""
+"Makes the PDF of one of the chatting customer's own posted invoices or "
+"credit notes and returns a download link that expires. Works only for "
+"clients that send Gental's verified customer identity; another customer's "
+"invoice is not found. Give the customer the link exactly as returned."
+msgstr "يسوي ملف PDF لوحدة من فواتير العميل اللي يكلمك المرحّلة أو إشعارات الدائن حقته ويرجّع رابط تحميل له مدة وينتهي. يشتغل بس مع العملاء (التطبيقات) اللي ترسل هوية العميل الموثّقة من جنتال، وفاتورة عميل ثاني ما تطلع. أعطِ العميل الرابط زي ما رجع بالضبط."
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/sales.py:0
+msgid ""
+"Makes the PDF of one of the chatting customer's own quotations or orders and"
+" returns a download link that expires. Works only for clients that send "
+"Gental's verified customer identity; another customer's order is not found. "
+"Give the customer the link exactly as returned."
+msgstr "يسوي ملف PDF لواحد من عروض أسعار أو طلبات العميل اللي يكلمك ويرجّع رابط تحميل له مدة وينتهي. يشتغل بس مع العملاء (التطبيقات) اللي ترسل هوية العميل الموثّقة من جنتال، وطلب عميل ثاني ما يطلع. أعطِ العميل الرابط زي ما رجع بالضبط."
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/inventory.py:0
+msgid ""
+"Makes the delivery slip PDF of a delivery and returns a download link that "
+"expires. Give the customer the link exactly as returned."
+msgstr "يسوي ملف PDF لإشعار تسليم التوصيلة ويرجّع رابط تحميل له مدة وينتهي. أعطِ العميل الرابط زي ما رجع بالضبط."
 
 #. module: gental_mcp
 #: model:res.groups,comment:gental_mcp.group_mcp_manager
@@ -1666,11 +2209,25 @@ msgid "Metadata Fetched"
 msgstr "آخر جلب لملف التعريف"
 
 #. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/services/generic_tools.py:0
+msgid "Method"
+msgstr "الدالة"
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/services/generic_tools.py:0
+msgid "Method arguments"
+msgstr "مدخلات الدالة"
+
+#. module: gental_mcp
 #: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_exposed_model__method_ids
 msgid "Methods"
 msgstr "الدوال"
 
 #. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/services/generic_tools.py:0
 #: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_action_key__model
 #: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_exposed_model__model_id
 #: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_webhook_delivery__model
@@ -1701,6 +2258,44 @@ msgid "Models are only used with “Record created” or “Record updated”."
 msgstr "النماذج تنستخدم بس مع «انضاف سجل» أو «تعدّل سجل»."
 
 #. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/invoicing.py:0
+msgid "My balance"
+msgstr "رصيدي"
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/inventory.py:0
+msgid "My deliveries"
+msgstr "توصيلاتي"
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/invoicing.py:0
+msgid "My invoice PDF"
+msgstr "ملف فاتورتي"
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/invoicing.py:0
+msgid "My invoices"
+msgstr "فواتيري"
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/sales.py:0
+msgid "My orders"
+msgstr "طلباتي"
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/sales.py:0
+msgid "My quotation or order PDF"
+msgstr "ملف عرض سعري أو طلبي"
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/contacts.py:0
 #: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_api_key_wizard__name
 #: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_client__name
 #: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_exposed_method__name
@@ -1708,6 +2303,12 @@ msgstr "النماذج تنستخدم بس مع «انضاف سجل» أو «ت�
 #: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_webhook_subscription__name
 msgid "Name"
 msgstr "الاسم"
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/contacts.py:0
+msgid "Name, phone, email or reference."
+msgstr "الاسم أو الجوال أو الإيميل أو المرجع."
 
 #. module: gental_mcp
 #. odoo-javascript
@@ -1744,6 +2345,18 @@ msgstr "ويب هوك جديد"
 #: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_webhook_delivery__next_attempt_at
 msgid "Next Attempt"
 msgstr "المحاولة الجاية"
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/services/generic_tools.py:0
+msgid "Next page"
+msgstr "الصفحة الجاية"
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/services/generic_tools.py:0
+msgid "No"
+msgstr "لا"
 
 #. module: gental_mcp
 #: model_terms:ir.ui.view,arch_db:gental_mcp.oauth_consent
@@ -1860,6 +2473,13 @@ msgstr "ما يمكن الوصول له"
 #. module: gental_mcp
 #. odoo-python
 #: code:addons/gental_mcp/tools/crm.py:0
+#: code:addons/gental_mcp/tools/sales.py:0
+msgid "Note"
+msgstr "الملاحظة"
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/crm.py:0
 msgid "Note added to the %(label)s."
 msgstr "انضافت الملاحظة على: %(label)s."
 
@@ -1927,6 +2547,15 @@ msgstr "تمام"
 
 #. module: gental_mcp
 #. odoo-python
+#: code:addons/gental_mcp/services/generic_tools.py:0
+msgid ""
+"Odoo domain over the model's own fields, e.g. [[\"name\", \"ilike\", "
+"\"acme\"]]; no dotted paths. Items are [field, operator, value] or \"&\", "
+"\"|\", \"!\"."
+msgstr "شرط أودو (domain) على حقول النموذج نفسه، مثل [[\"name\", \"ilike\", \"acme\"]]، بدون مسارات فيها نقاط. العناصر تكون [field, operator, value] أو \"&\" أو \"|\" أو \"!\"."
+
+#. module: gental_mcp
+#. odoo-python
 #: code:addons/gental_mcp/tools/sales.py:0
 msgid ""
 "Odoo needs a person to confirm cancelling order %s, so nothing was changed. "
@@ -1945,6 +2574,16 @@ msgstr ""
 "أودو يشوف الطلب جاي من %s وهو عنوان داخلي، يعني غالبًا فيه بروكسي قدّامه، بس"
 " وضع البروكسي مقفل. شغّل أودو بـ proxy_mode = True وخلّ البروكسي يمرّر "
 "الترويسات X-Forwarded-For و X-Forwarded-Host و X-Forwarded-Proto."
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/invoicing.py:0
+msgid ""
+"One customer invoice or credit note by id or number: lines, totals, amount "
+"still due, payment state, due date and, for posted invoices not fully paid, "
+"portal_url: a non-expiring link the customer can open to view the invoice "
+"(and pay online when online payment is set up in Odoo)."
+msgstr "فاتورة عميل أو إشعار دائن واحد بالرقم التعريفي أو رقم الفاتورة: البنود والمجاميع والمبلغ الباقي وحالة الدفع وتاريخ الاستحقاق، وللفواتير المرحّلة اللي ما انسدّت كاملة portal_url: رابط ما ينتهي يفتحه العميل ويشوف الفاتورة (ويدفع أونلاين إذا الدفع الإلكتروني مفعّل في أودو)."
 
 #. module: gental_mcp
 #: model:ir.model.fields,help:gental_mcp.field_gental_mcp_client__redirect_uris
@@ -2001,8 +2640,20 @@ msgstr "بس المدير يقدر يسوي مفتاح API لمستخدم ثان
 #. module: gental_mcp
 #. odoo-python
 #: code:addons/gental_mcp/tools/invoicing.py:0
+msgid "Only invoices not fully paid yet."
+msgstr "بس الفواتير اللي ما انسدّت كاملة للحين."
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/invoicing.py:0
 msgid "Only posted invoices can be sent. Post it in Odoo first."
 msgstr "أقدر أرسل الفواتير المرحّلة بس. رحّلها في أودو أول."
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/invoicing.py:0
+msgid "Only posted, unpaid invoices (not credit notes) past their due date."
+msgstr "بس الفواتير المرحّلة وغير المدفوعة (مو إشعارات الدائن) اللي فات تاريخ استحقاقها."
 
 #. module: gental_mcp
 #: model:ir.model.fields,help:gental_mcp.field_gental_mcp_webhook_subscription__filter_domain
@@ -2023,6 +2674,27 @@ msgstr "هنا ما ينفع إلا قائمة أسعار العميل نفسه.
 
 #. module: gental_mcp
 #. odoo-python
+#: code:addons/gental_mcp/tools/crm.py:0
+msgid "Only this sales team's."
+msgstr "بس اللي لفريق المبيعات هذا."
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/crm.py:0
+msgid "Only this salesperson's."
+msgstr "بس اللي لهذا المندوب."
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/crm.py:0
+msgid ""
+"Open opportunities per stage: count and expected revenue, with the stage ids"
+" that update_lead takes. Optionally for one salesperson (user_id) or sales "
+"team (team_id)."
+msgstr "الفرص المفتوحة لكل مرحلة: عددها والإيراد المتوقع، مع أرقام المراحل اللي ياخذها update_lead. وتقدر تحصرها على مندوب واحد (user_id) أو فريق مبيعات (team_id)."
+
+#. module: gental_mcp
+#. odoo-python
 #: code:addons/gental_mcp/services/domain_guard.py:0
 msgid "Operator not allowed in domains: %s"
 msgstr "هذا المعامل ممنوع في شروط البحث: %s"
@@ -2038,6 +2710,54 @@ msgstr "فرصة"
 #: code:addons/gental_mcp/tools/crm.py:0
 msgid "Opportunity “%(name)s” created."
 msgstr "انسجلت الفرصة «%(name)s»."
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/sales.py:0
+msgid ""
+"Optional customer id (find_contact): their own prices if they are the "
+"verified customer."
+msgstr "رقم العميل (find_contact)، اختياري: تطلع أسعاره الخاصة إذا كان هو العميل الموثّق."
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/sales.py:0
+msgid "Optional note on the quotation."
+msgstr "ملاحظة على عرض السعر، اختيارية."
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/sales.py:0
+msgid "Optional price list id, the same as in the preview."
+msgstr "رقم قائمة الأسعار، اختياري، نفس اللي في المعاينة."
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/sales.py:0
+msgid ""
+"Optional price list id: the verified customer's own, or any for a sales "
+"manager."
+msgstr "رقم قائمة الأسعار، اختياري: قائمة العميل الموثّق نفسه، أو أي قائمة لمدير المبيعات."
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/sales.py:0
+msgid ""
+"Optional price list id: the verified customer's own, unless you are a sales "
+"manager."
+msgstr "رقم قائمة الأسعار، اختياري: قائمة العميل الموثّق نفسه، إلا إذا كنت مدير مبيعات."
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/sales.py:0
+msgid "Optional reason, logged on the order."
+msgstr "السبب، اختياري، وينسجل على الطلب."
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/sales.py:0
+msgid "Order"
+msgstr "الطلب"
 
 #. module: gental_mcp
 #. odoo-python
@@ -2067,6 +2787,31 @@ msgid "Order created"
 msgstr "انضاف طلب"
 
 #. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/sales.py:0
+msgid "Order id."
+msgstr "رقم الطلب."
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/sales.py:0
+msgid "Order number or customer reference."
+msgstr "رقم الطلب أو مرجع العميل."
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/inventory.py:0
+#: code:addons/gental_mcp/tools/sales.py:0
+msgid "Order reference"
+msgstr "رقم الطلب"
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/sales.py:0
+msgid "Order status"
+msgstr "حالة الطلب"
+
+#. module: gental_mcp
 #: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_origin__origin
 msgid "Origin"
 msgstr "المصدر"
@@ -2085,6 +2830,21 @@ msgstr "النتيجة مو معروفة"
 #: model_terms:ir.ui.view,arch_db:gental_mcp.view_log_search
 msgid "Outcome unknown"
 msgstr "النتيجة مو معروفة"
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/inventory.py:0
+msgid ""
+"Outgoing deliveries (pickings) of an order, by the order reference: status, "
+"scheduled and done dates, and the carrier tracking reference when the "
+"delivery app is installed."
+msgstr "توصيلات الطلب الطالعة (pickings) برقم الطلب: الحالة وتاريخ الموعد وتاريخ التنفيذ، ورقم تتبع شركة الشحن إذا تطبيق التوصيل منزّل."
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/invoicing.py:0
+msgid "Overdue only"
+msgstr "المتأخرة بس"
 
 #. module: gental_mcp
 #: model_terms:ir.actions.act_window,help:gental_mcp.action_documents
@@ -2106,6 +2866,14 @@ msgstr "مدفوعة"
 #: code:addons/gental_mcp/tools/invoicing.py:0
 msgid "Partially paid"
 msgstr "مدفوعة جزئيًا"
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/services/generic_tools.py:0
+msgid ""
+"Pass values to preview a create, ids and values for an update, or ids alone "
+"for a delete."
+msgstr "أرسل values لمعاينة الإنشاء، أو ids مع values للتعديل، أو ids بس للحذف."
 
 #. module: gental_mcp
 #: model:ir.model.fields,help:gental_mcp.field_gental_mcp_identity_secret_wizard__secret
@@ -2140,9 +2908,28 @@ msgstr "البيانات المرسلة فيها بس اللي يقدر هالم
 
 #. module: gental_mcp
 #. odoo-python
+#: code:addons/gental_mcp/tools/invoicing.py:0
+msgid "Payment status"
+msgstr "حالة الدفع"
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/contacts.py:0
+#: code:addons/gental_mcp/tools/crm.py:0
+msgid "Phone"
+msgstr "الجوال"
+
+#. module: gental_mcp
+#. odoo-python
 #: code:addons/gental_mcp/tools/crm.py:0
 msgid "Phone call"
 msgstr "اتصال هاتفي"
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/contacts.py:0
+msgid "Phone number, ideally with country code."
+msgstr "رقم الجوال، والأفضل مع رمز الدولة."
 
 #. module: gental_mcp
 #: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_config__identity_assume_company_country
@@ -2151,9 +2938,29 @@ msgstr "الأرقام المحفوظة بدون دولة تتبع دولة ال
 
 #. module: gental_mcp
 #. odoo-python
+#: code:addons/gental_mcp/services/generic_tools.py:0
+msgid ""
+"Pick the model whose title matches the request; call odoo_describe_model "
+"first when unsure."
+msgstr "اختر النموذج اللي عنوانه يطابق الطلب، وإذا ما كنت متأكد نادِ odoo_describe_model أول."
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/crm.py:0
+msgid "Pipeline summary"
+msgstr "ملخص خط المبيعات"
+
+#. module: gental_mcp
+#. odoo-python
 #: code:addons/gental_mcp/tools/crm.py:0
 msgid "Pipeline: %(count)s open opportunities, expected revenue %(revenue)s."
 msgstr "خط المبيعات: %(count)s فرصة مفتوحة، والإيراد المتوقع %(revenue)s."
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/crm.py:0
+msgid "Plain text."
+msgstr "نص عادي."
 
 #. module: gental_mcp
 #: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_config__area_pos_enabled
@@ -2168,9 +2975,61 @@ msgstr "تطبيق نقاط البيع مثبّت"
 
 #. module: gental_mcp
 #. odoo-python
+#: code:addons/gental_mcp/tools/pos.py:0
+msgid "Point of sale (POS config) id."
+msgstr "رقم نقطة البيع (POS config)."
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/pos.py:0
+msgid "Point of sale summary"
+msgstr "ملخص نقاط البيع"
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/pos.py:0
+msgid ""
+"Point of sale totals per shop (POS config) for a date range, at most 92 "
+"days, today by default: order count, sales total and the top 5 products by "
+"quantity. Aggregates only, no customer details."
+msgstr "مجاميع نقاط البيع لكل نقطة (POS config) لفترة 92 يوم بالأكثر، والافتراضي اليوم: عدد الطلبات وإجمالي المبيعات وأكثر 5 منتجات بالكمية. مجاميع بس، بدون بيانات عملاء."
+
+#. module: gental_mcp
+#. odoo-python
 #: code:addons/gental_mcp/tools/invoicing.py:0
 msgid "Posted"
 msgstr "مرحّلة"
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/services/generic_tools.py:0
+msgid "Preview a change"
+msgstr "معاينة التغيير"
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/sales.py:0
+msgid "Preview a quotation"
+msgstr "معاينة عرض سعر"
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/sales.py:0
+msgid "Price list"
+msgstr "قائمة الأسعار"
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/sales.py:0
+msgid ""
+"Prices a quotation without saving anything: Odoo's prices, discounts, taxes "
+"and total for the customer and lines. Always preview before create_quotation"
+" and show the customer the lines and total. The customer's own price list "
+"applies only when they are the verified customer (or for a sales manager); "
+"otherwise the standard price list (price_list says which). Returns lines "
+"(label and value), total and a signed quote that create_quotation checks "
+"(valid 15 minutes)."
+msgstr "يسعّر عرض السعر بدون ما يحفظ شي: أسعار أودو والخصومات والضرايب والإجمالي للعميل والبنود. دايم عاين قبل create_quotation ووَرّ العميل البنود والإجمالي. قائمة أسعار العميل الخاصة تنطبق بس إذا هو العميل الموثّق (أو لمدير المبيعات)، وإلا قائمة الأسعار العادية (price_list يوضح أيها). يرجّع البنود (العنوان والقيمة) والإجمالي وعرض موقّع يتحقق منه create_quotation (صالح 15 دقيقة)."
 
 #. module: gental_mcp
 #. odoo-python
@@ -2190,6 +3049,43 @@ msgstr "الأسعار تغيّرت بعد المعاينة. سوّ معاينة
 
 #. module: gental_mcp
 #. odoo-python
+#: code:addons/gental_mcp/tools/inventory.py:0
+#: code:addons/gental_mcp/tools/sales.py:0
+msgid "Product"
+msgstr "المنتج"
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/sales.py:0
+msgid "Product id from search_products."
+msgstr "رقم المنتج من search_products."
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/sales.py:0
+msgid "Product name or code"
+msgstr "اسم المنتج أو كوده"
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/inventory.py:0
+msgid "Product name or reference"
+msgstr "اسم المنتج أو مرجعه"
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/sales.py:0
+msgid "Products"
+msgstr "المنتجات"
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/sales.py:0
+msgid "Products and quantities, at least one line."
+msgstr "المنتجات والكميات، سطر واحد على الأقل."
+
+#. module: gental_mcp
+#. odoo-python
 #: code:addons/gental_mcp/tools/sales.py:0
 msgid "Products found: %s"
 msgstr "هذي المنتجات اللي لقيتها: %s"
@@ -2198,6 +3094,12 @@ msgstr "هذي المنتجات اللي لقيتها: %s"
 #: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_config__public_url
 msgid "Public URL"
 msgstr "الرابط العام"
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/sales.py:0
+msgid "Quantity"
+msgstr "الكمية"
 
 #. module: gental_mcp
 #: model:ir.model.fields.selection,name:gental_mcp.selection__gental_mcp_webhook_delivery__state__queued
@@ -2209,14 +3111,33 @@ msgstr "بالانتظار"
 #. module: gental_mcp
 #. odoo-python
 #: code:addons/gental_mcp/tools/sales.py:0
+msgid "Quotation"
+msgstr "عرض السعر"
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/sales.py:0
 msgid "Quotation %(name)s created. Total: %(total)s"
 msgstr "سوّيت عرض السعر %(name)s. الإجمالي: %(total)s"
 
 #. module: gental_mcp
 #. odoo-python
+#: code:addons/gental_mcp/tools/sales.py:0
+msgid "Quotation id."
+msgstr "رقم عرض السعر."
+
+#. module: gental_mcp
+#. odoo-python
 #: code:addons/gental_mcp/tools/crm.py:0
+#: code:addons/gental_mcp/tools/sales.py:0
 msgid "Quotation or order"
 msgstr "عرض سعر أو طلب"
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/sales.py:0
+msgid "Quotation or order PDF"
+msgstr "ملف عرض السعر أو الطلب"
 
 #. module: gental_mcp
 #: model:ir.model.fields.selection,name:gental_mcp.selection__gental_mcp_log__kind__rate_limited
@@ -2242,9 +3163,34 @@ msgid "Read"
 msgstr "قراءة"
 
 #. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/services/generic_tools.py:0
+msgid "Read Odoo records"
+msgstr "قراءة سجلات أودو"
+
+#. module: gental_mcp
 #: model_terms:ir.ui.view,arch_db:gental_mcp.oauth_consent
 msgid "Read only"
 msgstr "قراءة بس"
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/services/generic_tools.py:0
+msgid ""
+"Read records of an exposed model by id. Ids you cannot see are left out."
+msgstr "يقرأ سجلات نموذج متاح بأرقامها. الأرقام اللي ما تقدر تشوفها تنشال."
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/sales.py:0
+msgid "Reason"
+msgstr "السبب"
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/pos.py:0
+msgid "Receipt reference"
+msgstr "رقم الإيصال"
 
 #. module: gental_mcp
 #. odoo-javascript
@@ -2253,6 +3199,8 @@ msgid "Recent documents"
 msgstr "آخر المستندات"
 
 #. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/crm.py:0
 #: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_webhook_delivery__record_label
 msgid "Record"
 msgstr "السجل"
@@ -2278,9 +3226,28 @@ msgid "Record created"
 msgstr "انضاف سجل"
 
 #. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/services/generic_tools.py:0
+msgid "Record ids"
+msgstr "أرقام السجلات"
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/services/generic_tools.py:0
+#: code:addons/gental_mcp/tools/crm.py:0
+msgid "Record type"
+msgstr "نوع السجل"
+
+#. module: gental_mcp
 #: model:gental.mcp.webhook.event,name:gental_mcp.webhook_event_record_updated
 msgid "Record updated"
 msgstr "تعدّل سجل"
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/services/generic_tools.py:0
+msgid "Records"
+msgstr "السجلات"
 
 #. module: gental_mcp
 #. odoo-python
@@ -2312,6 +3279,12 @@ msgstr "تحديث"
 #: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_client__registration
 msgid "Registration"
 msgstr "التسجيل"
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/crm.py:0
+msgid "Replaces the lead's tags."
+msgstr "يستبدل وسوم العميل المحتمل."
 
 #. module: gental_mcp
 #: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_document__report_xmlid
@@ -2420,6 +3393,15 @@ msgid "Run As"
 msgstr "يشتغل باسم"
 
 #. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/services/generic_tools.py:0
+msgid ""
+"Run a method the administrator allowed on records of an exposed model (at "
+"most 50 ids; an empty list calls it on the model). odoo_describe_model lists"
+" the methods per model."
+msgstr "يشغّل دالة سمح فيها المدير على سجلات نموذج متاح (50 رقم بالأكثر، والقائمة الفاضية تناديها على النموذج نفسه). odoo_describe_model يعرض الدوال لكل نموذج."
+
+#. module: gental_mcp
 #. odoo-javascript
 #: code:addons/gental_mcp/static/src/dashboard/dashboard.xml:0
 msgid "Running"
@@ -2437,6 +3419,24 @@ msgid "Sales App Installed"
 msgstr "تطبيق المبيعات مثبّت"
 
 #. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/crm.py:0
+msgid "Sales team"
+msgstr "فريق المبيعات"
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/crm.py:0
+msgid "Salesperson"
+msgstr "المندوب"
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/crm.py:0
+msgid "Salesperson (user id)."
+msgstr "المندوب (رقم المستخدم)."
+
+#. module: gental_mcp
 #: model_terms:ir.ui.view,arch_db:gental_mcp.view_identity_secret_wizard_form
 msgid "Save secret"
 msgstr "احفظ المفتاح"
@@ -2448,9 +3448,37 @@ msgid "Saved %s as the Public URL so it can't change by itself."
 msgstr "حفظنا %s كرابط عام عشان ما يتغيّر من نفسه."
 
 #. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/contacts.py:0
+msgid ""
+"Saves a customer without creating duplicates: matches an existing contact by"
+" phone number first, then by email. One match with the same name: status "
+"matched; empty company and address fields are filled, nothing is "
+"overwritten, and the email is added only for the verified customer. Another "
+"name or several matches: nothing is saved and staff are flagged (status "
+"needs_review). No match: creates the contact (with only a name, it always "
+"creates one). Returns the status (created, matched or needs_review) and, for"
+" created or matched, the contact id."
+msgstr "يحفظ العميل بدون تكرار: يطابق جهة اتصال موجودة بالجوال أول، وبعدين بالإيميل. إذا لقى وحدة بنفس الاسم: الحالة matched، وتنعبّى حقول الشركة والعنوان الفاضية بس، وما يتغيّر شي، والإيميل ينضاف بس للعميل الموثّق. إذا الاسم مختلف أو لقى أكثر من وحدة: ما ينحفظ شي وينبَّه الموظفين (الحالة needs_review). إذا ما لقى شي: ينشئ جهة الاتصال (وإذا ما فيه إلا الاسم، دايم ينشئ وحدة جديدة). يرجّع الحالة (created أو matched أو needs_review)، ومع created أو matched رقم جهة الاتصال."
+
+#. module: gental_mcp
 #: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_webhook_watch__scanned_at
 msgid "Scanned At"
 msgstr "آخر فحص"
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/crm.py:0
+msgid ""
+"Schedule a call, to-do or meeting on a lead, quotation or order, contact or "
+"invoice. It goes to you unless user_id (an internal user) is given."
+msgstr "يجدول مكالمة أو مهمة أو اجتماع على عميل محتمل أو عرض سعر أو طلب أو جهة اتصال أو فاتورة. يكون لك إلا إذا أعطيت user_id (مستخدم داخلي)."
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/crm.py:0
+msgid "Schedule an activity"
+msgstr "جدولة نشاط"
 
 #. module: gental_mcp
 #: model:ir.model.fields,help:gental_mcp.field_gental_mcp_origin__origin
@@ -2461,6 +3489,33 @@ msgstr "البروتوكول والنطاق، مثلًا https://claude.ai"
 #: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_token__scope
 msgid "Scope"
 msgstr "النطاق"
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/contacts.py:0
+msgid "Search"
+msgstr "البحث"
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/services/generic_tools.py:0
+msgid "Search Odoo records"
+msgstr "البحث في سجلات أودو"
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/sales.py:0
+msgid "Search products"
+msgstr "البحث عن منتجات"
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/services/generic_tools.py:0
+msgid ""
+"Search records of an exposed model. Returns {records, next_cursor}; pass "
+"next_cursor back as cursor for the next page. Ask only for the fields you "
+"need: large results are cut short."
+msgstr "يبحث في سجلات نموذج متاح. يرجّع {records, next_cursor}، ورجّع next_cursor في cursor عشان الصفحة الجاية. اطلب بس الحقول اللي تحتاجها: النتائج الكبيرة تنقص."
 
 #. module: gental_mcp
 #: model_terms:ir.ui.view,arch_db:gental_mcp.view_webhook_subscription_form
@@ -2508,6 +3563,12 @@ msgid "Set Identity Secret"
 msgstr "حط مفتاح التحقق"
 
 #. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/services/generic_tools.py:0
+msgid "Set field values on records of an exposed model (at most 50 ids)."
+msgstr "يغيّر قيم حقول في سجلات نموذج متاح (50 رقم بالأكثر)."
+
+#. module: gental_mcp
 #: model:ir.actions.act_window,name:gental_mcp.action_identity_secret_wizard
 #: model_terms:ir.ui.view,arch_db:gental_mcp.view_identity_secret_wizard_form
 msgid "Set identity secret"
@@ -2531,6 +3592,12 @@ msgid "Several invoices have this number. Use the invoice id."
 msgstr "فيه أكثر من فاتورة بنفس الرقم. استخدم رقم تعريف الفاتورة (id)."
 
 #. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/pos.py:0
+msgid "Shop"
+msgstr "نقطة البيع"
+
+#. module: gental_mcp
 #: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_webhook_subscription__show_models
 msgid "Show Models"
 msgstr "إظهار الموديلات"
@@ -2542,6 +3609,16 @@ msgid ""
 "Show the customer these lines and the total. When they agree, create the "
 "quotation with the same customer, lines and price list."
 msgstr "وضّح للعميل هذي البنود والإجمالي. إذا وافق، سوّ عرض السعر بنفس العميل والبنود وقائمة الأسعار."
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/services/generic_tools.py:0
+msgid ""
+"Shows what odoo_create, odoo_update or odoo_delete would do, without "
+"changing anything: values without ids previews a create, ids with values an "
+"update, ids alone a delete. The same rules as the change itself apply. "
+"Returns lines (label and value) in the request's language."
+msgstr "يوضح وش بيسوي odoo_create أو odoo_update أو odoo_delete بدون ما يغيّر شي: values بدون ids معاينة إنشاء، و ids مع values تعديل، و ids بس حذف. تنطبق نفس قواعد التغيير نفسه. يرجّع بنود (العنوان والقيمة) بلغة الطلب."
 
 #. module: gental_mcp
 #: model:ir.model.fields.selection,name:gental_mcp.selection__gental_mcp_log__kind__auth
@@ -2584,11 +3661,41 @@ msgstr "فيه سجلات ما قدرنا نقراها عشان نرسلها ف�
 
 #. module: gental_mcp
 #. odoo-python
+#: code:addons/gental_mcp/services/generic_tools.py:0
+msgid "Sort order"
+msgstr "الترتيب"
+
+#. module: gental_mcp
+#. odoo-python
 #: code:addons/gental_mcp/tools/contacts.py:0
 msgid ""
 "Staff need to check this phone or email, so nothing was saved. Carry on with"
 " the customer; staff will follow up."
 msgstr "الموظفين لازم يشيكون على هذا الرقم أو الإيميل، فما حفظنا شي. كمّل مع العميل، والموظفين بيتابعون."
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/services/curated.py:0
+msgid "Staff tool: %s"
+msgstr "أداة للموظفين: %s"
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/services/curated.py:0
+msgid "Staff: %s"
+msgstr "للموظفين: %s"
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/crm.py:0
+msgid "Stage"
+msgstr "المرحلة"
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/crm.py:0
+msgid "Stage id from pipeline_summary."
+msgstr "رقم المرحلة من pipeline_summary."
 
 #. module: gental_mcp
 #: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_webhook_watch__started_at
@@ -2609,9 +3716,32 @@ msgid "State Field"
 msgstr "حقل الحالة"
 
 #. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/invoicing.py:0
 #: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_log__status
 msgid "Status"
 msgstr "الحالة"
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/inventory.py:0
+msgid "Stock availability"
+msgstr "توفر المخزون"
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/inventory.py:0
+msgid ""
+"Stock of a product per warehouse: on hand, forecast (virtual) and free "
+"quantity. Give a product_id, or a query matching the product name or "
+"internal reference; optionally limit to one warehouse_id."
+msgstr "مخزون المنتج في كل مستودع: الموجود والمتوقع (virtual) والكمية المتاحة. أعطه product_id، أو query يطابق اسم المنتج أو مرجعه الداخلي، وتقدر تحصره على warehouse_id واحد."
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/contacts.py:0
+msgid "Street"
+msgstr "الشارع"
 
 #. module: gental_mcp
 #: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_webhook_delivery__subscription_id
@@ -2626,10 +3756,22 @@ msgid "Subscription Name"
 msgstr "اسم الاشتراك"
 
 #. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/crm.py:0
+msgid "Summary"
+msgstr "الملخص"
+
+#. module: gental_mcp
 #. odoo-javascript
 #: code:addons/gental_mcp/static/src/dashboard/dashboard.xml:0
 msgid "Switched off"
 msgstr "مطفّي"
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/crm.py:0
+msgid "Tags"
+msgstr "الوسوم"
 
 #. module: gental_mcp
 #: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_webhook_event__target_values
@@ -2697,9 +3839,35 @@ msgstr "التطبيق مو مثبّت"
 
 #. module: gental_mcp
 #. odoo-python
+#: code:addons/gental_mcp/tools/invoicing.py:0
+msgid ""
+"The chatting customer's own posted invoices and credit notes, newest first. "
+"Invoices not fully paid carry portal_url: a non-expiring link the customer "
+"can open to view the invoice (and pay online when online payment is set up "
+"in Odoo). Works only for clients that send Gental's verified customer "
+"identity; the customer is never chosen by argument."
+msgstr "فواتير العميل اللي يكلمك المرحّلة وإشعارات الدائن حقته، الأحدث أول. الفواتير اللي ما انسدّت كاملة معها portal_url: رابط ما ينتهي يفتحه العميل ويشوف الفاتورة (ويدفع أونلاين إذا الدفع الإلكتروني مفعّل في أودو). يشتغل بس مع العملاء (التطبيقات) اللي ترسل هوية العميل الموثّقة من جنتال، والعميل ما يتحدد بمدخل أبد."
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/sales.py:0
+msgid ""
+"The chatting customer's own quotations and orders, newest first. Works only "
+"for clients that send Gental's verified customer identity; the customer is "
+"never chosen by argument."
+msgstr "عروض أسعار وطلبات العميل اللي يكلمك، الأحدث أول. يشتغل بس مع العملاء (التطبيقات) اللي ترسل هوية العميل الموثّقة من جنتال، والعميل ما يتحدد بمدخل أبد."
+
+#. module: gental_mcp
+#. odoo-python
 #: code:addons/gental_mcp/tools/contacts.py:0
 msgid "The contact needs a name."
 msgstr "جهة الاتصال لازم يكون لها اسم."
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/contacts.py:0
+msgid "The customer's company, if any."
+msgstr "شركة العميل، إذا فيه."
 
 #. module: gental_mcp
 #. odoo-python
@@ -3006,12 +4174,26 @@ msgstr "القيمة حقت «%(name)s» مو مسموحة."
 
 #. module: gental_mcp
 #. odoo-python
+#: code:addons/gental_mcp/tools/inventory.py:0
+msgid ""
+"The verified customer's own outgoing deliveries, newest first. Works only "
+"for a verified customer; takes no phone or customer argument."
+msgstr "توصيلات العميل الموثّق نفسه، الأحدث أول. يشتغل بس مع عميل موثّق، وما ياخذ جوال ولا عميل كمدخل."
+
+#. module: gental_mcp
+#. odoo-python
 #: code:addons/gental_mcp/models/webhook_subscription.py:0
 msgid ""
 "The webhook URL must start with https:// and point to an address on the "
 "public internet."
 msgstr ""
 "لازم رابط الـ Webhook يبدأ بـ https:// ويوصل لعنوان على الإنترنت العام."
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/services/generic_tools.py:0
+msgid "These records will be deleted."
+msgstr "بتنحذف هذي السجلات."
 
 #. module: gental_mcp
 #. odoo-python
@@ -3127,9 +4309,23 @@ msgid "This webhook is archived. Restore it before sending a test."
 msgstr "هذا الـ Webhook مؤرشف. رجّعه أول وبعدين أرسل الاختبار."
 
 #. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/crm.py:0
 #: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_tool_setting__title
 msgid "Title"
 msgstr "العنوان"
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/pos.py:0
+msgid "To (YYYY-MM-DD)"
+msgstr "إلى تاريخ (YYYY-MM-DD)"
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/invoicing.py:0
+msgid "To date"
+msgstr "إلى تاريخ"
 
 #. module: gental_mcp
 #. odoo-python
@@ -3198,6 +4394,12 @@ msgstr "إجمالي المستحق %(receivable)s، منه %(overdue)s متأخ
 
 #. module: gental_mcp
 #. odoo-python
+#: code:addons/gental_mcp/tools/crm.py:0
+msgid "Type"
+msgstr "النوع"
+
+#. module: gental_mcp
+#. odoo-python
 #: code:addons/gental_mcp/tools/contacts.py:0
 msgid "Type at least 2 characters to search."
 msgstr "اكتب حرفين على الأقل عشان أدوّر."
@@ -3239,9 +4441,27 @@ msgstr "أداة مو معروفة: %s"
 
 #. module: gental_mcp
 #. odoo-python
+#: code:addons/gental_mcp/tools/invoicing.py:0
+msgid "Unpaid only"
+msgstr "غير المدفوعة بس"
+
+#. module: gental_mcp
+#. odoo-python
 #: code:addons/gental_mcp/tools/sales.py:0
 msgid "Untaxed amount"
 msgstr "المبلغ قبل الضريبة"
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/services/generic_tools.py:0
+msgid "Update Odoo records"
+msgstr "تعديل سجلات أودو"
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/crm.py:0
+msgid "Update a lead"
+msgstr "تعديل عميل محتمل"
 
 #. module: gental_mcp
 #: model:ir.model.fields.selection,name:gental_mcp.selection__gental_mcp_webhook_event__kind__updated
@@ -3268,6 +4488,18 @@ msgstr "المستخدم"
 #: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_webhook_snapshot__value
 msgid "Value"
 msgstr "القيمة"
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/services/generic_tools.py:0
+msgid "Values"
+msgstr "القيم"
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/inventory.py:0
+msgid "Warehouse"
+msgstr "المستودع"
 
 #. module: gental_mcp
 #: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_webhook_subscription__warning
@@ -3361,9 +4593,36 @@ msgid "Webhooks"
 msgstr "الويب هوكس"
 
 #. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/invoicing.py:0
+msgid ""
+"What a customer owes: total receivable and the overdue part, in the company "
+"currency. partner_id may be a contact; its company's balance is returned."
+msgstr "كم على العميل: إجمالي المستحق والجزء المتأخر منه، بعملة الشركة. partner_id ممكن يكون جهة اتصال، ويرجع رصيد الشركة حقتها."
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/services/generic_tools.py:0
+msgid ""
+"What an exposed Odoo model is (label and the administrator's description), "
+"its fields (name, type, label, required, read-only, selection values, "
+"relation) and the methods you may call. Use it before searching, creating or"
+" calling methods."
+msgstr "يوضح وش هو نموذج أودو المتاح (اسمه ووصف المدير)، وحقوله (الاسم والنوع والعنوان وهل هو مطلوب أو للقراءة بس وقيم الاختيار والارتباط)، والدوال اللي تقدر تناديها. استخدمه قبل البحث أو الإنشاء أو مناداة الدوال."
+
+#. module: gental_mcp
 #: model_terms:ir.ui.view,arch_db:gental_mcp.oauth_consent
 msgid "What it can reach"
 msgstr "وش يقدر يوصل له"
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/tools/invoicing.py:0
+msgid ""
+"What the chatting customer owes: total receivable and the overdue part, in "
+"the company currency. Works only for clients that send Gental's verified "
+"customer identity."
+msgstr "كم على العميل اللي يكلمك: إجمالي المستحق والجزء المتأخر منه، بعملة الشركة. يشتغل بس مع العملاء (التطبيقات) اللي ترسل هوية العميل الموثّقة من جنتال."
 
 #. module: gental_mcp
 #: model:ir.model.fields,help:gental_mcp.field_gental_mcp_api_key_wizard__name
@@ -3414,6 +4673,12 @@ msgstr "كتابة"
 #: model_terms:ir.ui.view,arch_db:gental_mcp.view_log_search
 msgid "Writes"
 msgstr "الكتابة"
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/services/generic_tools.py:0
+msgid "Yes"
+msgstr "نعم"
 
 #. module: gental_mcp
 #: model_terms:ir.ui.view,arch_db:gental_mcp.oauth_error
@@ -3521,3 +4786,4 @@ msgstr "تسجيل دخول،"
 #: code:addons/gental_mcp/tools/crm.py:0
 msgid "“%(name)s” updated."
 msgstr "تحدّث «%(name)s»."
+

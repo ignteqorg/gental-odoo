@@ -71,9 +71,8 @@ class StockAvailability(curated.CuratedTool):
     name = "stock_availability"
     area = "inventory"
     kind = "read"
-    title_en = "Stock availability"
-    title_ar = "توفر المخزون"
-    description = (
+    label = _lt("Stock availability")
+    description = _lt(
         "Stock of a product per warehouse: on hand, forecast (virtual) and free quantity. Give a product_id, or a "
         "query matching the product name or internal reference; optionally limit to one warehouse_id."
     )
@@ -83,9 +82,9 @@ class StockAvailability(curated.CuratedTool):
             "type": "object",
             "additionalProperties": False,
             "properties": {
-                "product_id": curated.id_schema(title="Product id"),
-                "query": {"type": "string", "minLength": 1, "maxLength": 100, "title": "Product name or reference"},
-                "warehouse_id": curated.id_schema(title="Warehouse id"),
+                "product_id": curated.id_schema(title=_lt("Product")),
+                "query": {"type": "string", "minLength": 1, "maxLength": 100, "title": _lt("Product name or reference")},
+                "warehouse_id": curated.id_schema(title=_lt("Warehouse")),
             },
         }
 
@@ -138,9 +137,8 @@ class DeliveryStatus(curated.CuratedTool):
     name = "delivery_status"
     area = "inventory"
     kind = "read"
-    title_en = "Delivery status"
-    title_ar = "حالة التوصيل"
-    description = (
+    label = _lt("Delivery status")
+    description = _lt(
         "Outgoing deliveries (pickings) of an order, by the order reference: status, scheduled and done dates, "
         "and the carrier tracking reference when the delivery app is installed."
     )
@@ -151,7 +149,7 @@ class DeliveryStatus(curated.CuratedTool):
             "additionalProperties": False,
             "required": ["order_ref"],
             "properties": {
-                "order_ref": {"type": "string", "minLength": 1, "maxLength": 64, "title": "Order reference"},
+                "order_ref": {"type": "string", "minLength": 1, "maxLength": 64, "title": _lt("Order reference")},
             },
         }
 
@@ -187,9 +185,8 @@ class MyDeliveries(curated.CuratedTool):
     area = "inventory"
     kind = "read"
     requires_identity = True
-    title_en = "My deliveries"
-    title_ar = "توصيلاتي"
-    description = (
+    label = _lt("My deliveries")
+    description = _lt(
         "The verified customer's own outgoing deliveries, newest first. Works only for a verified customer; "
         "takes no phone or customer argument."
     )
@@ -199,7 +196,7 @@ class MyDeliveries(curated.CuratedTool):
             "type": "object",
             "additionalProperties": False,
             "properties": {
-                "limit": {"type": "integer", "minimum": 1, "maximum": MAX_DELIVERIES, "default": 5, "title": "How many"},
+                "limit": {"type": "integer", "minimum": 1, "maximum": MAX_DELIVERIES, "default": 5, "title": _lt("How many")},
             },
         }
 
@@ -229,11 +226,11 @@ class GetDeliveryDocument(DocumentTool):
     area = "inventory"
     model = "stock.picking"
     id_arg = "picking_id"
-    id_description = "Id of the delivery (transfer)."
+    id_description = _lt("Id of the delivery (transfer).")
+    id_title = _lt("Delivery")
     report_xmlid = "stock.action_report_delivery"
-    title_en = "Delivery slip PDF"
-    title_ar = "ملف إشعار التسليم"
-    description = (
+    label = _lt("Delivery slip PDF")
+    description = _lt(
         "Makes the delivery slip PDF of a delivery and returns a download link that expires. "
         "Give the customer the link exactly as returned."
     )

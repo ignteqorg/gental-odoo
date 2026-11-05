@@ -55,9 +55,8 @@ class PosSalesSummary(curated.CuratedTool):
     name = "pos_sales_summary"
     area = "pos"
     kind = "read"
-    title_en = "Point of sale summary"
-    title_ar = "ملخص نقاط البيع"
-    description = (
+    label = _lt("Point of sale summary")
+    description = _lt(
         "Point of sale totals per shop (POS config) for a date range, at most 92 days, today by default: order "
         "count, sales total and the top 5 products by quantity. Aggregates only, no customer details."
     )
@@ -67,9 +66,9 @@ class PosSalesSummary(curated.CuratedTool):
             "type": "object",
             "additionalProperties": False,
             "properties": {
-                "date_from": {"type": "string", "format": "date", "title": "From (YYYY-MM-DD)"},
-                "date_to": {"type": "string", "format": "date", "title": "To (YYYY-MM-DD)"},
-                "config_id": curated.id_schema(title="Shop (POS config) id"),
+                "date_from": {"type": "string", "format": "date", "title": _lt("From (YYYY-MM-DD)")},
+                "date_to": {"type": "string", "format": "date", "title": _lt("To (YYYY-MM-DD)")},
+                "config_id": curated.id_schema(title=_lt("Shop"), description=_lt("Point of sale (POS config) id.")),
             },
         }
 
@@ -123,9 +122,8 @@ class FindPosOrder(curated.CuratedTool):
     name = "find_pos_order"
     area = "pos"
     kind = "read"
-    title_en = "Find a point of sale order"
-    title_ar = "البحث عن طلب نقطة بيع"
-    description = (
+    label = _lt("Find a point of sale order")
+    description = _lt(
         "Finds a point of sale order by its exact receipt reference (as printed on the receipt, or the order "
         "name) and returns its lines, total, payment methods and state. No wildcard search."
     )
@@ -136,7 +134,7 @@ class FindPosOrder(curated.CuratedTool):
             "additionalProperties": False,
             "required": ["receipt"],
             "properties": {
-                "receipt": {"type": "string", "minLength": 1, "maxLength": 64, "title": "Receipt reference"},
+                "receipt": {"type": "string", "minLength": 1, "maxLength": 64, "title": _lt("Receipt reference")},
             },
         }
 
