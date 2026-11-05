@@ -1,11 +1,14 @@
 import base64
 import json
 
+from odoo.exceptions import AccessError, ValidationError
 from odoo.tests import tagged
 from odoo.tools import mute_logger
 
 from odoo.addons.gental_mcp.controllers.mcp import _log_call
 from odoo.addons.gental_mcp.core.context import CallContext
+from odoo.addons.gental_mcp.core.schema import schema_issues
+from odoo.addons.gental_mcp.models.exposed_model import DESCRIPTION_MAX, clean_line
 from odoo.addons.gental_mcp.core.meta import ACTION_KEY
 from odoo.addons.gental_mcp.services import domain_guard, registry
 from odoo.addons.gental_mcp.services.generic_tools import (
@@ -101,14 +104,104 @@ class TestGenericTools(GentalMcpCase):
         self.expose("res.country", can_read=True, can_create=True)
         tools = self.tools()
         self.assertEqual(set(tools), {"odoo_describe_model", "odoo_search", "odoo_read", "odoo_create"})
-        enum = tools["odoo_search"]["inputSchema"]["properties"]["model"]["enum"]
-        self.assertEqual(enum, ["res.country", "res.partner"])
-        self.assertEqual(tools["odoo_create"]["inputSchema"]["properties"]["model"]["enum"], ["res.country"])
+        self.assertEqual(model_consts(tools["odoo_search"]), ["res.country", "res.partner"])
+        self.assertEqual(model_consts(tools["odoo_create"]), ["res.country"])
         self.assertTrue(tools["odoo_search"]["annotations"]["readOnlyHint"])
         self.assertFalse(tools["odoo_create"]["annotations"]["readOnlyHint"])
         # A model no longer exposed (or archived) disappears from the listing.
         self.Exposed.search([("model", "=", "res.country")]).active = False
         self.assertNotIn("odoo_create", self.tools())
+
+    # -- model descriptions ---------------------------------------------------------
+
+    def test_model_titles_with_and_without_description(self):
+        self.expose("res.partner", can_read=True,
+                    assistant_description="A customer or supplier: name, phone, email. Not for employees.")
+        self.expose("res.country", can_read=True)
+        tools = self.tools()
+        for name, tool in tools.items():
+            with self.subTest(tool=name):
+                prop = tool["inputSchema"]["properties"]["model"]
+                self.assertEqual(prop["type"], "string")
+                self.assertNotIn("enum", prop)
+                self.assertEqual(schema_issues(tool["inputSchema"]), [])
+                self.assertIn("call odoo_describe_model first when unsure", tool["description"])
+        titles = {b["const"]: b["title"] for b in tools["odoo_search"]["inputSchema"]["properties"]["model"]["oneOf"]}
+        partner_label = self.env["ir.model"]._get("res.partner").name
+        country_label = self.env["ir.model"]._get("res.country").name
+        self.assertEqual(titles["res.partner"], f"{partner_label} (res.partner): A customer or supplier: name, "
+                                                "phone, email. Not for employees.")
+        self.assertEqual(titles["res.country"], f"{country_label} (res.country)")
+        # The model is still checked against the allowlist at call time.
+        self.assertIn("not available", self.err("odoo_search", {"model": "res.users"}))
+
+    def test_description_cleaned_on_save_and_in_schema(self):
+        row = self.expose("res.partner", can_read=True,
+                          assistant_description="Customers\nand suppliers\t \u202eevil\u202c\u200b ok\x07")
+        self.assertEqual(row.assistant_description, "Customers and suppliers evil ok")
+        row.assistant_description = "  \n\u2066 "
+        self.assertFalse(row.assistant_description)
+        with self.assertRaises(ValidationError):
+            row.assistant_description = "x" * (DESCRIPTION_MAX + 1)
+        with self.assertRaises(ValidationError):
+            row.assistant_description = "Bookings <b>only</b>"
+        row.assistant_description = "x" * DESCRIPTION_MAX
+        self.assertEqual(len(row.assistant_description), DESCRIPTION_MAX)
+        # Text that reached the table some other way is still cleaned and capped in the schema.
+        row.flush_recordset()
+        self.env.cr.execute(
+            "UPDATE gental_mcp_exposed_model SET assistant_description = %s WHERE id = %s",
+            ["line one\nline two \u202e" + "y" * 400, row.id],
+        )
+        row.invalidate_recordset()
+        title = self.tools()["odoo_search"]["inputSchema"]["properties"]["model"]["oneOf"][0]["title"]
+        self.assertNotIn("\n", title)
+        self.assertNotIn("\u202e", title)
+        self.assertIn("line one line two y", title)
+        self.assertTrue(title.endswith("…"))
+        self.assertLessEqual(len(title), len("(res.partner): ") + 120 + DESCRIPTION_MAX)
+
+    def test_clean_line(self):
+        self.assertEqual(clean_line("a\r\nb\u2028c\u2029d"), "a b c d")
+        self.assertEqual(clean_line("\u200f\u202aتجربة\u202c\ufeff"), "تجربة")
+        self.assertEqual(clean_line("z" * 10, limit=5), "zzzz…")
+        self.assertEqual(clean_line(None), "")
+
+    def test_describe_returns_label_and_description(self):
+        self.expose("res.partner", can_read=True, assistant_description="Customers and suppliers.")
+        self.expose("res.country", can_read=True)
+        data, _text = self.ok("odoo_describe_model", {"model": "res.partner"})
+        self.assertEqual(data["label"], self.env["ir.model"]._get("res.partner").name)
+        self.assertEqual(data["description"], "Customers and suppliers.")
+        data, _text = self.ok("odoo_describe_model", {"model": "res.country"})
+        self.assertEqual(data["label"], self.env["ir.model"]._get("res.country").name)
+        self.assertIsNone(data["description"])
+
+    def test_only_managers_edit_description(self):
+        row = self.expose("res.partner", can_read=True)
+        with self.assertRaises(AccessError), mute_logger("odoo.models"):
+            row.with_user(self.writer_user).assistant_description = "Mine now"
+        row.with_user(self.manager_user).assistant_description = "Customers."
+        self.assertEqual(row.assistant_description, "Customers.")
+
+    def test_listing_queries_flat_with_more_models(self):
+        """The titles are read in the same pass as the allowlist: no query per exposed model."""
+        names = ["res.partner", "res.country", "res.country.state", "res.currency", "res.partner.category", "res.lang"]
+
+        def count():
+            self.env.invalidate_all()
+            before = self.env.cr.sql_log_count
+            self.tools()
+            return self.env.cr.sql_log_count - before
+
+        for name in names[:2]:
+            self.expose(name, can_read=True, assistant_description=f"About {name}.")
+        self.tools()  # warm the registry caches
+        few = count()
+        for name in names[2:]:
+            self.expose(name, can_read=True, assistant_description=f"About {name}.")
+        self.tools()
+        self.assertLessEqual(count(), few)
 
     def test_every_listed_tool_schema_is_portable(self):
         tools = {t["name"]: t for t in self.assert_tool_schemas_portable()}
@@ -425,7 +518,7 @@ class TestGenericTools(GentalMcpCase):
         company = self.partner("GMX Call Co", is_company=True)
         contact = self.partner("GMX Call Contact", parent_id=company.id)
         tool = self.tools()["odoo_call_method"]
-        self.assertEqual(tool["inputSchema"]["properties"]["model"]["enum"], ["res.partner"])
+        self.assertEqual(model_consts(tool), ["res.partner"])
         self.assertEqual(tool["inputSchema"]["properties"]["method"]["enum"], ["address_get", "open_commercial_entity"])
         data, _text = self.ok("odoo_call_method", {"model": "res.partner", "ids": [contact.id],
                                                    "method": "open_commercial_entity"})
@@ -570,6 +663,10 @@ class TestGenericTools(GentalMcpCase):
         self.assertFalse(self.env["res.partner"].search([("name", "=", "GMX No Rights")]))
         log = self.env["gental.mcp.log"].sudo().search([("tool", "=", "odoo_create")], limit=1)
         self.assertEqual(log.status, "denied")  # wall 3 is a denial, not an error
+
+
+def model_consts(tool):
+    return [b["const"] for b in tool["inputSchema"]["properties"]["model"]["oneOf"]]
 
 
 def server_env(server):

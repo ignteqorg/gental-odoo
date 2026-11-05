@@ -69,27 +69,43 @@ _DOMAIN = {
 }
 
 
-def _model_schema(models):
-    return {"type": "string", "enum": models}
+# Added to every generic tool's description: the model titles are how the assistant tells the models apart.
+_PICK_MODEL = " Pick the model whose title matches the request; call odoo_describe_model first when unsure."
 
 
-def _specs(model_enum, method_enum, method_kind):
-    """The spec of every generic tool, given the model enum per tool."""
+def model_title(rule):
+    """``"<label> (<technical name>): <description>"``, or without the description when there is none.
+
+    Label and description are already one clean line each (``ExposedRule``); the admin's description is
+    the only free text reaching the model here.
+    """
+    title = f"{rule.label or rule.model} ({rule.model})"
+    return f"{title}: {rule.description}" if rule.description else title
+
+
+def _model_schema(models, rules):
+    """The ``model`` property: one ``const`` per exposed model with a title saying what it is (R18)."""
+    return {"type": "string", "oneOf": [{"const": m, "title": model_title(rules[m])} for m in models]}
+
+
+def _specs(model_enum, method_enum, method_kind, rules):
+    """The spec of every generic tool, given the model enum per tool and the rules behind it."""
     out = []
 
     def add(name, title, description, properties, required, annotations):
         if name in model_enum:
             schema = {
                 "type": "object",
-                "properties": {"model": _model_schema(model_enum[name]), **properties},
+                "properties": {"model": _model_schema(model_enum[name], rules), **properties},
                 "required": ["model", *required],
                 "additionalProperties": False,
             }
-            out.append(ToolSpec(name, title, description, schema, annotations))
+            out.append(ToolSpec(name, title, description + _PICK_MODEL, schema, annotations))
 
     add("odoo_describe_model", "Describe an Odoo model",
-        "Fields of an exposed Odoo model (name, type, label, required, read-only, selection values, "
-        "relation) and the methods you may call. Use it before searching, creating or calling methods.",
+        "What an exposed Odoo model is (label and the administrator's description), its fields (name, "
+        "type, label, required, read-only, selection values, relation) and the methods you may call. Use "
+        "it before searching, creating or calling methods.",
         {}, [], ToolAnnotations(read_only=True, idempotent=True))
     add("odoo_search", "Search Odoo records",
         "Search records of an exposed model. Returns {records, next_cursor}; pass next_cursor back as "
@@ -135,7 +151,8 @@ class GenericToolProvider:
 
     def list_tools(self, ctx):
         if self._listed is None:
-            self._listed = ctx.env["gental.mcp.exposed.model"]._mcp_rules()
+            # Model labels in the request's language; one read of the allowlist for every tool.
+            self._listed = localized_env(ctx)["gental.mcp.exposed.model"]._mcp_rules()
         rules = self._listed
         model_enum = {}
         for tool, operation in OPERATIONS.items():
@@ -149,7 +166,7 @@ class GenericToolProvider:
             method_enum = sorted({name for r in with_methods.values() for name in r.methods})
             kinds = [kind for r in with_methods.values() for kind in r.methods.values()]
             method_kind = max(kinds, key=lambda k: _SEVERITY.get(k, 2))
-        return _specs(model_enum, method_enum, method_kind)
+        return _specs(model_enum, method_enum, method_kind, rules)
 
     # -- dispatch -------------------------------------------------------------------------------
 
@@ -191,6 +208,8 @@ class GenericToolProvider:
     def _odoo_describe_model(self, env, rule, args):
         payload = {
             "model": rule.model,
+            "label": rule.label or rule.model,
+            "description": rule.description or None,
             "fields": field_guard.readable_fields(env, rule),
             "methods": [{"name": n, "kind": k} for n, k in sorted(rule.methods.items())],
         }
