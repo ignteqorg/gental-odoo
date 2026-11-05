@@ -1,7 +1,7 @@
 {
     "name": "MCP Server for AI Agents",
     "summary": "Connect Odoo to Gental, Claude, ChatGPT and any MCP client — securely.",
-    "version": "18.0.1.0.1",
+    "version": "18.0.1.0.2",
     "category": "Productivity",
     "license": "LGPL-3",
     "author": "ignteQ",
