@@ -9,17 +9,17 @@ from odoo.addons.gental_mcp.controllers.mcp import _log_call
 from odoo.addons.gental_mcp.core.context import CallContext
 from odoo.addons.gental_mcp.core.schema import schema_issues
 from odoo.addons.gental_mcp.models.exposed_model import DESCRIPTION_MAX, clean_line
-from odoo.addons.gental_mcp.core.meta import ACTION_KEY
+from odoo.addons.gental_mcp.core.meta import ACTION_KEY, LOCALE
 from odoo.addons.gental_mcp.services import domain_guard, registry
 from odoo.addons.gental_mcp.services.generic_tools import (
     DEFAULT_FIELDS_MAX, KEY_FIELDS, MAX_RECORDS_TEXT_BYTES, GenericToolProvider,
 )
 from odoo.addons.gental_mcp.core.tools import ToolError
 
-from .common import GentalMcpCase
+from .common import GentalMcpCase, clear_label_caches
 
 GENERIC = {"odoo_describe_model", "odoo_search", "odoo_read", "odoo_create", "odoo_update", "odoo_delete",
-           "odoo_call_method"}
+           "odoo_call_method", "odoo_preview_write"}
 
 
 @tagged("post_install", "-at_install", "gental_mcp")
@@ -103,9 +103,12 @@ class TestGenericTools(GentalMcpCase):
         self.expose("res.partner", can_read=True)
         self.expose("res.country", can_read=True, can_create=True)
         tools = self.tools()
-        self.assertEqual(set(tools), {"odoo_describe_model", "odoo_search", "odoo_read", "odoo_create"})
+        self.assertEqual(set(tools), {"odoo_describe_model", "odoo_search", "odoo_read", "odoo_create",
+                                      "odoo_preview_write"})
         self.assertEqual(model_consts(tools["odoo_search"]), ["res.country", "res.partner"])
         self.assertEqual(model_consts(tools["odoo_create"]), ["res.country"])
+        self.assertEqual(model_consts(tools["odoo_preview_write"]), ["res.country"])
+        self.assertTrue(tools["odoo_preview_write"]["annotations"]["readOnlyHint"])
         self.assertTrue(tools["odoo_search"]["annotations"]["readOnlyHint"])
         self.assertFalse(tools["odoo_create"]["annotations"]["readOnlyHint"])
         # A model no longer exposed (or archived) disappears from the listing.
@@ -150,7 +153,7 @@ class TestGenericTools(GentalMcpCase):
         # Text that reached the table some other way is still cleaned and capped in the schema.
         row.flush_recordset()
         self.env.cr.execute(
-            "UPDATE gental_mcp_exposed_model SET assistant_description = %s WHERE id = %s",
+            "UPDATE gental_mcp_exposed_model SET assistant_description = jsonb_build_object('en_US', %s) WHERE id = %s",
             ["line one\nline two \u202e" + "y" * 400, row.id],
         )
         row.invalidate_recordset()
@@ -176,6 +179,128 @@ class TestGenericTools(GentalMcpCase):
         data, _text = self.ok("odoo_describe_model", {"model": "res.country"})
         self.assertEqual(data["label"], self.env["ir.model"]._get("res.country").name)
         self.assertIsNone(data["description"])
+
+    def test_labels_and_description_follow_the_request_language(self):
+        """Model label, field labels (Odoo's own or custom translations, e.g. made with the
+        translate button) and the admin's description come back in the request's language; a missing
+        translation falls back to Odoo's source label."""
+        self.env["res.lang"]._activate_lang("ar_001")
+        row = self.expose("res.partner", can_read=True, assistant_description="Customers and suppliers.")
+        row.with_context(lang="ar_001").assistant_description = "العملاء والموردين."
+        self.env["ir.model"]._get("res.partner").update_field_translations("name", {"ar_001": "جهة اتصال (مخصص)"})
+        phone = self.env["ir.model.fields"]._get("res.partner", "phone")
+        phone.update_field_translations("field_description", {"ar_001": "الجوال (مخصص)"})
+        clear_label_caches(self.env)
+        english_label = self.env["ir.model"].with_context(lang="en_US")._get("res.partner").name
+        english_phone = phone.with_context(lang="en_US").field_description
+        english_email = self.env["ir.model.fields"].with_context(lang="en_US")._get("res.partner", "email").field_description
+
+        for locale, label, description, phone_label in (
+            ("ar", "جهة اتصال (مخصص)", "العملاء والموردين.", "الجوال (مخصص)"),
+            ("en", english_label, "Customers and suppliers.", english_phone),
+        ):
+            with self.subTest(locale=locale):
+                meta = {LOCALE: locale}
+                server = self.server(self.writer_user)
+                ctx = CallContext.build(server_env(server), self.writer_user.id, self.client.id, meta, 1, "en")
+                listed = server.handle({"jsonrpc": "2.0", "id": 1, "method": "tools/list", "params": {"_meta": meta}},
+                                       ctx)["result"]["tools"]
+                search = next(t for t in listed if t["name"] == "odoo_search")
+                self.assertEqual(search["inputSchema"]["properties"]["model"]["oneOf"][0]["title"],
+                                 f"{label} (res.partner): {description}")
+                data, _text = self.ok("odoo_describe_model", {"model": "res.partner"}, meta=meta)
+                self.assertEqual((data["label"], data["description"]), (label, description))
+                self.assertEqual(data["fields"]["phone"]["string"], phone_label)
+                # No translation for this label in either language: Odoo's source label.
+                self.assertEqual(data["fields"]["email"]["string"], english_email)
+
+    # -- write preview --------------------------------------------------------------
+
+    def preview(self, arguments, locale="en", **kw):
+        return self.ok("odoo_preview_write", arguments, meta={LOCALE: locale}, **kw)[0]
+
+    def test_preview_create_update_delete_in_both_languages(self):
+        """The preview names the model, the target records and every field with Odoo's labels (custom
+        translations included) and readable values, in the request's language; nothing is written."""
+        self.env["res.lang"]._activate_lang("ar_001")
+        self.expose("res.partner", can_read=True, can_create=True, can_write=True, can_unlink=True)
+        self.env["ir.model"]._get("res.partner").update_field_translations("name", {"ar_001": "جهة اتصال"})
+        for field, arabic in (("name", "الاسم (مخصص)"), ("country_id", "الدولة (مخصص)"),
+                              ("active", "نشط؟"), ("category_id", "الوسوم (مخصص)")):
+            self.env["ir.model.fields"]._get("res.partner", field).update_field_translations(
+                "field_description", {"ar_001": arabic})
+        clear_label_caches(self.env)
+        saudi = self.env.ref("base.sa")
+        tag = self.env["res.partner.category"].create({"name": "VIP"})
+        targets = self.partner("GMX Preview A") | self.partner("GMX Preview B")
+        values = {"name": "GMX New", "country_id": saudi.id, "active": True, "category_id": [tag.id]}
+        count = self.env["res.partner"].search_count([])
+
+        data = self.preview({"model": "res.partner", "values": values}, "ar")
+        self.assertIsNone(data["total"])
+        self.assertEqual([line["label"] for line in data["lines"]],
+                         ["نوع السجل", "الاسم (مخصص)", "الدولة (مخصص)", "نشط؟", "الوسوم (مخصص)"])
+        self.assertEqual(data["lines"][0]["value"], "جهة اتصال")
+        self.assertEqual(data["lines"][2]["value"], saudi.with_context(lang="ar_001").display_name)
+        self.assertEqual(data["lines"][3]["value"], "نعم")
+        self.assertEqual(data["lines"][4]["value"], "VIP")
+
+        english = self.env["ir.model.fields"].with_context(lang="en_US")
+        data = self.preview({"model": "res.partner", "values": values}, "en")
+        self.assertEqual([line["label"] for line in data["lines"]], [
+            "Record type", english._get("res.partner", "name").field_description,
+            english._get("res.partner", "country_id").field_description,
+            english._get("res.partner", "active").field_description,
+            english._get("res.partner", "category_id").field_description,
+        ])
+        self.assertEqual(data["lines"][3]["value"], "Yes")
+
+        data = self.preview({"model": "res.partner", "ids": targets.ids, "values": {"active": False}}, "en")
+        self.assertEqual(data["lines"][1], {"label": "Records", "value": "GMX Preview A, GMX Preview B"})
+        self.assertEqual(data["lines"][2]["value"], "No")
+
+        data = self.preview({"model": "res.partner", "ids": targets.ids}, "ar")
+        self.assertEqual(data["lines"][1], {"label": "السجلات", "value": "GMX Preview A, GMX Preview B"})
+        self.assertEqual(data["lines"][2], {"label": "التغيير", "value": "بتنحذف هذي السجلات."})
+
+        # Nothing was written.
+        self.assertEqual(self.env["res.partner"].search_count([]), count)
+        self.assertEqual(targets.exists(), targets)
+        self.assertEqual(targets.filtered("active"), targets)
+        self.assertFalse(targets.category_id)
+
+    def test_preview_names_at_most_five_targets(self):
+        self.expose("res.partner", can_read=True, can_unlink=True)
+        partners = self.env["res.partner"].browse([self.partner(f"GMX Many {i}").id for i in range(7)])
+        data = self.preview({"model": "res.partner", "ids": partners.ids})
+        self.assertTrue(data["lines"][1]["value"].endswith(" +2 more"), data["lines"][1]["value"])
+
+    def test_preview_follows_the_write_rules(self):
+        """Exactly the write path's refusals: the allowlist operation, hidden / secret / read-only fields,
+        unreadable linked records, targets outside the extra domain, and the user's own rights."""
+        self.expose("res.partner", can_read=True, can_write=True, hidden=("email",))
+        self.expose("res.country", can_read=True)
+        partner = self.partner("GMX Rules")
+        self.assertIn("may not do this", self.err("odoo_preview_write", {"model": "res.partner",
+                                                                         "values": {"name": "x"}}))  # no create
+        self.assertIn("may not do this", self.err("odoo_preview_write", {"model": "res.partner",
+                                                                         "ids": [partner.id]}))  # no delete
+        self.assertIn("not available", self.err("odoo_preview_write", {"model": "res.users", "ids": [1]}))
+        self.assertIn("Pass values", self.err("odoo_preview_write", {"model": "res.partner"}))
+        hidden = self.err("odoo_preview_write", {"model": "res.partner", "ids": [partner.id],
+                                                 "values": {"email": "x@example.com"}})
+        self.assertIn("Unknown or hidden field", hidden)
+        self.assertIn("cannot be set", self.err("odoo_preview_write", {"model": "res.partner", "ids": [partner.id],
+                                                                       "values": {"display_name": "x"}}))
+        # A user who can't write partners is refused, as the write would be (logged as denied).
+        reader = self._make_user("gmcp_preview_reader", "MCP Reader", ["base.group_user", "gental_mcp.group_mcp_connect"])
+        result = self.call("odoo_preview_write", {"model": "res.partner", "ids": [partner.id],
+                                                  "values": {"name": "Renamed"}}, user=reader)
+        self.assertTrue(result["isError"])
+        self.assertEqual(partner.name, "GMX Rules")
+        log = self.env["gental.mcp.log"].sudo().search([("tool", "=", "odoo_preview_write"), ("user_id", "=", reader.id)])
+        self.assertEqual(log.status, "denied")
+        self.assertEqual(log.tool_kind, "read")
 
     def test_only_managers_edit_description(self):
         row = self.expose("res.partner", can_read=True)

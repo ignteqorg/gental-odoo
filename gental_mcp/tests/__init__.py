@@ -5,6 +5,7 @@ from . import test_screens
 from . import test_mcp_endpoint
 from . import test_action_keys
 from . import test_curated_framework
+from . import test_tool_i18n
 from .full import test_full_profile
 from .full import test_inventory_pos_tools
 from . import test_identity

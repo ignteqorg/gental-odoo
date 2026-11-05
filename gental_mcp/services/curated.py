@@ -20,10 +20,11 @@ from dataclasses import dataclass
 from typing import Dict, List, Optional, Tuple, Type, Union
 
 from odoo.exceptions import AccessError, MissingError, UserError, ValidationError
+from odoo.tools.translate import _lt
 
 from .. import compat
 from ..core import meta as gmeta
-from ..core.context import CallContext
+from ..core.context import ODOO_LANGS, CallContext
 from ..core.tools import ToolAnnotations, ToolDenied, ToolError, ToolResult, ToolSpec
 from . import areas, identity
 
@@ -44,8 +45,8 @@ PUBLIC_SAFE_TOOLS = frozenset({
     "my_order_document",
 })
 AUDIENCE_PUBLIC, AUDIENCE_STAFF = "public", "staff"
-STAFF_DESCRIPTION_PREFIX = "Staff tool: "
-STAFF_TITLE_PREFIX = {"en": "Staff: ", "ar": "للموظفين: "}
+STAFF_DESCRIPTION = _lt("Staff tool: %s")
+STAFF_TITLE = _lt("Staff: %s")
 
 
 @dataclass(frozen=True)
@@ -119,25 +120,29 @@ def odoo_refusal(ctx: CallContext, error: Exception) -> ToolError:
     return ToolError(message("failed", ctx.locale))
 
 
-def id_schema(description: Optional[str] = None, **extra) -> dict:
-    """The schema of a record id argument (``1`` to ``ID_MAX``)."""
+def id_schema(description=None, title=None, **extra) -> dict:
+    """The schema of a record id argument (``1`` to ``ID_MAX``); ``title`` and ``description`` are ``_lt`` terms."""
     schema = {"type": "integer", "minimum": 1, "maximum": ID_MAX, **extra}
-    if description:
+    if title is not None:
+        schema["title"] = title
+    if description is not None:
         schema["description"] = description
     return schema
 
 
 class CuratedTool:
-    """One curated tool. Subclasses set the class attributes and implement ``input_schema`` and ``run``."""
+    """One curated tool. Subclasses set the class attributes and implement ``input_schema`` and ``run``.
+
+    ``label`` and ``description`` are ``_lt`` terms, and so is the ``title`` (and any ``description``) of every
+    input property: ``spec`` renders them in the request's language (one language per response)."""
 
     name: str = ""
     area: str = ""
     kind: str = "read"  # "read" | "write" | "destructive"
     idempotent: bool = False
     requires_identity: bool = False
-    title_en: str = ""
-    title_ar: str = ""
-    description: str = ""  # English, written for the model
+    label = ""  # ``_lt`` term: the tool's title
+    description = ""  # ``_lt`` term, written for the model
 
     def input_schema(self, ctx: CallContext) -> dict:
         raise NotImplementedError
@@ -177,21 +182,23 @@ class CuratedTool:
         """``"public"`` for tools safe on a customer-facing agent (``PUBLIC_SAFE_TOOLS``), else ``"staff"``."""
         return AUDIENCE_PUBLIC if self.name in PUBLIC_SAFE_TOOLS else AUDIENCE_STAFF
 
-    def title(self, ctx: CallContext) -> str:
-        locale = "ar" if ctx.locale == "ar" else "en"
-        title = self.title_ar if locale == "ar" else self.title_en
-        return (STAFF_TITLE_PREFIX[locale] + title) if self.audience() == AUDIENCE_STAFF else title
+    def title(self, lang: str) -> str:
+        """The title in Odoo language ``lang``: staff tools' start with ``Staff:`` (``للموظفين:``)."""
+        title = compat.translate(lang, self.label)
+        return compat.translate(lang, STAFF_TITLE) % title if self.audience() == AUDIENCE_STAFF else title
 
-    def full_description(self) -> str:
-        """The description the model sees: staff tools start with ``Staff tool:``."""
+    def full_description(self, lang: str) -> str:
+        """The description the model sees, in Odoo language ``lang``: staff tools' start with ``Staff tool:``."""
+        description = compat.translate(lang, self.description)
         if self.audience() == AUDIENCE_STAFF:
-            return STAFF_DESCRIPTION_PREFIX + self.description
-        return self.description
+            return compat.translate(lang, STAFF_DESCRIPTION) % description
+        return description
 
     def spec(self, ctx: CallContext, input_schema: Optional[dict] = None) -> ToolSpec:
+        lang = ODOO_LANGS.get(ctx.locale, "en_US")
         schema = self.input_schema(ctx) if input_schema is None else input_schema
-        return ToolSpec(self.name, self.title(ctx), self.full_description(), schema, self.annotations(),
-                        meta={gmeta.AUDIENCE: self.audience()})
+        return ToolSpec(self.name, self.title(lang), self.full_description(lang), compat.translate_terms(lang, schema),
+                        self.annotations(), meta={gmeta.AUDIENCE: self.audience()})
 
 
 def visible_records(ctx: CallContext, model: str, ids):

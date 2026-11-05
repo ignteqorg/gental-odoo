@@ -92,6 +92,16 @@ def is_model_method(func):
     return bool(getattr(func, "_api_model", False)) or getattr(func, "_api", None) == "model"
 
 
+def check_access(records, operation):
+    """Raise ``AccessError`` unless the current user may ``operation`` (``create``, ``write``, ``unlink``) on
+    ``records``: the ACL, and the record rules on the records given (none for an empty recordset)."""
+    if hasattr(records, "has_access"):  # 18.0+
+        records.check_access(operation)
+        return
+    records.check_access_rights(operation)  # 17.0
+    records.check_access_rule(operation)
+
+
 def can_read_model(model):
     """Whether the current user has the read ACL on ``model`` (record rules not included)."""
     if hasattr(model, "has_access"):
@@ -113,9 +123,20 @@ def translate(lang, source):
     from odoo.tools.translate import code_translations
 
     text = getattr(source, "_source", source)
-    if not lang or lang == "en_US":
+    if not text or not lang or lang == "en_US":
         return text
     return code_translations.get_python_translations("gental_mcp", lang).get(text, text)
+
+
+def translate_terms(lang, value):
+    """``value`` (a tool's JSON schema, dicts and lists) with every ``_lt`` term in it translated to ``lang``."""
+    if isinstance(value, dict):
+        return {k: translate_terms(lang, v) for k, v in value.items()}
+    if isinstance(value, list):
+        return [translate_terms(lang, v) for v in value]
+    if hasattr(value, "_source"):
+        return translate(lang, value)
+    return value
 
 
 def sale_line_taxes_field(env):

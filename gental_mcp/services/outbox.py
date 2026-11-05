@@ -109,7 +109,8 @@ class DocumentTool(curated.CuratedTool):
     kind = "read"
     model: str = ""
     id_arg: str = ""
-    id_description: str = ""
+    id_description = None  # ``_lt`` terms
+    id_title = None
     report_xmlid: str = ""
     fallback_report_xmlid: str = ""
 
@@ -126,7 +127,7 @@ class DocumentTool(curated.CuratedTool):
     def input_schema(self, ctx: CallContext) -> dict:
         return {
             "type": "object",
-            "properties": {self.id_arg: curated.id_schema(self.id_description)},
+            "properties": {self.id_arg: curated.id_schema(self.id_description, title=self.id_title)},
             "required": [self.id_arg],
             "additionalProperties": False,
         }

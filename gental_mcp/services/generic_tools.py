@@ -16,8 +16,10 @@ import psycopg2
 from odoo import _
 from odoo.exceptions import AccessError, UserError, ValidationError
 from odoo.models import BaseModel
+from odoo.tools.translate import _lt
 
-from ..compat import can_read_model, domain_and, is_model_method
+from ..compat import can_read_model, check_access, domain_and, is_model_method, translate, translate_terms
+from ..core.context import ODOO_LANGS
 from ..core.tools import ToolAnnotations, ToolDenied, ToolError, ToolResult, ToolSpec
 from ..models.exposed_model import FORBIDDEN_METHODS, is_rpc_callable
 from . import domain_guard, field_guard
@@ -49,19 +51,28 @@ OPERATIONS = {
     "odoo_delete": "unlink",
 }
 CALL_METHOD = "odoo_call_method"
+# Previews odoo_create / odoo_update / odoo_delete for a confirmation card, without writing (Gental maps the three
+# writes to it). The operation comes from the arguments: values alone create, ids and values update, ids delete.
+PREVIEW_WRITE = "odoo_preview_write"
+WRITE_OPERATIONS = ("create", "write", "unlink")
+PREVIEW_NAMES = 5  # target records named in a preview, then "+N more"
+PREVIEW_VALUE_MAX = 500
 
-_IDS = {"type": "array", "items": {"type": "integer"}}
-_FIELDS = {"type": "array", "items": {"type": "string"},
-           "description": "Field names (see odoo_describe_model). Empty: display_name and a few key fields."}
-_VALUES = {"type": "object", "description": "Field values: scalars; many2many fields take a list of ids."}
+# Titles and descriptions are ``_lt`` terms, rendered in the request's language by ``_specs``.
+_IDS = {"type": "array", "items": {"type": "integer"}, "title": _lt("Record ids")}
+_FIELDS = {"type": "array", "items": {"type": "string"}, "title": _lt("Fields"),
+           "description": _lt("Field names (see odoo_describe_model). Empty: display_name and a few key fields.")}
+_VALUES = {"type": "object", "title": _lt("Values"),
+           "description": _lt("Field values: scalars; many2many fields take a list of ids.")}
 _LEAF_VALUE = {"anyOf": [
     {"type": "string"}, {"type": "number"}, {"type": "boolean"},
     {"type": "array", "items": {"anyOf": [{"type": "string"}, {"type": "number"}]}},
 ]}
 _DOMAIN = {
     "type": "array",
-    "description": "Odoo domain over the model's own fields, e.g. [[\"name\", \"ilike\", \"acme\"]]; "
-                   "no dotted paths. Items are [field, operator, value] or \"&\", \"|\", \"!\".",
+    "title": _lt("Filter"),
+    "description": _lt("Odoo domain over the model's own fields, e.g. [[\"name\", \"ilike\", \"acme\"]]; "
+                       "no dotted paths. Items are [field, operator, value] or \"&\", \"|\", \"!\"."),
     "items": {"anyOf": [
         {"type": "string", "enum": ["&", "|", "!"]},
         {"type": "array", "items": _LEAF_VALUE, "minItems": 3, "maxItems": 3},
@@ -70,7 +81,7 @@ _DOMAIN = {
 
 
 # Added to every generic tool's description: the model titles are how the assistant tells the models apart.
-_PICK_MODEL = " Pick the model whose title matches the request; call odoo_describe_model first when unsure."
+_PICK_MODEL = _lt("Pick the model whose title matches the request; call odoo_describe_model first when unsure.")
 
 
 def model_title(rule):
@@ -83,60 +94,73 @@ def model_title(rule):
     return f"{title}: {rule.description}" if rule.description else title
 
 
-def _model_schema(models, rules):
+def _model_schema(models, rules, lang):
     """The ``model`` property: one ``const`` per exposed model with a title saying what it is (R18)."""
-    return {"type": "string", "oneOf": [{"const": m, "title": model_title(rules[m])} for m in models]}
+    return {"type": "string", "title": translate(lang, _lt("Model")),
+            "oneOf": [{"const": m, "title": model_title(rules[m])} for m in models]}
 
 
-def _specs(model_enum, method_enum, method_kind, rules):
-    """The spec of every generic tool, given the model enum per tool and the rules behind it."""
+def _specs(model_enum, method_enum, method_kind, rules, lang):
+    """The spec of every generic tool in Odoo language ``lang``, given the model enum per tool and the rules
+    behind it."""
     out = []
 
     def add(name, title, description, properties, required, annotations):
         if name in model_enum:
             schema = {
                 "type": "object",
-                "properties": {"model": _model_schema(model_enum[name], rules), **properties},
+                "properties": {"model": _model_schema(model_enum[name], rules, lang),
+                               **translate_terms(lang, properties)},
                 "required": ["model", *required],
                 "additionalProperties": False,
             }
-            out.append(ToolSpec(name, title, description + _PICK_MODEL, schema, annotations))
+            description = f"{translate(lang, description)} {translate(lang, _PICK_MODEL)}"
+            out.append(ToolSpec(name, translate(lang, title), description, schema, annotations))
 
-    add("odoo_describe_model", "Describe an Odoo model",
-        "What an exposed Odoo model is (label and the administrator's description), its fields (name, "
-        "type, label, required, read-only, selection values, relation) and the methods you may call. Use "
-        "it before searching, creating or calling methods.",
+    add("odoo_describe_model", _lt("Describe an Odoo model"),
+        _lt("What an exposed Odoo model is (label and the administrator's description), its fields (name, "
+            "type, label, required, read-only, selection values, relation) and the methods you may call. Use "
+            "it before searching, creating or calling methods."),
         {}, [], ToolAnnotations(read_only=True, idempotent=True))
-    add("odoo_search", "Search Odoo records",
-        "Search records of an exposed model. Returns {records, next_cursor}; pass next_cursor back as "
-        "cursor for the next page. Ask only for the fields you need: large results are cut short.",
+    add("odoo_search", _lt("Search Odoo records"),
+        _lt("Search records of an exposed model. Returns {records, next_cursor}; pass next_cursor back as "
+            "cursor for the next page. Ask only for the fields you need: large results are cut short."),
         {"domain": _DOMAIN, "fields": _FIELDS,
-         "order": {"type": "string", "description": "\"<field> asc|desc\", comma-separated for several."},
-         "limit": {"type": "integer", "minimum": 1, "description": "Default 20, at most 200."},
-         "cursor": {"type": "string"}},
+         "order": {"type": "string", "title": _lt("Sort order"),
+                   "description": _lt("\"<field> asc|desc\", comma-separated for several.")},
+         "limit": {"type": "integer", "minimum": 1, "title": _lt("How many"),
+                   "description": _lt("Default 20, at most 200.")},
+         "cursor": {"type": "string", "title": _lt("Next page")}},
         [], ToolAnnotations(read_only=True, idempotent=True))
-    add("odoo_read", "Read Odoo records",
-        "Read records of an exposed model by id. Ids you cannot see are left out.",
+    add("odoo_read", _lt("Read Odoo records"),
+        _lt("Read records of an exposed model by id. Ids you cannot see are left out."),
         {"ids": {**_IDS, "maxItems": MAX_RECORDS}, "fields": _FIELDS},
         ["ids"], ToolAnnotations(read_only=True, idempotent=True))
-    add("odoo_create", "Create an Odoo record",
-        "Create one record of an exposed model. Returns {id, display_name}.",
+    add("odoo_create", _lt("Create an Odoo record"),
+        _lt("Create one record of an exposed model. Returns {id, display_name}."),
         {"values": _VALUES}, ["values"], ToolAnnotations(read_only=False))
-    add("odoo_update", "Update Odoo records",
-        "Set field values on records of an exposed model (at most 50 ids).",
+    add("odoo_update", _lt("Update Odoo records"),
+        _lt("Set field values on records of an exposed model (at most 50 ids)."),
         {"ids": {**_IDS, "maxItems": MAX_WRITE_IDS}, "values": _VALUES},
         ["ids", "values"], ToolAnnotations(read_only=False, idempotent=True))
-    add("odoo_delete", "Delete Odoo records",
-        "Delete records of an exposed model (at most 50 ids). This cannot be undone.",
+    add("odoo_delete", _lt("Delete Odoo records"),
+        _lt("Delete records of an exposed model (at most 50 ids). This cannot be undone."),
         {"ids": {**_IDS, "maxItems": MAX_WRITE_IDS}},
         ["ids"], ToolAnnotations(read_only=False, destructive=True))
+    add(PREVIEW_WRITE, _lt("Preview a change"),
+        _lt("Shows what odoo_create, odoo_update or odoo_delete would do, without changing anything: values "
+            "without ids previews a create, ids with values an update, ids alone a delete. The same rules as the "
+            "change itself apply. Returns lines (label and value) in the request's language."),
+        {"ids": {**_IDS, "maxItems": MAX_WRITE_IDS}, "values": _VALUES},
+        [], ToolAnnotations(read_only=True, idempotent=True))
     if CALL_METHOD in model_enum:
-        add(CALL_METHOD, "Call an Odoo method",
-            "Run a method the administrator allowed on records of an exposed model (at most 50 ids; "
-            "an empty list calls it on the model). odoo_describe_model lists the methods per model.",
+        add(CALL_METHOD, _lt("Call an Odoo method"),
+            _lt("Run a method the administrator allowed on records of an exposed model (at most 50 ids; "
+                "an empty list calls it on the model). odoo_describe_model lists the methods per model."),
             {"ids": {**_IDS, "maxItems": MAX_WRITE_IDS},
-             "method": {"type": "string", "enum": method_enum},
-             "kwargs": {"type": "object", "description": "Keyword arguments of the method."}},
+             "method": {"type": "string", "enum": method_enum, "title": _lt("Method")},
+             "kwargs": {"type": "object", "title": _lt("Method arguments"),
+                        "description": _lt("Keyword arguments of the method.")}},
             ["ids", "method"],
             ToolAnnotations(read_only=method_kind == "read", destructive=method_kind == "destructive"))
     return out
@@ -159,6 +183,9 @@ class GenericToolProvider:
             models = sorted(m for m, r in rules.items() if operation is None or r.allows(operation))
             if models:
                 model_enum[tool] = models
+        writable = sorted(m for m, r in rules.items() if any(r.allows(op) for op in WRITE_OPERATIONS))
+        if writable:
+            model_enum[PREVIEW_WRITE] = writable
         with_methods = {m: r for m, r in rules.items() if r.methods}
         method_enum, method_kind = [], "read"
         if with_methods:
@@ -166,14 +193,14 @@ class GenericToolProvider:
             method_enum = sorted({name for r in with_methods.values() for name in r.methods})
             kinds = [kind for r in with_methods.values() for kind in r.methods.values()]
             method_kind = max(kinds, key=lambda k: _SEVERITY.get(k, 2))
-        return _specs(model_enum, method_enum, method_kind, rules)
+        return _specs(model_enum, method_enum, method_kind, rules, ODOO_LANGS.get(ctx.locale, "en_US"))
 
     # -- dispatch -------------------------------------------------------------------------------
 
     def call(self, name, args, ctx):
         env = localized_env(ctx)
         self.env = env  # the frame lookup of ``_()`` reads ``self.env.lang``
-        if name != CALL_METHOD and name not in OPERATIONS:
+        if name not in (CALL_METHOD, PREVIEW_WRITE) and name not in OPERATIONS:
             raise ToolError(_("Unknown tool: %s", name))
         model = args.get("model")
         rule = env["gental.mcp.exposed.model"]._mcp_rules(model).get(model) if isinstance(model, str) else None
@@ -184,13 +211,18 @@ class GenericToolProvider:
                 raise ToolDenied(_("The method %(method)s is not allowed on %(model)s.",
                                    method=args.get("method"), model=model))
         else:
-            operation = OPERATIONS[name]
+            operation = _preview_operation(args) if name == PREVIEW_WRITE else OPERATIONS[name]
+            if name == PREVIEW_WRITE and operation is None:
+                raise ToolError(_("Pass values to preview a create, ids and values for an update, or ids alone "
+                                  "for a delete."))
             if operation is not None and not rule.allows(operation):
                 raise ToolDenied(_("Assistants may not do this on %s.", model))
         handler = getattr(self, "_" + name)
         try:
             if name == "odoo_create":
                 return handler(env, rule, args, ctx)
+            if name == PREVIEW_WRITE:
+                return handler(env, rule, args, ctx, operation)
             return handler(env, rule, args)
         except AccessError as e:
             # Wall 3: the acting user's ACLs or record rules refused it. Logged as denied.
@@ -291,6 +323,27 @@ class GenericToolProvider:
         records.unlink()
         env.flush_all()
         return _result(env, {"deleted": ids})
+
+    def _odoo_preview_write(self, env, rule, args, ctx, operation):
+        """What the write would change, as ``{lines: [{label, value}], total: null}`` in the request's language.
+        The write path's checks run (allowlist operation, visible targets, the user's access rights and record
+        rules, hidden / secret / binary / read-only fields, readable linked records); nothing is written."""
+        lang = ODOO_LANGS.get(ctx.locale, "en_US")
+        records = env[rule.model] if operation == "create" else self._all_visible(env, rule, args["ids"])
+        check_access(records, operation)
+        lines = [{"label": translate(lang, _lt("Record type")), "value": rule.label or rule.model}]
+        if operation != "create":
+            lines.append({"label": translate(lang, _lt("Records")), "value": _record_names(records, lang)})
+        if operation == "unlink":
+            lines.append({"label": translate(lang, _lt("Change")),
+                          "value": translate(lang, _lt("These records will be deleted."))})
+        else:
+            values = args["values"]
+            self._values(env, rule, values, None if operation == "create" else records)
+            readable = field_guard.readable_fields(env, rule)
+            lines += [{"label": readable[name]["string"], "value": _shown(env, readable[name], value, lang)}
+                      for name, value in values.items()]
+        return _result(env, {"lines": lines, "total": None})
 
     def _odoo_call_method(self, env, rule, args):
         name = args["method"]
@@ -471,6 +524,43 @@ def localized_env(ctx):
     if not (lang or "").startswith(ctx.locale or "-"):
         lang = next((code for code in installed if code.split("_")[0] == ctx.locale), lang)
     return env(context=dict(env.context, lang=lang or "en_US"))
+
+
+def _preview_operation(args):
+    """The write ``odoo_preview_write`` previews: ``create``, ``write``, ``unlink``, or None for other arguments."""
+    ids, values = bool(args.get("ids")), bool(args.get("values"))
+    if values:
+        return "write" if ids else "create"
+    return "unlink" if ids else None
+
+
+def _record_names(records, lang):
+    """Display names of ``records`` (the first ``PREVIEW_NAMES``, then "+N more")."""
+    names = ", ".join(r.display_name or str(r.id) for r in records[:PREVIEW_NAMES])
+    more = len(records) - PREVIEW_NAMES
+    if more <= 0:
+        return names
+    return names + " " + translate(lang, _lt("+%s more")) % more
+
+
+def _shown(env, info, value, lang):
+    """A field value as a person reads it: names for linked records, labels for selections, Yes / No."""
+    ftype = info["type"]
+    if ftype == "boolean":
+        return translate(lang, _lt("Yes") if value else _lt("No"))
+    if value is None or value is False or value == "" or value == []:
+        return translate(lang, _lt("(empty)"))
+    if ftype == "many2one":
+        return env[info["relation"]].browse(value).display_name
+    if ftype == "many2many":
+        return ", ".join(env[info["relation"]].browse(value).mapped("display_name"))
+    if ftype == "reference":
+        target, rid = _parse_reference(env, value)
+        return env[target].browse(rid).display_name
+    if ftype == "selection":
+        return dict(info.get("selection") or []).get(value, str(value))
+    text = str(value)
+    return text if len(text) <= PREVIEW_VALUE_MAX else text[:PREVIEW_VALUE_MAX - 1] + "…"
 
 
 def _visible(env, rule, ids):

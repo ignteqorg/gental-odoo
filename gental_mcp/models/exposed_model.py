@@ -108,8 +108,9 @@ class GentalMcpExposedModel(models.Model):
         "ir.model.fields", string="Hidden Fields", domain="[('model_id', '=', model_id)]"
     )
     extra_domain = fields.Char(default="[]", help="Records outside this domain stay invisible to assistants.")
+    # Translatable: assistants get it in the request's language (generic tools' titles, odoo_describe_model).
     assistant_description = fields.Char(
-        string="Description for assistants",
+        string="Description for assistants", translate=True,
         help="What this model is in your business and when to use it, e.g. 'A customer's trip booking: "
              "status, dates, seats. Not for invoices.' Assistants see it next to the model's name, so they "
              "pick the right model. Plain text, one line, at most 300 characters.",
