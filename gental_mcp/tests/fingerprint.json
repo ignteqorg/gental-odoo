@@ -390,6 +390,10 @@
    "required": false,
    "type": "boolean"
   },
+  "assistant_description": {
+   "required": false,
+   "type": "char"
+  },
   "can_create": {
    "required": false,
    "type": "boolean"

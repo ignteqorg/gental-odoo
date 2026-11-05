@@ -1,4 +1,6 @@
 import ast
+import re
+import unicodedata
 from typing import NamedTuple
 
 from odoo import _, api, fields, models
@@ -27,6 +29,28 @@ def is_rpc_callable(model, name):
         return False
     return not any(getattr(getattr(klass, name, None), "_api_private", False) for klass in cls.mro())
 DOMAIN_OPERATORS = {"&", "|", "!"}
+DESCRIPTION_MAX = 300
+_HTML_TAG = re.compile(r"<\s*/?\s*[A-Za-z!?][^>]*>")
+_SPACES = re.compile(r"\s+")
+
+
+def clean_line(text, limit=DESCRIPTION_MAX):
+    """``text`` as one plain line for a tool schema: control and format characters (bidi overrides,
+    zero-width marks) dropped, line breaks and runs of spaces folded to one space, at most ``limit``
+    characters (cut with an ellipsis)."""
+    if not isinstance(text, str):
+        return ""
+    kept = []
+    for char in text:
+        category = unicodedata.category(char)
+        if char in "\t\n\r\v\f\u2028\u2029" or category in ("Zl", "Zp"):
+            kept.append(" ")
+        elif category[0] != "C":  # Cc control, Cf format (bidi, zero-width), Cs, Co, Cn
+            kept.append(char)
+    line = _SPACES.sub(" ", "".join(kept)).strip()
+    if len(line) > limit:
+        line = line[:limit - 1].rstrip() + "…"
+    return line
 FALSE_DOMAIN = [("id", "in", [])]
 
 
@@ -41,6 +65,8 @@ class ExposedRule(NamedTuple):
     methods: dict  # method name -> kind ("read" / "write" / "destructive")
     hidden: frozenset  # hidden field names
     extra_domain: list
+    label: str = ""  # the model's display name, in the reading environment's language
+    description: str = ""  # the admin's "Description for assistants", cleaned to one line
 
     def allows(self, operation):
         """``operation``: ``read``, ``create``, ``write`` or ``unlink``."""
@@ -82,10 +108,38 @@ class GentalMcpExposedModel(models.Model):
         "ir.model.fields", string="Hidden Fields", domain="[('model_id', '=', model_id)]"
     )
     extra_domain = fields.Char(default="[]", help="Records outside this domain stay invisible to assistants.")
+    assistant_description = fields.Char(
+        string="Description for assistants",
+        help="What this model is in your business and when to use it, e.g. 'A customer's trip booking: "
+             "status, dates, seats. Not for invoices.' Assistants see it next to the model's name, so they "
+             "pick the right model. Plain text, one line, at most 300 characters.",
+    )
     active = fields.Boolean(default=True)
 
     def init(self):
         create_unique_index(self.env.cr, "gental_mcp_exposed_model_model_id_uniq", self._table, ["model_id"])
+
+    @api.model_create_multi
+    def create(self, vals_list):
+        for vals in vals_list:
+            if "assistant_description" in vals:
+                vals["assistant_description"] = self._clean_description(vals["assistant_description"])
+        return super().create(vals_list)
+
+    def write(self, vals):
+        if "assistant_description" in vals:
+            vals = dict(vals, assistant_description=self._clean_description(vals["assistant_description"]))
+        return super().write(vals)
+
+    @api.model
+    def _clean_description(self, value):
+        """Stored form of a description: one plain line (control and bidi characters dropped), or False.
+
+        Not cut here: an over-long text is refused by ``_check_assistant_description`` instead.
+        """
+        if not value or not isinstance(value, str):
+            return False
+        return clean_line(value, limit=len(value)) or False
 
     @private
     @api.model
@@ -131,8 +185,22 @@ class GentalMcpExposedModel(models.Model):
                 methods={m.name: m.kind for m in row.method_ids},
                 hidden=frozenset(row.hidden_field_ids.mapped("name")),
                 extra_domain=extra,
+                label=clean_line(row.model_id.name or "", limit=120) or row.model,
+                description=clean_line(row.assistant_description or ""),
             )
         return rules
+
+    @api.constrains("assistant_description")
+    def _check_assistant_description(self):
+        for rec in self:
+            text = rec.assistant_description or ""
+            if len(text) > DESCRIPTION_MAX:
+                raise ValidationError(_(
+                    "The description for assistants is %(length)s characters long: keep it to %(max)s.",
+                    length=len(text), max=DESCRIPTION_MAX,
+                ))
+            if _HTML_TAG.search(text):
+                raise ValidationError(_("The description for assistants is plain text: remove the HTML tags."))
 
     @api.constrains("extra_domain")
     def _check_extra_domain(self):
