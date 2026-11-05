@@ -783,6 +783,11 @@ msgid "Description"
 msgstr "الوصف"
 
 #. module: gental_mcp
+#: model:ir.model.fields,field_description:gental_mcp.field_gental_mcp_exposed_model__assistant_description
+msgid "Description for assistants"
+msgstr "وصف للمساعدين"
+
+#. module: gental_mcp
 #: model:ir.model.fields.selection,name:gental_mcp.selection__gental_mcp_exposed_method__kind__destructive
 #: model:ir.model.fields.selection,name:gental_mcp.selection__gental_mcp_log__tool_kind__destructive
 #: model:ir.model.fields.selection,name:gental_mcp.selection__gental_mcp_tool_setting__kind__destructive
@@ -2704,6 +2709,20 @@ msgstr "الموعد لازم يكون تاريخ مثل 2026-11-30."
 
 #. module: gental_mcp
 #. odoo-python
+#: code:addons/gental_mcp/models/exposed_model.py:0
+msgid ""
+"The description for assistants is %(length)s characters long: keep it to "
+"%(max)s."
+msgstr "وصف المساعدين طوله %(length)s حرف: خلّه %(max)s حرف أو أقل."
+
+#. module: gental_mcp
+#. odoo-python
+#: code:addons/gental_mcp/models/exposed_model.py:0
+msgid "The description for assistants is plain text: remove the HTML tags."
+msgstr "وصف المساعدين نص عادي: شيل وسوم HTML منه."
+
+#. module: gental_mcp
+#. odoo-python
 #: code:addons/gental_mcp/services/domain_guard.py:0
 msgid "The domain is malformed: “%s” is missing operands."
 msgstr "شروط البحث مو مركّبة صح: «%s» ناقصه شروط."
@@ -3350,6 +3369,15 @@ msgstr "وش يقدر يوصل له"
 #: model:ir.model.fields,help:gental_mcp.field_gental_mcp_api_key_wizard__name
 msgid "What this key is for, for example the assistant or system using it."
 msgstr "وش استخدام هذا المفتاح، مثلًا اسم المساعد أو النظام اللي يستخدمه."
+
+#. module: gental_mcp
+#: model:ir.model.fields,help:gental_mcp.field_gental_mcp_exposed_model__assistant_description
+msgid ""
+"What this model is in your business and when to use it, e.g. 'A customer's "
+"trip booking: status, dates, seats. Not for invoices.' Assistants see it "
+"next to the model's name, so they pick the right model. Plain text, one "
+"line, at most 300 characters."
+msgstr "وش هذا النموذج في شغلك ومتى ينستخدم، مثلاً: 'حجز رحلة لعميل: الحالة والتواريخ والمقاعد. مو للفواتير.' المساعدين يشوفونه جنب اسم النموذج عشان يختارون النموذج الصح. نص عادي، سطر واحد، وأقصاه 300 حرف."
 
 #. module: gental_mcp
 #: model_terms:ir.ui.view,arch_db:gental_mcp.view_log_form
