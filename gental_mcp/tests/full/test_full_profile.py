@@ -29,6 +29,12 @@ class TestFullProfile(GentalFullCase):
     def test_every_tool_schema_portable_with_all_apps(self):
         self.assert_tool_schemas_portable()
 
+    def test_every_tool_titled_in_both_languages_with_all_apps(self):
+        """Every curated tool (all apps installed) and every one of its properties has a title in Arabic and in
+        English; the two listings differ only in those texts."""
+        en, _ar = self.assert_tools_localized()
+        self.assertLessEqual({n for n in curated.REGISTRY if not n.startswith("gmcp_probe")}, set(en))
+
     def test_declared_field_outside_rights_refuses_in_every_area(self):
         """R27 for each area: a declared field the acting user may not read (``groups`` set to system
         administrators) refuses the tool before it runs, on every Odoo version."""

@@ -12,6 +12,8 @@ from datetime import date
 from odoo import _, fields
 from odoo.exceptions import AccessError
 
+from odoo.tools.translate import _lt
+
 from .. import compat
 from ..core.tools import ToolError, ToolOutcomeUnknown, ToolResult
 from ..services import curated, identity
@@ -251,13 +253,13 @@ class GetInvoiceDocument(DocumentTool):
     area = "invoicing"
     model = "account.move"
     id_arg = "invoice_id"
-    id_description = "Id of the customer invoice or credit note."
+    id_description = _lt("Id of the customer invoice or credit note.")
+    id_title = _lt("Invoice")
     report_xmlid = "account.account_invoices"
     # Same invoice without the payments block, and not limited to accounting groups (sales users).
     fallback_report_xmlid = "account.account_invoices_without_payment"
-    title_en = "Invoice PDF"
-    title_ar = "ملف الفاتورة"
-    description = (
+    label = _lt("Invoice PDF")
+    description = _lt(
         "Makes the PDF of a customer invoice or credit note and returns a download link that expires. "
         "Give the customer the link exactly as returned."
     )
@@ -270,11 +272,10 @@ class GetInvoiceDocument(DocumentTool):
 @register
 class MyInvoiceDocument(GetInvoiceDocument):
     name = "my_invoice_document"
-    id_description = "Id of one of the customer's own invoices or credit notes (from my_invoices)."
+    id_description = _lt("Id of one of the customer's own invoices or credit notes (from my_invoices).")
     requires_identity = True
-    title_en = "My invoice PDF"
-    title_ar = "ملف فاتورتي"
-    description = (
+    label = _lt("My invoice PDF")
+    description = _lt(
         "Makes the PDF of one of the chatting customer's own posted invoices or credit notes and returns a "
         "download link that expires. Works only for clients that send Gental's verified customer identity; "
         "another customer's invoice is not found. Give the customer the link exactly as returned."
@@ -301,9 +302,8 @@ class ListInvoices(CuratedTool):
     name = "list_invoices"
     area = "invoicing"
     kind = "read"
-    title_en = "List invoices"
-    title_ar = "قائمة الفواتير"
-    description = (
+    label = _lt("List invoices")
+    description = _lt(
         "List customer invoices and credit notes, newest first. Filter by customer (partner_id, includes "
         "its contacts), state, payment state, overdue only, or invoice date range. Amounts are in each "
         "invoice's currency."
@@ -314,14 +314,16 @@ class ListInvoices(CuratedTool):
         return {
             "type": "object",
             "properties": {
-                "partner_id": id_schema("Customer id (find_contact)."),
-                "state": enum(STATES, labels),
-                "payment_state": enum(PAYMENT_STATES, labels),
-                "overdue_only": {"type": "boolean",
-                                 "description": "Only posted, unpaid invoices (not credit notes) past their due date."},
-                "date_from": dict(DATE_SCHEMA, description="Invoice date from (inclusive)."),
-                "date_to": dict(DATE_SCHEMA, description="Invoice date to (inclusive)."),
-                "limit": {"type": "integer", "minimum": 1, "maximum": LIST_MAX, "description": "Default 20."},
+                "partner_id": id_schema(_lt("Customer id (find_contact)."), title=_lt("Customer")),
+                "state": enum(STATES, labels, title=_lt("Status")),
+                "payment_state": enum(PAYMENT_STATES, labels, title=_lt("Payment status")),
+                "overdue_only": {"type": "boolean", "title": _lt("Overdue only"),
+                                 "description": _lt("Only posted, unpaid invoices (not credit notes) past their due "
+                                                    "date.")},
+                "date_from": dict(DATE_SCHEMA, title=_lt("From date"), description=_lt("Invoice date from (inclusive).")),
+                "date_to": dict(DATE_SCHEMA, title=_lt("To date"), description=_lt("Invoice date to (inclusive).")),
+                "limit": {"type": "integer", "minimum": 1, "maximum": LIST_MAX, "title": _lt("How many"),
+                          "description": _lt("Default 20.")},
             },
             "additionalProperties": False,
         }
@@ -359,9 +361,8 @@ class InvoiceDetails(CuratedTool):
     name = "invoice_details"
     area = "invoicing"
     kind = "read"
-    title_en = "Invoice details"
-    title_ar = "تفاصيل الفاتورة"
-    description = (
+    label = _lt("Invoice details")
+    description = _lt(
         "One customer invoice or credit note by id or number: lines, totals, amount still due, payment "
         "state, due date and, for posted invoices not fully paid, portal_url: a non-expiring link the "
         "customer can open to view the invoice (and pay online when online payment is set up in Odoo)."
@@ -371,9 +372,9 @@ class InvoiceDetails(CuratedTool):
         return {
             "type": "object",
             "properties": {
-                "invoice_id": id_schema(),
-                "number": {"type": "string", "minLength": 1, "maxLength": 100,
-                           "description": "Invoice number, e.g. INV/2026/00012."},
+                "invoice_id": id_schema(title=_lt("Invoice")),
+                "number": {"type": "string", "minLength": 1, "maxLength": 100, "title": _lt("Invoice number"),
+                           "description": _lt("Invoice number, e.g. INV/2026/00012.")},
             },
             "additionalProperties": False,
         }
@@ -429,9 +430,8 @@ class CustomerBalance(CuratedTool):
     name = "customer_balance"
     area = "invoicing"
     kind = "read"
-    title_en = "Customer balance"
-    title_ar = "رصيد العميل"
-    description = (
+    label = _lt("Customer balance")
+    description = _lt(
         "What a customer owes: total receivable and the overdue part, in the company currency. "
         "partner_id may be a contact; its company's balance is returned."
     )
@@ -439,7 +439,7 @@ class CustomerBalance(CuratedTool):
     def input_schema(self, ctx):
         return {
             "type": "object",
-            "properties": {"partner_id": id_schema("Customer id (find_contact).")},
+            "properties": {"partner_id": id_schema(_lt("Customer id (find_contact)."), title=_lt("Customer"))},
             "required": ["partner_id"],
             "additionalProperties": False,
         }
@@ -462,9 +462,8 @@ class MyInvoices(CuratedTool):
     area = "invoicing"
     kind = "read"
     requires_identity = True
-    title_en = "My invoices"
-    title_ar = "فواتيري"
-    description = (
+    label = _lt("My invoices")
+    description = _lt(
         "The chatting customer's own posted invoices and credit notes, newest first. Invoices not fully paid "
         "carry portal_url: a non-expiring link the customer can open to view the invoice (and pay online when "
         "online payment is set up in Odoo). Works only for clients that send Gental's verified customer "
@@ -475,8 +474,10 @@ class MyInvoices(CuratedTool):
         return {
             "type": "object",
             "properties": {
-                "unpaid_only": {"type": "boolean", "description": "Only invoices not fully paid yet."},
-                "limit": {"type": "integer", "minimum": 1, "maximum": MY_MAX, "description": "Default 5."},
+                "unpaid_only": {"type": "boolean", "title": _lt("Unpaid only"),
+                                "description": _lt("Only invoices not fully paid yet.")},
+                "limit": {"type": "integer", "minimum": 1, "maximum": MY_MAX, "title": _lt("How many"),
+                          "description": _lt("Default 5.")},
             },
             "additionalProperties": False,
         }
@@ -502,9 +503,8 @@ class MyBalance(CuratedTool):
     area = "invoicing"
     kind = "read"
     requires_identity = True
-    title_en = "My balance"
-    title_ar = "رصيدي"
-    description = (
+    label = _lt("My balance")
+    description = _lt(
         "What the chatting customer owes: total receivable and the overdue part, in the company currency. "
         "Works only for clients that send Gental's verified customer identity."
     )
@@ -530,9 +530,8 @@ class SendInvoice(CuratedTool):
     name = "send_invoice"
     area = "invoicing"
     kind = "write"
-    title_en = "Email an invoice"
-    title_ar = "إرسال الفاتورة بالإيميل"
-    description = (
+    label = _lt("Email an invoice")
+    description = _lt(
         "Email a posted customer invoice or credit note, with its PDF, through Odoo's own invoice sending. "
         "The email is addressed only to the invoice's customer; the invoice's followers get Odoo's usual "
         "notification. Safe to retry: the same action key never emails twice."
@@ -541,7 +540,7 @@ class SendInvoice(CuratedTool):
     def input_schema(self, ctx):
         return {
             "type": "object",
-            "properties": {"invoice_id": id_schema()},
+            "properties": {"invoice_id": id_schema(title=_lt("Invoice"))},
             "required": ["invoice_id"],
             "additionalProperties": False,
         }

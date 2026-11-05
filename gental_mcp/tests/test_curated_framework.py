@@ -19,8 +19,7 @@ class _ProbeRead(curated.CuratedTool):
     name = "gmcp_probe_read"
     area = "contacts"
     kind = "read"
-    title_en = "Probe read"
-    title_ar = "فحص قراءة"
+    label = "Probe read"  # test-only, so not in ar.po: shown untranslated
     description = "Reads nothing."
 
     def input_schema(self, ctx):
@@ -160,12 +159,15 @@ class TestCuratedFramework(GentalMcpCase, PortableHttpCase):
                 if tool.requires_identity:
                     self.assertEqual(audience, "public")
                 staff = audience == "staff"
-                self.assertEqual(spec["description"].startswith("Staff tool: "), staff)
+                self.assertEqual(spec["description"].startswith("أداة للموظفين: "), staff)
                 self.assertEqual(spec["title"].startswith("للموظفين: "), staff)
+                spec_en = tool.spec(CallContext(ctx.env, ctx.user_id, ctx.client_id, "en")).to_mcp()
+                self.assertEqual(spec_en["description"].startswith("Staff tool: "), staff)
+                self.assertEqual(spec_en["title"].startswith("Staff: "), staff)
         listed = self.tools()
         self.assertEqual(listed["find_contact"]["_meta"][gmeta.AUDIENCE], "staff")
         self.assertEqual(listed["upsert_contact"]["_meta"][gmeta.AUDIENCE], "public")
-        self.assertTrue(listed["find_contact"]["description"].startswith("Staff tool: "))
+        self.assertTrue(listed["find_contact"]["description"].startswith("أداة للموظفين: "))  # default: Arabic
 
     def test_id_arguments_capped(self):
         """Every record id argument (``*_id``, items of ``*_ids``) of the installed tools has
@@ -220,8 +222,8 @@ class TestCuratedFramework(GentalMcpCase, PortableHttpCase):
     def test_contacts_area_always_available(self):
         self.assertIn("contacts", areas.installed_areas(self.env))
         tool = self.tools()["gmcp_probe_read"]
-        self.assertEqual(tool["title"], "للموظفين: فحص قراءة")  # default language is Arabic; a staff tool
-        self.assertEqual(tool["description"], "Staff tool: Reads nothing.")
+        self.assertEqual(tool["title"], "للموظفين: Probe read")  # default language is Arabic; a staff tool
+        self.assertEqual(tool["description"], "أداة للموظفين: Reads nothing.")
         self.assertTrue(tool["annotations"]["readOnlyHint"])
         result = self.call_tool("gmcp_probe_read")["result"]
         self.assertFalse(result["isError"])
