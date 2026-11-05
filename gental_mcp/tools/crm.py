@@ -9,6 +9,7 @@ import re
 from datetime import date
 
 from odoo import _
+from odoo.tools.translate import _lt
 
 from .. import compat
 from ..core.tools import ToolResult, ToolError
@@ -149,9 +150,8 @@ class CreateLead(CuratedTool):
     name = "create_lead"
     area = "crm"
     kind = "write"
-    title_en = "Create a lead"
-    title_ar = "إنشاء عميل محتمل"
-    description = (
+    label = _lt("Create a lead")
+    description = _lt(
         "Create a CRM lead or opportunity. Give the contact's details, or partner_id of an existing contact "
         "(find it with find_contact). Safe to retry: the same action key returns the lead already created."
     )
@@ -160,14 +160,17 @@ class CreateLead(CuratedTool):
         return {
             "type": "object",
             "properties": {
-                "name": {"type": "string", "minLength": 1, "maxLength": 200, "description": "Lead title."},
-                "contact_name": {"type": "string", "maxLength": 200},
-                "phone": {"type": "string", "maxLength": 50},
-                "email": {"type": "string", "maxLength": 200},
-                "partner_id": id_schema("Existing contact id."),
-                "expected_revenue": {"type": "number", "minimum": 0, "maximum": REVENUE_MAX},
-                "type": enum(("lead", "opportunity"), _labels(ctx), description="Default: lead."),
-                "description": {"type": "string", "maxLength": NOTE_MAX},
+                "name": {"type": "string", "minLength": 1, "maxLength": 200, "title": _lt("Title"),
+                         "description": _lt("Lead title.")},
+                "contact_name": {"type": "string", "maxLength": 200, "title": _lt("Contact name")},
+                "phone": {"type": "string", "maxLength": 50, "title": _lt("Phone")},
+                "email": {"type": "string", "maxLength": 200, "title": _lt("Email")},
+                "partner_id": id_schema(_lt("Existing contact id."), title=_lt("Customer")),
+                "expected_revenue": {"type": "number", "minimum": 0, "maximum": REVENUE_MAX,
+                                     "title": _lt("Expected revenue")},
+                "type": enum(("lead", "opportunity"), _labels(ctx), title=_lt("Type"),
+                             description=_lt("Default: lead.")),
+                "description": {"type": "string", "maxLength": NOTE_MAX, "title": _lt("Details")},
             },
             "required": ["name"],
             "additionalProperties": False,
@@ -205,9 +208,8 @@ class UpdateLead(CuratedTool):
     area = "crm"
     kind = "write"
     idempotent = True
-    title_en = "Update a lead"
-    title_ar = "تعديل عميل محتمل"
-    description = (
+    label = _lt("Update a lead")
+    description = _lt(
         "Change a lead or opportunity: move it to a stage, assign a salesperson, set the expected revenue or "
         "replace its tags. Use pipeline_summary to get the stage ids. Only the fields you pass change."
     )
@@ -216,12 +218,13 @@ class UpdateLead(CuratedTool):
         return {
             "type": "object",
             "properties": {
-                "lead_id": id_schema(),
-                "stage_id": id_schema("Stage id from pipeline_summary."),
-                "user_id": id_schema("Salesperson (user id)."),
-                "expected_revenue": {"type": "number", "minimum": 0, "maximum": REVENUE_MAX},
-                "tag_ids": {"type": "array", "items": id_schema(), "maxItems": 50,
-                            "description": "Replaces the lead's tags."},
+                "lead_id": id_schema(title=_lt("Lead")),
+                "stage_id": id_schema(_lt("Stage id from pipeline_summary."), title=_lt("Stage")),
+                "user_id": id_schema(_lt("Salesperson (user id)."), title=_lt("Salesperson")),
+                "expected_revenue": {"type": "number", "minimum": 0, "maximum": REVENUE_MAX,
+                                     "title": _lt("Expected revenue")},
+                "tag_ids": {"type": "array", "items": id_schema(), "maxItems": 50, "title": _lt("Tags"),
+                            "description": _lt("Replaces the lead's tags.")},
             },
             "required": ["lead_id"],
             "additionalProperties": False,
@@ -268,9 +271,8 @@ class LogNote(CuratedTool):
     name = "log_note"
     area = "contacts"  # offered whenever any app owning one of the declared models is installed
     kind = "write"
-    title_en = "Log a note"
-    title_ar = "تسجيل ملاحظة"
-    description = (
+    label = _lt("Log a note")
+    description = _lt(
         "Add an internal note to a lead, quotation or order, contact or invoice. Notes are internal: "
         "nothing is emailed to the customer or to followers."
     )
@@ -279,9 +281,10 @@ class LogNote(CuratedTool):
         return {
             "type": "object",
             "properties": {
-                "model": enum(_noteable_models(ctx.env), _labels(ctx)),
-                "record_id": id_schema(),
-                "body": {"type": "string", "minLength": 1, "maxLength": NOTE_MAX, "description": "Plain text."},
+                "model": enum(_noteable_models(ctx.env), _labels(ctx), title=_lt("Record type")),
+                "record_id": id_schema(title=_lt("Record")),
+                "body": {"type": "string", "minLength": 1, "maxLength": NOTE_MAX, "title": _lt("Note"),
+                         "description": _lt("Plain text.")},
             },
             "required": ["model", "record_id", "body"],
             "additionalProperties": False,
@@ -316,9 +319,8 @@ class ScheduleActivity(CuratedTool):
     name = "schedule_activity"
     area = "contacts"
     kind = "write"
-    title_en = "Schedule an activity"
-    title_ar = "جدولة نشاط"
-    description = (
+    label = _lt("Schedule an activity")
+    description = _lt(
         "Schedule a call, to-do or meeting on a lead, quotation or order, contact or invoice. It goes to "
         "you unless user_id (an internal user) is given."
     )
@@ -327,12 +329,13 @@ class ScheduleActivity(CuratedTool):
         return {
             "type": "object",
             "properties": {
-                "model": enum(_noteable_models(ctx.env), _labels(ctx)),
-                "record_id": id_schema(),
-                "activity_type": enum(ACTIVITY_TYPES, _labels(ctx)),
-                "summary": {"type": "string", "minLength": 1, "maxLength": SUMMARY_MAX},
-                "date_deadline": {"type": "string", "format": "date", "pattern": "^\\d{4}-\\d{2}-\\d{2}$"},
-                "user_id": id_schema("Assignee; default: you."),
+                "model": enum(_noteable_models(ctx.env), _labels(ctx), title=_lt("Record type")),
+                "record_id": id_schema(title=_lt("Record")),
+                "activity_type": enum(ACTIVITY_TYPES, _labels(ctx), title=_lt("Activity type")),
+                "summary": {"type": "string", "minLength": 1, "maxLength": SUMMARY_MAX, "title": _lt("Summary")},
+                "date_deadline": {"type": "string", "format": "date", "pattern": "^\\d{4}-\\d{2}-\\d{2}$",
+                                  "title": _lt("Due date")},
+                "user_id": id_schema(_lt("Assignee; default: you."), title=_lt("Assigned to")),
             },
             "required": ["model", "record_id", "activity_type", "summary", "date_deadline"],
             "additionalProperties": False,
@@ -379,9 +382,8 @@ class PipelineSummary(CuratedTool):
     area = "crm"
     kind = "read"
     idempotent = True
-    title_en = "Pipeline summary"
-    title_ar = "ملخص خط المبيعات"
-    description = (
+    label = _lt("Pipeline summary")
+    description = _lt(
         "Open opportunities per stage: count and expected revenue, with the stage ids that update_lead takes. "
         "Optionally for one salesperson (user_id) or sales team (team_id)."
     )
@@ -390,8 +392,8 @@ class PipelineSummary(CuratedTool):
         return {
             "type": "object",
             "properties": {
-                "user_id": id_schema("Only this salesperson's."),
-                "team_id": id_schema("Only this sales team's."),
+                "user_id": id_schema(_lt("Only this salesperson's."), title=_lt("Salesperson")),
+                "team_id": id_schema(_lt("Only this sales team's."), title=_lt("Sales team")),
             },
             "additionalProperties": False,
         }

@@ -1,6 +1,6 @@
 from odoo import api, fields, models
 
-from ..compat import create_unique_index, private
+from ..compat import create_unique_index, private, translate
 from ..services import areas, curated
 
 AREA_SELECTION = [
@@ -39,11 +39,10 @@ class GentalMcpToolSetting(models.Model):
     @api.depends("name")
     @api.depends_context("lang")
     def _compute_from_registry(self):
-        arabic = (self.env.lang or "").startswith("ar")
         for rec in self:
             tool = curated.REGISTRY.get(rec.name)
             rec.kind = tool.kind if tool else False
-            rec.title = (tool.title_ar if arabic else tool.title_en) if tool else rec.name
+            rec.title = translate(self.env.lang, tool.label) if tool else rec.name
 
     @api.depends("area")
     def _compute_area_installed(self):

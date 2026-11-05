@@ -59,12 +59,13 @@ def _lines_schema():
         "type": "array",
         "minItems": 1,
         "maxItems": MAX_LINES,
-        "description": "Products and quantities, at least one line.",
+        "title": _lt("Products"),
+        "description": _lt("Products and quantities, at least one line."),
         "items": {
             "type": "object",
             "properties": {
-                "product_id": _id("Product id from search_products."),
-                "qty": {"type": "number", "minimum": 1, "maximum": MAX_QTY},
+                "product_id": _id(_lt("Product id from search_products."), title=_lt("Product")),
+                "qty": {"type": "number", "minimum": 1, "maximum": MAX_QTY, "title": _lt("Quantity")},
             },
             "required": ["product_id", "qty"],
             "additionalProperties": False,
@@ -220,9 +221,8 @@ class SearchProducts(curated.CuratedTool):
     name = "search_products"
     area = "sales"
     kind = "read"
-    title_en = "Search products"
-    title_ar = "البحث عن منتجات"
-    description = (
+    label = _lt("Search products")
+    description = _lt(
         "Finds products that can be sold, by name or internal code. Returns id, name, code, price and, when "
         "Inventory is installed, the quantity on hand. With partner_id, the price is on that customer's own price "
         "list only for the verified customer (or a sales manager), else on the standard price list; without it, "
@@ -234,12 +234,13 @@ class SearchProducts(curated.CuratedTool):
         return {
             "type": "object",
             "properties": {
-                "query": {"type": "string", "minLength": 1, "maxLength": 200},
-                "limit": {"type": "integer", "minimum": 1, "maximum": MAX_PRODUCTS, "default": 10},
-                "partner_id": _id("Optional customer id (find_contact): their own prices if they are the verified "
-                                  "customer."),
-                "pricelist_id": _id("Optional price list id: the verified customer's own, unless you are a sales "
-                                    "manager."),
+                "query": {"type": "string", "minLength": 1, "maxLength": 200, "title": _lt("Product name or code")},
+                "limit": {"type": "integer", "minimum": 1, "maximum": MAX_PRODUCTS, "default": 10,
+                          "title": _lt("How many")},
+                "partner_id": _id(_lt("Optional customer id (find_contact): their own prices if they are the "
+                                      "verified customer."), title=_lt("Customer")),
+                "pricelist_id": _id(_lt("Optional price list id: the verified customer's own, unless you are a "
+                                        "sales manager."), title=_lt("Price list")),
             },
             "required": ["query"],
             "additionalProperties": False,
@@ -288,9 +289,8 @@ class PreviewQuotation(curated.CuratedTool):
     name = "preview_quotation"
     area = "sales"
     kind = "read"
-    title_en = "Preview a quotation"
-    title_ar = "معاينة عرض سعر"
-    description = (
+    label = _lt("Preview a quotation")
+    description = _lt(
         "Prices a quotation without saving anything: Odoo's prices, discounts, taxes and total for the customer "
         "and lines. Always preview before create_quotation and show the customer the lines and total. The "
         "customer's own price list applies only when they are the verified customer (or for a sales manager); "
@@ -302,10 +302,10 @@ class PreviewQuotation(curated.CuratedTool):
         return {
             "type": "object",
             "properties": {
-                "partner_id": _id("Customer id from find_contact."),
+                "partner_id": _id(_lt("Customer id from find_contact."), title=_lt("Customer")),
                 "lines": _lines_schema(),
-                "pricelist_id": _id("Optional price list id: the verified customer's own, or any for a sales "
-                                    "manager."),
+                "pricelist_id": _id(_lt("Optional price list id: the verified customer's own, or any for a sales "
+                                        "manager."), title=_lt("Price list")),
             },
             "required": ["partner_id", "lines"],
             "additionalProperties": False,
@@ -348,9 +348,8 @@ class CreateQuotation(curated.CuratedTool):
     name = "create_quotation"
     area = "sales"
     kind = "write"
-    title_en = "Create a quotation"
-    title_ar = "إنشاء عرض سعر"
-    description = (
+    label = _lt("Create a quotation")
+    description = _lt(
         "Creates a draft quotation for the customer with these lines, priced by Odoo (prices are never taken "
         "from the request). Send the same customer, lines and price list as the preview_quotation the customer "
         "agreed to: when its signed quote is sent, the quotation is refused if anything or the total changed. "
@@ -361,10 +360,11 @@ class CreateQuotation(curated.CuratedTool):
         return {
             "type": "object",
             "properties": {
-                "partner_id": _id("Customer id."),
+                "partner_id": _id(_lt("Customer id."), title=_lt("Customer")),
                 "lines": _lines_schema(),
-                "pricelist_id": _id("Optional price list id, the same as in the preview."),
-                "note": {"type": "string", "maxLength": 2000, "description": "Optional note on the quotation."},
+                "pricelist_id": _id(_lt("Optional price list id, the same as in the preview."), title=_lt("Price list")),
+                "note": {"type": "string", "maxLength": 2000, "title": _lt("Note"),
+                         "description": _lt("Optional note on the quotation.")},
             },
             "required": ["partner_id", "lines"],
             "additionalProperties": False,
@@ -417,9 +417,8 @@ class ConfirmOrder(curated.CuratedTool):
     name = "confirm_order"
     area = "sales"
     kind = "write"
-    title_en = "Confirm an order"
-    title_ar = "تأكيد طلب"
-    description = (
+    label = _lt("Confirm an order")
+    description = _lt(
         "Confirms a draft or sent quotation, turning it into a sales order. Confirming an order that is already "
         "confirmed changes nothing and returns its state."
     )
@@ -427,7 +426,7 @@ class ConfirmOrder(curated.CuratedTool):
     def input_schema(self, ctx):
         return {
             "type": "object",
-            "properties": {"order_id": _id("Quotation id.")},
+            "properties": {"order_id": _id(_lt("Quotation id."), title=_lt("Quotation"))},
             "required": ["order_id"],
             "additionalProperties": False,
         }
@@ -452,9 +451,8 @@ class CancelOrder(curated.CuratedTool):
     name = "cancel_order"
     area = "sales"
     kind = "destructive"
-    title_en = "Cancel an order"
-    title_ar = "إلغاء طلب"
-    description = (
+    label = _lt("Cancel an order")
+    description = _lt(
         "Cancels a quotation or sales order (and its draft invoices). An optional reason is logged on the order. "
         "When Odoo needs a person to confirm the cancellation, nothing changes and staff are flagged."
     )
@@ -463,8 +461,9 @@ class CancelOrder(curated.CuratedTool):
         return {
             "type": "object",
             "properties": {
-                "order_id": _id("Order id."),
-                "reason": {"type": "string", "maxLength": 1000, "description": "Optional reason, logged on the order."},
+                "order_id": _id(_lt("Order id."), title=_lt("Order")),
+                "reason": {"type": "string", "maxLength": 1000, "title": _lt("Reason"),
+                           "description": _lt("Optional reason, logged on the order.")},
             },
             "required": ["order_id"],
             "additionalProperties": False,
@@ -515,9 +514,8 @@ class OrderStatus(curated.CuratedTool):
     name = "order_status"
     area = "sales"
     kind = "read"
-    title_en = "Order status"
-    title_ar = "حالة الطلب"
-    description = (
+    label = _lt("Order status")
+    description = _lt(
         "Looks up a quotation or sales order by its number (e.g. S00042) or the customer's reference. Returns "
         "its state, dates, invoice status and, when Inventory is installed, delivery status."
     )
@@ -526,7 +524,8 @@ class OrderStatus(curated.CuratedTool):
         return {
             "type": "object",
             "properties": {"order_ref": {"type": "string", "minLength": 1, "maxLength": 100,
-                                         "description": "Order number or customer reference."}},
+                                         "title": _lt("Order reference"),
+                                         "description": _lt("Order number or customer reference.")}},
             "required": ["order_ref"],
             "additionalProperties": False,
         }
@@ -566,9 +565,8 @@ class MyOrders(curated.CuratedTool):
     area = "sales"
     kind = "read"
     requires_identity = True
-    title_en = "My orders"
-    title_ar = "طلباتي"
-    description = (
+    label = _lt("My orders")
+    description = _lt(
         "The chatting customer's own quotations and orders, newest first. Works only for clients that send "
         "Gental's verified customer identity; the customer is never chosen by argument."
     )
@@ -576,7 +574,8 @@ class MyOrders(curated.CuratedTool):
     def input_schema(self, ctx):
         return {
             "type": "object",
-            "properties": {"limit": {"type": "integer", "minimum": 1, "maximum": MAX_MY_ORDERS, "default": 5}},
+            "properties": {"limit": {"type": "integer", "minimum": 1, "maximum": MAX_MY_ORDERS, "default": 5,
+                                     "title": _lt("How many")}},
             "additionalProperties": False,
         }
 
@@ -605,11 +604,11 @@ class GetOrderDocument(DocumentTool):
     area = "sales"
     model = "sale.order"
     id_arg = "order_id"
-    id_description = "Id of the quotation or sales order."
+    id_description = _lt("Id of the quotation or sales order.")
+    id_title = _lt("Quotation or order")
     report_xmlid = "sale.action_report_saleorder"
-    title_en = "Quotation or order PDF"
-    title_ar = "ملف عرض السعر أو الطلب"
-    description = (
+    label = _lt("Quotation or order PDF")
+    description = _lt(
         "Makes the PDF of a quotation or sales order and returns a download link that expires. "
         "Give the customer the link exactly as returned."
     )
@@ -631,12 +630,12 @@ class MyOrderDocument(DocumentTool):
     area = "sales"
     model = "sale.order"
     id_arg = "order_id"
-    id_description = "Id of one of the customer's own quotations or orders (from my_orders)."
+    id_description = _lt("Id of one of the customer's own quotations or orders (from my_orders).")
+    id_title = _lt("Quotation or order")
     report_xmlid = "sale.action_report_saleorder"
     requires_identity = True
-    title_en = "My quotation or order PDF"
-    title_ar = "ملف عرض سعري أو طلبي"
-    description = (
+    label = _lt("My quotation or order PDF")
+    description = _lt(
         "Makes the PDF of one of the chatting customer's own quotations or orders and returns a download link "
         "that expires. Works only for clients that send Gental's verified customer identity; another "
         "customer's order is not found. Give the customer the link exactly as returned."

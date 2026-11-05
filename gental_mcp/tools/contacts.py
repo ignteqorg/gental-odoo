@@ -77,9 +77,8 @@ class FindContact(curated.CuratedTool):
     name = "find_contact"
     area = "contacts"
     kind = "read"
-    title_en = "Find a contact"
-    title_ar = "البحث عن جهة اتصال"
-    description = (
+    label = _lt("Find a contact")
+    description = _lt(
         "Finds customers and other contacts in Odoo by name, phone number (any format), email or internal "
         "reference. Returns id, name, phone, email, reference and company."
     )
@@ -88,9 +87,10 @@ class FindContact(curated.CuratedTool):
         return {
             "type": "object",
             "properties": {
-                "query": {"type": "string", "minLength": 2, "maxLength": 200,
-                          "description": "Name, phone, email or reference."},
-                "limit": {"type": "integer", "minimum": 1, "maximum": MAX_LIMIT, "default": 10},
+                "query": {"type": "string", "minLength": 2, "maxLength": 200, "title": _lt("Search"),
+                          "description": _lt("Name, phone, email or reference.")},
+                "limit": {"type": "integer", "minimum": 1, "maximum": MAX_LIMIT, "default": 10,
+                          "title": _lt("How many")},
             },
             "required": ["query"],
             "additionalProperties": False,
@@ -124,9 +124,8 @@ class UpsertContact(curated.CuratedTool):
     area = "contacts"
     kind = "write"
     idempotent = True
-    title_en = "Create or update a contact"
-    title_ar = "إضافة جهة اتصال أو تحديثها"
-    description = (
+    label = _lt("Create or update a contact")
+    description = _lt(
         "Saves a customer without creating duplicates: matches an existing contact by phone number first, "
         "then by email. One match with the same name: status matched; empty company and address fields are "
         "filled, nothing is overwritten, and the email is added only for the verified customer. Another name "
@@ -138,12 +137,13 @@ class UpsertContact(curated.CuratedTool):
     def input_schema(self, ctx):
         text_field = {"type": "string", "maxLength": 200}
         properties = {
-            "name": {"type": "string", "minLength": 1, "maxLength": 200},
-            "phone": {"type": "string", "maxLength": 40, "description": "Phone number, ideally with country code."},
-            "email": {"type": "string", "maxLength": 200},
-            "company_name": dict(text_field, description="The customer's company, if any."),
-            "street": text_field,
-            "city": text_field,
+            "name": {"type": "string", "minLength": 1, "maxLength": 200, "title": _lt("Name")},
+            "phone": {"type": "string", "maxLength": 40, "title": _lt("Phone"),
+                      "description": _lt("Phone number, ideally with country code.")},
+            "email": {"type": "string", "maxLength": 200, "title": _lt("Email")},
+            "company_name": dict(text_field, title=_lt("Company"), description=_lt("The customer's company, if any.")),
+            "street": dict(text_field, title=_lt("Street")),
+            "city": dict(text_field, title=_lt("City")),
         }
         if "company_name" not in ctx.env["res.partner"]._fields:
             del properties["company_name"]
